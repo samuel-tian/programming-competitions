@@ -1,0 +1,27 @@
+Fibonacci
+=========
+
+Fibonacci numbers are a sequence of integers as shown below
+1 1 2 3 5 8 13 ...
+
+Except for the first two, each number is the sum of the previous two numbers.
+
+For a given number N, calculate and print the Nth number in the fibonacci sequence.
+
+PROBLEM NAME: fib
+
+INPUT FORMAT:
+
+* Line 1: A single integer: N
+
+SAMPLE INPUT:
+
+7
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer: Nth number in the fibonacci sequence
+
+SAMPLE OUTPUT:
+
+13

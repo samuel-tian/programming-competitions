@@ -1,0 +1,86 @@
+Starry Night
+============
+
+High up in the night sky, the shining stars appear in clusters of
+various shapes. A cluster is a non-empty group of neighbouring
+stars, adjacent in horizontal, vertical or diagonal direction.
+A cluster cannot be a part of a larger cluster, and can have at
+most 160 stars.
+
+Clusters may be similar. Two clusters are similar if they have
+the same shape and number of stars, irrespective of their
+orientation. In general, the number of possible orientations
+for a cluster is eight illustrated as follows:
+
+***...***.....*...*..
+*..*....*..*..*..*...
+*.......*...***..*...
+.......*.........***.
+.....................
+.***..***..*......*..
+*..*..*....*..*....*.
+...*..*....***.....*.
+.......*.........***.
+.....................
+
+The night sky is represented by a sky map, which is a two-dimensional
+NxM matrix (0 < N, M <= 100) of '.'s and '*'s. A cell contains '*'
+if it has a star, and '.' otherwise. The total number of clusters C
+in the map is less than or equal to 500. The task is to find the
+number of non-similar clusters, 0 <= D <= 26 in the sky.
+
+PROBLEM NAME: starry
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: N, M.
+
+* Line 2..N+1: Line i+1 corresponds to the ith row of the matrix.
+
+SAMPLE INPUT:
+
+15 23
+*...*..........*.......
+.*****...*****...*.**.*
+.*.......*...*...******
+.........*.*.*...*.****
+.....***.*...*.........
+....*..*.*****.........
+*......*...............
+..*.*......*****..*....
+....*......*...*..*****
+.......***.*.*.*.*...*.
+.....*..**.*...*.......
+...*...***.*****.......
+..*....***.......*.....
+....*...*....*...*..*.*
+.......***...*...***...
+
+OUTPUT FORMAT:
+
+* Line 1: One integer D; the number of non-similar clusters.
+
+SAMPLE OUTPUT:
+
+7
+
+OUTPUT DETAILS:
+
+Similar clusters are marked with same letters as shown in the
+following matrix. Hence there are 7 non-similar clusters.
+
+a...a..........b.......
+.aaaaa...ccccc...d.dd.d
+.a.......c...c...dddddd
+.........c.b.c...d.dddd
+.....eee.c...c.........
+....e..e.ccccc.........
+b......e...............
+..b.f......ccccc..a....
+....f......c...c..aaaaa
+.......ddd.c.b.c.a...a.
+.....b..dd.c...c.......
+...g...ddd.ccccc.......
+..g....ddd.......e.....
+....b...d....f...e..e.b
+.......ddd...f...eee...

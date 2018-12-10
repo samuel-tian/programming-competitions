@@ -1,0 +1,101 @@
+Time Travel
+===========
+
+Farmer John has purchased an Acme Time Machine. He can now travel
+forward in time normally (without using the machine) or else jump
+back to an arbitrary point in the past, at which point time will
+start to go forward again, but potentially with events unfolding
+in a new, different way. FJ can never travel forward in time in his
+time machine.
+
+FJ wants to raise the best possible cow herd, so he is going to try
+several different ideas, keeping track of various statistics of his
+cow herd through different possible time and event paths.
+
+One statistic FJ cares about is the ID number of the cow he has had
+for the shortest period of time. Please help him out by writing a
+program to keep track of his herd and, after each command, reporting
+the ID of the most recently acquired cow of the cows he owns (or
+-1 if he has no cows).
+
+FJ has a set of N (1 <= N <= 80,000) queries Q_i, conveniently
+numbered 1..N, which represent consecutive updates from the point
+of view of FJ's personal timeline.
+
+Each query is a single line of input. The line begins with a single
+character c (one of 'a', 's', or 't'). If c = 'a' or c = 't', then
+c is followed by a space and an integer K (1 <= K <= 1,000,000).
+
+  * If c = 'a', then FJ acquires a cow with ID K; add the cow to
+    the herd.
+
+  * If c = 's', then FJ sold his most recently acquired cow (it is
+    guaranteed that FJ will have at least one cow whenever this
+    type of query appears); remove the cow from the herd.
+
+  * If c = 't', then FJ traveled back in time to just before the
+    Kth query. Note that this means that FJ can potentially travel
+    between parallel time paths (see sample input for clarification).
+    Revert to the herd that was present just before query K.
+
+By way of example, consider a series of 12 queries, shown below
+along with the cow name list and the resulting output for each
+query.
+
+    Q#   Query   Owned Cows    Output      Comments
+     1   a 5  -> [5]        => 5        Add a new cow with ID 5
+     2   a 3  -> [5,3]      => 3        Add a new cow with ID 3
+     3   a 7  -> [5,3,7]    => 7        Add a new cow with ID 7
+     4   s    -> [5,3]      => 3        Sell recent cow 7
+     5   t 2  -> [5]        => 5        Revert time to before query 2
+     6   a 2  -> [5,2]      => 2        Add a new cow with ID 2
+     7   t 4  -> [5,3,7]    => 7        Revert time to before query 4
+     8   a 4  -> [5,3,7,4]  => 4        Add a new cow with ID 4
+     9   s    -> [5,3,7]    => 7        Sell recent cow 4
+    10   t 7  -> [5,2]      => 2        Revert time to before query 7
+    11   s    -> [5]        => 5        Sell recent cow 2
+    12   s    -> []         => -1       Sell recent cow 5
+
+PROBLEM NAME: ttravel
+
+INPUT FORMAT:
+
+* Line 1: A single integer: N
+
+* Lines 2..N+1: Line i+1: query Q_i
+
+SAMPLE INPUT:
+
+12
+a 5
+a 3
+a 7
+s
+t 2
+a 2
+t 4
+a 4
+s
+t 7
+s
+s
+
+OUTPUT FORMAT:
+
+* Lines 1..N: Line i: The ID of the most recently purchased cow after
+        query i takes effect (-1 if no cows are owned).
+
+SAMPLE OUTPUT:
+
+5
+3
+7
+3
+5
+2
+7
+4
+7
+2
+5
+-1

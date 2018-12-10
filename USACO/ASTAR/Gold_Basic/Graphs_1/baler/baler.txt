@@ -1,0 +1,75 @@
+The Loathesome Hay Baler
+========================
+
+Farmer John has purchased the world's most loathesome hay baler.
+Instead of having a driver roller that drives maybe an idler roller
+that drives the power take-off for the baler, it has N rollers (2
+<= N <= 1050) which drive and are driven by various rollers.
+
+FJ has meticulously cataloged data for each roller i: X_i,Y_i are
+the center of the roller (-5000 <= X_i <= 5000; -5000 <= Y_i <=
+5000); R_i is the roller's radius (3 <= R_i <= 800). The drive
+roller is located at 0,0; the baler power take-off is located at
+X_t,Y_t (numbers supplied in the input).
+
+The drive roller turns clockwise at 10,000 revolutions per hour.
+Your job is to determine the speeds of all the rollers that are in
+the power-train: from the drive roller through the power take-off
+roller. Rollers that do not transfer power to the take-off roller
+are to be ignored. A roller of radius Rd that is turning at S rph
+and driving another roller of radius Rx will cause the second roller
+to turn at the speed -S*Rd/Rx (where the sign denotes whether the
+roller is turning clockwise or counterclockwise (anticlockwise for
+our British friends)).
+
+Determine the power-train path and report the sum of the absolute
+values of all those rollers' speeds. All the rollers in the input
+set are driven by some other roller; power is never transferred to
+a roller from more than one other roller.
+
+Report your answer as an integer that is the truncated value after
+summing all the speeds.
+
+PROBLEM NAME: baler
+
+INPUT FORMAT:
+
+* Line 1: Three space-separated integers: N, X_t, and Y_t
+
+* Lines 2..N+1: Line i+1 describes roller i's properties: X_i, Y_i,
+        and R_i
+
+SAMPLE INPUT:
+
+4 32 54
+0 0 10
+0 30 20
+32 54 20
+-40 30 20
+
+INPUT DETAILS:
+
+Four rollers: the drive roller at 0,0 with radius 10. It drives the roller
+above it at 0,30 with radius 20. That roller drives both the power take-off
+roller at 32,54 (r=20) and a random roller (not in the power train) at
+-40,30 (r=20).
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer that is the truncated version of the sum of
+        the absolute value of the speeds of the rollers in the
+        power-train including the drive roller, all the driven
+        rollers, and the power take-off roller.
+
+SAMPLE OUTPUT:
+
+20000
+
+OUTPUT DETAILS:
+
+ Roller   Radius   Speed
+1 (0,0)     10     10,000
+2 (0,30)    20     -5,000
+3 (32,54)   20      5,000
+                   ------
+Sum of abs values: 20,000

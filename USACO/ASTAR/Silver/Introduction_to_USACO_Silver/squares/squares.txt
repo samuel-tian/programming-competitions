@@ -1,0 +1,41 @@
+Perfect Squares
+===============
+
+Farmer John is playing a game with Bessie. He picks two positive
+integers A and B (1 = B = A = 500), and Bessie is supposed to
+deduce which numbers he picked. He gave Bessie the following hint
+
+The numbers I chose have the property that the square of the
+larger number is N (1 = N = 1,000) larger than the square of
+the smaller number.
+
+Being a smart cow, Bessie knows that this hint will greatly reduce the
+number of possibilities for A and B. However, she is asking you to help by
+writing a program to compute the exact number of solutions possible.
+
+PROBLEM NAME squares
+
+INPUT FORMAT
+
+ Line 1 A single integer N
+
+SAMPLE INPUT
+
+15
+
+INPUT DETAILS
+
+How many pairs of positive integers (A, B) satisfy A^2 = B^2 + 15
+
+OUTPUT FORMAT
+
+ Line 1 A single integer representing the number of possible
+solutions
+
+SAMPLE OUTPUT
+
+2
+
+OUTPUT DETAILS
+
+There are two solutions (A, B) = (4, 1) and (A, B) = (8, 7)

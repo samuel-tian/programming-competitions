@@ -1,0 +1,65 @@
+Ruler
+=====
+
+You are asked to draw a special design ruler of a custom size N where 
+N > 1. These are the rules for a size N ruler r_N:
+
+      **..* (N times)
+r_N = d_(N-1)
+      **..* (N times)
+
+      d_(N-1)
+d_N = **..* (N times)
+      d_(N-1)
+
+d_1 = *
+
+Here are some of the components of a size 5 ruler:
+
+      ________ *****
+     |         *
+     |         **
+     |         *
+     |       _ ***
+     |      |  *
+     | d_2 <   **
+     |      |_ *
+d_4 <          **** ___
+     |         *       |
+     |         **      |
+     |   d_1 < *       |
+     |         ***      > d_3
+     |         *       |
+     |         **      |
+     |________ *    ___|
+               *****
+
+PROBLEM NAME: ruler
+
+INPUT FORMAT:
+
+* Line 1: A single integer: N
+
+SAMPLE INPUT:
+
+5
+
+SAMPLE OUTPUT:
+
+*****
+*
+**
+*
+***
+*
+**
+*
+****
+*
+**
+*
+***
+*
+**
+*
+*****

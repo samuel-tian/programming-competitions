@@ -1,0 +1,46 @@
+Round Numbers
+=============
+
+The cows, as you know, have no fingers or thumbs and thus are unable to 
+play Scissors, Paper, Stone' (also known as 'Rock, Paper, Scissors', 
+'Ro, Sham, Bo', and a host of other names) in order to make arbitrary 
+decisions such as who gets to be milked first. They can't even flip a coin 
+because it's so hard to toss using hooves.
+
+They have thus resorted to "round number" matching. The first cow picks
+an integer less than two billion. The second cow does the same. If the 
+numbers are both "round numbers", the first cow wins, otherwise the second 
+cow wins.
+
+A positive integer N is said to be a "round number" if the binary 
+representation of N has as many or more zeroes than it has ones. 
+For example, the integer 9, when written in binary form, is 1001. 
+1001 has two zeroes and two ones; thus, 9 is a round number. 
+The integer 26 is 11010 in binary; since it has two zeroes and three ones, 
+it is not a round number.
+
+Obviously, it takes cows a while to convert numbers to binary, so 
+the winner takes a while to determine. Bessie wants to cheat and thinks 
+she can do that if she knows how many "round numbers" are in a given range.
+
+Help her by writing a program that tells how many round numbers appear 
+in the inclusive range given by the input (1 <= Start < Finish <= 2,000,000,000).
+
+PROBLEM NAME: rndnum
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers, respectively Start and Finish.
+
+SAMPLE INPUT:
+
+2 12
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer that is the count of round numbers in the 
+        inclusive range Start..Finish
+
+SAMPLE INPUT:
+
+6

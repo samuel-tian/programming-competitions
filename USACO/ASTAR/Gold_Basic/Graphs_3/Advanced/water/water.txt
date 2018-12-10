@@ -1,0 +1,57 @@
+Watering Hole
+=============
+
+Farmer John has decided to bring water to his N (1 <= N <= 300)
+pastures which are conveniently numbered 1..N. He may bring water
+to a pasture either by building a well in that pasture or connecting
+the pasture via a pipe to another pasture which already has water.
+
+Digging a well in pasture i costs W_i (1 <= W_i <= 100,000).
+Connecting pastures i and j with a pipe costs P_ij (1 <= P_ij <=
+100,000; P_ij = P_ji; P_ii=0).
+
+Determine the minimum amount Farmer John will have to pay to water
+all of his pastures.
+
+PROBLEM NAME: water
+
+INPUT FORMAT:
+
+* Line 1: A single integer: N
+
+* Lines 2..N + 1: Line i+1 contains a single integer: W_i
+
+* Lines N+2..2N+1: Line N+1+i contains N space-separated integers; the
+        j-th integer is P_ij
+
+SAMPLE INPUT:
+
+4
+5
+4
+4
+3
+0 2 2 2
+2 0 3 3
+2 3 0 4
+2 3 4 0
+
+INPUT DETAILS:
+
+There are four pastures. It costs 5 to build a well in pasture 1,
+4 in pastures 2 and 3, 3 in pasture 4. Pipes cost 2, 3, and 4
+depending on which pastures they connect.
+
+OUTPUT FORMAT:
+
+* Line 1: A single line with a single integer that is the minimum
+        cost of providing all the pastures with water.
+
+SAMPLE OUTPUT:
+
+9
+
+OUTPUT DETAILS:
+
+Farmer John may build a well in the fourth pasture and connect each
+pasture to the first, which costs 3 + 2 + 2 + 2 = 9.

@@ -1,0 +1,22 @@
+Factorial
+=========
+
+For a given number N, calculate and print N!
+
+PROBLEM NAME: fact
+
+INPUT FORMAT:
+
+* Line 1: A single integer: N
+
+SAMPLE INPUT:
+
+5
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer: value of N!
+
+SAMPLE OUTPUT:
+
+120

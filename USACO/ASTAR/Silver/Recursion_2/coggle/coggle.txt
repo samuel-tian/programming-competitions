@@ -1,0 +1,64 @@
+Coggle
+======
+
+Like everyone else on their vacation, the cows play the cow version of the
+word game called Boggle: Coggle. It's a similar game where 25
+letter dice are rolled into a matrix like this one:
+
+           Z C C D X
+           K Q M N B
+           U O W Z Y
+           F C O I J
+           P A Q Z T
+
+Words are made (and thus points scored) by starting at some letter
+and proceeding to one of its (as many as) eight neighbors, etc.
+until the successive letters spell out a word from a dictionary
+
+In the matrix above, the lower 'C' can be used to form the words
+"CAP", "COW", and "COOK" (but not "COD" or "PACK"). The complete
+list of dictionary words for the above square is: "CAP", "COOK",
+"COW", "OWN", "WIT", "WOO", "ZOO", and "ZOOM".
+
+Help Bessie see how good she can do. Read in five rows of five
+letters that represent the dice and see how many words from the
+dictionary can be formed.  Don't use any given die's letter twice.
+
+Count the number of words that can be formed (a number that might
+well be smaller than the number of ways a word a can be formed since
+words might be formed in more than one way).
+
+PROBLEM NAME: coggle
+
+INPUT FORMAT:
+
+* Lines 1..5: Line i contains five space-separated upper-case letters
+        that are row i
+        
+* Line 6..?: Each line will contain one word in the dictionary.
+The dictionary is sorted in alphabetic order and has fewer 
+than 25,000 words; each word is no longer than 20 characters.
+
+SAMPLE INPUT:
+
+Z C C D X
+K Q M N B
+U O W Z Y
+F C O I J
+P A Q Z T
+AARGH
+AARON
+ABABA
+ABACK
+ABANDON
+ABANDONED
+[and so on....]
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer that is the number of words in the
+        dictionary that can be formed using the described rules
+
+SAMPLE OUTPUT:
+
+8

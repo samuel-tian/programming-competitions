@@ -1,0 +1,50 @@
+Sets - Subsets 2
+================
+
+You are given a set of numbers from 1 to 9. Print all subsets
+except the empty set that can be formed by the numbers in the
+given set. The subsets should be ordered in a specific way from
+1 to 2^N-1. Subset K should correspond to the bitset of K. For
+instance given the numbers 4 3 8, then subset 5 should be {4,8}
+since 5 is 101 in binary. 101 means the first and the last numbers
+are in the subset whereas the second one is not.
+
+For the numbers 4 3 8, the subset order should be as follows:
+
+subset #  binary  subset
+--------  ------  ------
+   1        001   {4}
+   2        010   {3}
+   3        011   {4,3}
+   4        100   {8}
+   5        101   {4,8}
+   6        110   {3,8}
+   7        111   {4,3,8}
+
+PROBLEM NAME: setsub2
+
+INPUT FORMAT:
+
+* Line 1: A single integer: M
+
+* Line 2: M space-seperated integers: number set
+
+SAMPLE INPUT:
+
+3
+4 3 8
+
+OUTPUT FORMAT:
+
+* Lines 1..2^N: All the numbers generated from the subset of the
+        given set
+
+SAMPLE OUTPUT:
+
+4
+3
+43
+8
+48
+38
+438

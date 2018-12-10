@@ -1,0 +1,88 @@
+Fliptile
+========
+
+Farmer John knows that an intellectually satisfied cow is a happy
+cow who will give more milk. He has arranged a brainy activity for
+cows in which they manipulate an M x N grid (1 <= M <= 15; 1 <= N
+<= 15) of square tiles, each of which is colored black on one side
+and white on the other side.
+
+As one would guess, when a single white tile is flipped, it changes
+to black; when a single black tile is flipped, it changes to white.
+The cows are rewarded when they flip the tiles so that each tile
+has the white side face up. However, the cows have rather large
+hooves and when they try to flip a certain tile, they also flip all
+the adjacent tiles (tiles that share a full edge with the flipped
+tile). Since the flips are tiring, the cows want to minimize the
+number of flips they have to make.
+
+Help the cows determine the minimum number of flips required, and
+the locations to flip to achieve that minimum. If there are multiple
+ways to achieve the task with the minimum amount of flips, return
+the one with the least lexicographical ordering in the output when
+considered as a string.  If the task is impossible, print one line
+with the word "IMPOSSIBLE".
+
+PROBLEM NAME: fliptile
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: M and N
+
+* Lines 2..M+1: Line i+1 describes the colors (left to right) of row i
+        of the grid with N space-separated integers which are 1 for
+        black and 0 for white
+
+SAMPLE INPUT:
+
+4 4
+1 0 0 1
+0 1 1 0
+0 1 1 0
+1 0 0 1
+
+
+OUTPUT FORMAT:
+
+* Lines 1..M: Each line contains N space-separated integers, each
+        specifying how many times to flip that particular location.
+
+SAMPLE OUTPUT:
+
+0 0 0 0
+1 0 0 1
+1 0 0 1
+0 0 0 0
+
+OUTPUT DETAILS:
+
+After flipping at row 2 column 1, the board will look like:
+0 0 0 1
+1 0 1 0
+1 1 1 0
+1 0 0 1
+
+After flipping at row 2 column 4, the board will look like:
+0 0 0 0
+1 0 0 1
+1 1 1 1
+1 0 0 1
+
+After flipping at row 3 column 1, the board will look like:
+0 0 0 0
+0 0 0 1
+0 0 1 1
+0 0 0 1
+
+After flipping at row 3 column 4, the board will look like:
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+
+Another solution might be:
+0 1 1 0
+0 0 0 0
+0 0 0 0
+0 1 1 0
+but this solution is lexicographically higher than the solution above.
