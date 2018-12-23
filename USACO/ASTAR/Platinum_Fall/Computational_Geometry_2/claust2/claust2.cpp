@@ -10,10 +10,10 @@
 5 4
 */
 #include <iostream>
-#include <climits>
-#include <set>
+#include <vector>
 #include <algorithm>
-#include <utility>
+#include <cmath>
+#include <climits>
 
 using namespace std;
 
@@ -21,73 +21,92 @@ using namespace std;
 #define INF INT_MAX
 #define MAXN 50000
 
-int n;
-pair<int, int> points[MAXN];
-pair<int, int> original[MAXN];
+struct Point {
+	int x, y, z;
+	bool operator < (Point const &p) {
+		return z < p.z;
+	}
+	bool operator == (Point const &other) {
+		return x == other.x && y == other.y;
+	}
+};
 
-int find(pair<int, int> p) {
-	for (int i = 0; i < n; ++i) {
-		if (original[i] == p) {
-			return i;
+struct Ans {
+	Point p1, p2;
+	int d;
+	bool operator < (Ans const &other) {
+		if (d == other.d) {
+			if (p1 == other.p1) {
+				return p2 < other.p2;
+			}
+			return p1 < other.p1;
+		}
+		return d < other.d;
+	}
+};
+
+bool compx(Point a, Point b) {
+	if (a.x == b.x) return a.y < b.y;
+	else return a.x < b.x;
+}
+
+bool compy(Point a, Point b) {
+	if (a.y == b.y) return a.x < b.x;
+	else return a.y < b.y;
+}
+
+int calcDist(Point a, Point b) {
+	return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
+}
+
+int n;
+Point cows[MAXN];
+
+Ans recurse(int l, int h) {
+	if (h - l <= 2) {
+		Ans ret = {(Point){0, 0, -1}, (Point){0, 0, -1}, INF};
+		for (int i = l; i < h; ++i) {
+			for (int j = i + 1; j < h; ++j) {
+				int dist = calcDist(cows[i], cows[j]);
+				Ans possibleRet = {cows[i], cows[j], dist};
+				if (possibleRet < ret) ret = possibleRet;
+			}
+		}
+		// cout << l << " " << h << " ret: " << ret.p1.z << " " << ret.p2.z << " " << ret.d << endl;
+		return ret;
+	}
+	int mid = (l + h) / 2;
+	Ans left = recurse(l, mid);
+	Ans right = recurse(mid + 1, h);
+	Ans ret = left < right ? left : right;
+	vector<Point> yset;
+	for (int i = l; i <= h; ++i) {
+		if (abs(cows[mid].x - cows[i].x) <= ret.d) {
+			yset.push_back(cows[i]);
 		}
 	}
-	return -1;
+	sort(yset.begin(), yset.end(), compy);
+	for (int i = 0; i < yset.size(); ++i) {
+		for (int j = 1; j <= 12; ++j) {
+			if (i + j >= yset.size()) break;
+			int dist = calcDist(yset[i], yset[i + j]);
+			Ans possibleRet;
+			if (yset[i] < yset[i + j]) possibleRet = {yset[i], yset[i + j], dist};
+			else possibleRet = {yset[i + j], yset[i], dist};
+			if (possibleRet < ret) ret = possibleRet;
+		}
+	}
+	// cout << l << " " << h << " ret: " << ret.p1.z << " " << ret.p2.z << " " << ret.d << endl;
+	return ret;
 }
 
 int main() {
 	cin >> n;
 	for (int i = 0; i < n; ++i) {
-		cin >> points[i].first >> points[i].second;
-		original[i].first = points[i].first;
-		original[i].second = points[i].second;
+		cin >> cows[i].x >> cows[i].y;
+		cows[i].z = i + 1;
 	}
-	sort(points, points + n);
-	set<pair<int, int> > s;
-	/*
-	first is y coordinate
-	second is x coordinate
-	*/
-	int mindist = INF;
-	int a1, a2;
-	int leftmost = 0;
-	for (int i = 0; i < n; ++i) {
-		/*cout << "dist: " << mindist << "; ";
-		for (pair<int, int> p: s) {
-			cout << p.first << " " << p.second << " ";
-		}
-		cout << endl;*/
-		pair<int, int> cur = points[i];
-		while (cur.first - points[leftmost].first > mindist) {
-			s.erase(points[leftmost]);
-			++leftmost;
-		}
-		long long head = (long long) cur.second - (long long) mindist;
-		long long tail = (long long) cur.second + (long long) mindist;
-		// cout << "HEADTAIL: " << head << " " << tail << endl;
-		for (set<pair<int, int> >::iterator it = s.begin(); it != s.end(); ++it) {
-			// cout << it->first << " " << it->second << endl;
-			if (it->second < head || it->second > tail) continue;
-			int dist = (it->first - cur.second) * (it->first - cur.second) + (it->second - cur.first) * (it->second - cur.first);
-			if (dist <= mindist) {
-				pair<int, int> sec = make_pair(it->second, it->first);
-				if (dist < mindist) {
-					mindist = dist;
-					a1 = find(cur);
-					a2 = find(sec);
-				}
-				else if (dist == mindist) {
-					if (find(cur) < a1 || (find(cur) == a1 && find(sec) < a2)) {
-						a1 = find(cur);
-						a2 = find(sec);
-					}
-				}
-			}
-		}
-		s.insert(make_pair(cur.second, cur.first));
-	}
-	// cout << ans1.first << " " << ans1.second << endl;
-	// cout << ans2.first << " " << ans2.second << endl;
-	++a1; ++a2;
-	if (a1 < a2) cout << a1 << " " << a2 << endl;
-	else cout << a2 << " " << a1 << endl;
+	sort(cows, cows + n, compx);
+	Ans ans = recurse(0, n - 1);
+	cout << ans.p1.z << " " << ans.p2.z << endl;
 }
