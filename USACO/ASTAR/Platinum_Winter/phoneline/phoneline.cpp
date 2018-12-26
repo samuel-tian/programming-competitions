@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <climits>
-#include <set>
+#include <queue>
 
 using namespace std;
 
@@ -10,41 +10,38 @@ using namespace std;
 #define INF INT_MAX
 #define MAXN 1000
 
-typedef pair<int, int> Line;
-
 int n, p, k;
-vector<Line> adj[MAXN];
+vector<pair<int, int> > adj[MAXN];
 bool visited[MAXN];
-int minValue = INF;
-multiset<int> lineLength;
+int dist[MAXN];
 
-void dfs(int node) {
-    // cerr << "NODE: " << node + 1 << endl;
-    // for (multiset<int>::iterator it = lineLength.begin(); it != lineLength.end(); ++it) {
-    //     cerr << *it << " ";
-    // }
-    // cerr << endl;
-    if (node == n - 1) {
-        cout << "PASS" << endl;
-        if (lineLength.size() <= k) minValue = 0;
-        else {
-            multiset<int>::reverse_iterator it = lineLength.rbegin();
-            for (int i = 0; i < k; ++i) ++it;
-            minValue = min(minValue, *it);
+bool dijkstra(int bound) {
+    fill(dist, dist + n, INF);
+    dist[0] = 0;
+    priority_queue<pair<int, int> > pq;
+    pq.push(make_pair(0, 0));
+    while (!pq.empty()) {
+        int current = pq.top().second;
+        pq.pop();
+        visited[current] = true;
+        for (int i = 0; i < adj[current].size(); ++i) {
+            pair<int, int> next = adj[current][i];
+            int original = next.first;
+            if (next.first >= bound) next.first = 1;
+            else next.first = 0;
+            if (dist[current] + next.first < dist[next.second]) {
+                dist[next.second] = dist[current] + next.first;
+                pq.push(make_pair(-dist[next.second], next.second));
+            }
+            next.first = original;
         }
-        return;
     }
-    for (int i = 0; i < adj[node].size(); ++i) {
-        Line currentLine = adj[node][i];
-        if (visited[currentLine.first]) continue;
-        // cerr << "LINE: " << node + 1 << " " << currentLine.first + 1 << endl;
-        lineLength.insert(currentLine.second);
-        visited[currentLine.first] = true;
-        dfs(currentLine.first);
-        visited[currentLine.first] = false;
-        lineLength.erase(lineLength.find(currentLine.second));
-    }
-    return;
+    // for (int i = 0; i < n; ++i) {
+    //     cout << dist[i] << " ";
+    // }
+    // cout << endl;
+    if (dist[n - 1] > k) return false;
+    return true;
 }
 
 int main() {
@@ -52,11 +49,29 @@ int main() {
     for (int i = 0; i < p; ++i) {
         int a, b, c;
         cin >> a >> b >> c;
-        adj[a - 1].push_back(Line{b - 1, c});
-        adj[b - 1].push_back(Line{a - 1, c});
+        adj[a - 1].push_back(make_pair(c, b - 1));
+        adj[b - 1].push_back(make_pair(c, a - 1));
     }
-    visited[0] = true;
-    dfs(0);
-    if (minValue == INF) cout << -1 << endl;
-    else cout << minValue << endl;
+    int low = 0;
+    int high = 1000000;
+    while (low < high) {
+        int mid = (low + high) / 2;
+        if (dijkstra(mid)) {
+            // cout << "pass " << mid << endl;
+            high = mid;
+        }
+        else {
+            // cout << "fail " << mid << endl;
+            low = mid + 1;
+        }
+    }
+    if (low == 0) {
+        cout << 0 << endl;
+    }
+    else if (low == 1000000) {
+        cout << -1 << endl;
+    }
+    else {
+        cout << low - 1 << endl;
+    }
 }
