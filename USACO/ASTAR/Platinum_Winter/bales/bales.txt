@@ -1,0 +1,65 @@
+Haybale Guessing
+================
+[Memory: 64 MB]
+
+The cows, who always have an inferiority complex about their
+intelligence, have a new guessing game to sharpen their brains.
+
+A designated 'Hay Cow' hides behind the barn and creates N (1 <= N
+<= 1,000,000) uniquely-sized stacks (conveniently numbered 1..N)
+of hay bales, each with 1..1,000,000,000 bales of hay.
+
+The other cows then ask the Hay Cow a series of Q (1 <= Q <= 25,000)
+questions about the the stacks, all having the same form:
+
+   What is the smallest number of bales of any stack in the range
+   of stack numbers Ql..Qh (1 <= Ql <= N; Ql <= Qh <= N)?
+
+The Hay Cow answers each of these queries with a single integer A
+whose truthfulness is not guaranteed.
+
+Help the other cows determine if the answers given by the Hay Cow
+are self-consistent or if certain answers contradict others.
+
+PROBLEM NAME: bales
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: N and Q
+
+* Lines 2..Q+1: Each line contains three space-separated integers that
+        represent a single query and its reply: Ql, Qh, and A
+
+SAMPLE INPUT:
+
+20 4
+1 10 7
+5 19 7
+3 12 8
+11 15 12
+
+INPUT DETAILS:
+
+The minimum number of bales in stacks 1..10 is 7, the minimum number
+of bales in stacks 5..19 is 7, the minimum number of bales in stacks
+3..12 is 8, and the minimum number of bales in stacks 11..15 is 12.
+
+OUTPUT FORMAT:
+
+* Line 1: Print the single integer 0 if there are no inconsistencies
+        among the replies (i.e., if there exists a valid realization
+        of the hay stacks that agrees with all Q queries).  Otherwise,
+        print the index from 1..Q of the earliest query whose answer
+        is inconsistent with the answers to the queries before it.
+
+SAMPLE OUTPUT:
+
+3
+
+OUTPUT DETAILS:
+
+Query 3 ("3 12 8") is the first that is inconsistent with those
+before it. From queries 1 and 2 and the fact that all hay stacks
+have a distinct number of bales, we deduce that one of stacks 5..10
+must contain exactly 7 bales.  However, this stack contradicts the
+answer to query 3.
