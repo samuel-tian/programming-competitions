@@ -1,0 +1,6 @@
+for graph algorithms:
+    if finding a minimum or a maximum, try binary searching on the answer
+merging abstract data structures:
+    if it is difficult to maintain a dynamic data structure, then maintain
+    logN data structures and merge along the way. Data structures are maintained
+    by considering 2^k points
