@@ -1,6 +1,19 @@
-for graph algorithms:
+for basic graph traversal algorithms:
     if finding a minimum or a maximum, try binary searching on the answer
+for recursion on a relatively small data set:
+    brute force when N~20, running time is 2^N
+    meet in the middle for N~40: split up into two subcases and attempt to merge them together, running time is N 2^(N/2)
 merging abstract data structures:
-    if it is difficult to maintain a dynamic data structure, then maintain
-    logN data structures and merge along the way. Data structures are maintained
-    by considering 2^k points
+    if it is difficult to maintain a dynamic data structure, then maintain logN data structures and merge along the way. Data structures are maintained by considering 2^k points
+    MO's algorithm - sqrt decomposition (?)
+trees:
+    subtree query:
+        do a pre-order traversal (aka dfs) so that every node and its children are part of a contiguous segment euler tour trees - subtree queries and splicing off subtrees and relinking
+    heavy-light decomposition:
+        mark an edge as heavy if the subtree contains more than half the vertices if the subtree corresponding to that edge has more than half of the parent's children
+        use a pre-order traversal with bias towards heavy edges so that heavy chains are contiguous
+        least common ancestor - skip the entire heavy chain when traversing backwards
+    link-cut trees
+graphs:
+    dijkstra's shortest path but edge weights must be positive, O(VlogV) running time
+    Bellman Ford (SPFA is an optimization) and edge weights can be positive and negative, O(VE) running time
