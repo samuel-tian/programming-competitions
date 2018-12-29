@@ -14,6 +14,10 @@ trees:
         use a pre-order traversal with bias towards heavy edges so that heavy chains are contiguous
         least common ancestor - skip the entire heavy chain when traversing backwards
     link-cut trees
+	Fenwick Tree (Binary Index Tree)
 graphs:
     dijkstra's shortest path but edge weights must be positive, O(VlogV) running time
     Bellman Ford (SPFA is an optimization) and edge weights can be positive and negative, O(VE) running time
+	Floyd Warshall algorithm - all pairs shortest path
+bitsets for fast binary operations
+disjoint set union (DSU)
