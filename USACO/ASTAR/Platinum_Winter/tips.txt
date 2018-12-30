@@ -15,6 +15,7 @@ trees:
         least common ancestor - skip the entire heavy chain when traversing backwards
     link-cut trees
 	Fenwick Tree (Binary Index Tree)
+	segment trees and lazy propagation
 graphs:
     dijkstra's shortest path but edge weights must be positive, O(VlogV) running time
     Bellman Ford (SPFA is an optimization) and edge weights can be positive and negative, O(VE) running time
