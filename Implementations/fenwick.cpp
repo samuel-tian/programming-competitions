@@ -29,6 +29,24 @@ int get(int index) {
 	return sum;
 }
 
+// inversion counting on an array
+int inversions() {
+	int ret = 0;
+	int maxelement = 0;
+	for (int i = 0; i < n; ++i) {
+		maxelement = max(maxelement, arr[i]);
+	}
+	int bitree[maxelement+1];
+	for (int i = 1; i <= maxelement; ++i) {
+		bitree[i] = 0;
+	}
+	for (int i = n-1; i >= 0; --i) {
+		ret += get(arr[i]-1);
+		insert(arr[i], 1);
+	}
+	return ret;
+}
+
 int main() {
 	cin >> n;
 	for (int i = 0; i < n; ++i) {
