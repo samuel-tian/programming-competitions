@@ -1,22 +1,24 @@
 #include <iostream>
 #include <climits>
+#include <cstring>
 
 using namespace std;
 
 #define endl '\n'
 #define INF INT_MAX
+#define MAXN 4000000
 
 int n;
 long long c;
 long long a1, b1, d1;
 long long a2, b2, d2;
+long long values[MAXN+1];
 
 int main() {
-    scanf("%lld%lld", &c, &n);
-    scanf("%lld%lld%lld", &a1, &b1, &d1);
-    scanf("%lld%lld%lld", &a2, &b2, &d2);
-    long long values[n];
-    fill(values, values + n, 0);
+	cin >> c >> n;
+	cin >> a1 >> b1 >> d1;
+	cin >> a2 >> b2 >> d2;
+	memset(values, 0, sizeof(values));
     values[0] = c;
     int pf = 0, ps = 0;
     // cout << "a: " << a1 << " " << a2 << endl;
@@ -24,13 +26,20 @@ int main() {
     long long first = values[pf] * a1 / d1 + b1;
     long long second = values[ps] * a2 / d2 + b2;
     // cout << first << " " << second << endl;
-    for (int i = 1; i < n; ++i) {
+	int i = 1;
+    while (i < n) {
         if (first < second) {
-            values[i] = first;
+			if (first != values[i - 1]) {
+				values[i] = first;
+				++i;
+			}
             first = values[++pf] * a1 / d1 + b1;
         }
         else {
-            values[i] = second;
+			if (second != values[i - 1]) {
+				values[i] = second;
+				++i;
+			}
             second = values[++ps] * a2 / d2 + b2;
         }
     }
