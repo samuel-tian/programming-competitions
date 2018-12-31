@@ -7,11 +7,9 @@ using namespace std;
 #define MAXN 50000
 
 int n;
-int arr[MAXN];
-int fenwick[MAXN+1];
 // one-indexed
 
-void insert(int index, int val) {
+void insert(int fenwick[], int index, int val) {
 	index = index + 1;
 	while (index <= n) {
 		fenwick[index] += val;
@@ -19,7 +17,7 @@ void insert(int index, int val) {
 	}
 }
 
-int get(int index) {
+int get(int fenwick[], int index) {
 	int sum = 0;
 	index = index + 1;
     while (index>0) {
@@ -30,7 +28,7 @@ int get(int index) {
 }
 
 // inversion counting on an array
-int inversions() {
+int inversions(int arr[]) {
 	int ret = 0;
 	int maxelement = 0;
 	for (int i = 0; i < n; ++i) {
@@ -52,8 +50,10 @@ int main() {
 	for (int i = 0; i < n; ++i) {
 		cin >> arr[i];
 	}
+	int fenwick[n+1];
+	fill(fenwick, fenwick+n+1, 0);
 	for (int i = 0; i < n; ++i) {
-		insert(i, arr[i]);
+		insert(fenwick, i, arr[i]);
 	}
 	// range queries
 	int k;
