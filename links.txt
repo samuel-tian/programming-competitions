@@ -1,0 +1,3 @@
+http://cp-algorithms.com: lots of algorithms/data structures and their explanations/implementations
+https://github.com/bqi343/USACO: Ben Qi's USACO repository, includes implementations of various algorithms and solutions to the past few years of USACO problems
+https://en.cppreference.com/w/: c++ documentation
