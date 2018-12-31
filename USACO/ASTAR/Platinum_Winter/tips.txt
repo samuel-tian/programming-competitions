@@ -13,6 +13,7 @@ trees:
         mark an edge as heavy if the subtree contains more than half the vertices if the subtree corresponding to that edge has more than half of the parent's children
         use a pre-order traversal with bias towards heavy edges so that heavy chains are contiguous
         least common ancestor - skip the entire heavy chain when traversing backwards
+		standard lca algorithm with a BIT can replace heavy-light in most cases
     link-cut trees
 	Fenwick Tree (Binary Index Tree)
 	segment trees and lazy propagation
@@ -26,3 +27,6 @@ inversion counting:
 	insert the nodes one-by-one into a binary index tree and count the number of elements in that BIT that are greater than the node index
 recursion with pruning:
 	fail fast - start recursion at the states that are most likely to break the solution
+sqrt decomposition:
+	split the problem up into sqrt(N) parts and do up to sqrt(N) operations instead of O(N)
+	eg. sum range queries: split it up into sqrt(N) segments and keep track of the sums for each of the sqrt(N) segments
