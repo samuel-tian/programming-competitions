@@ -1,3 +1,3 @@
 # programming-competitions
 
-lol
+gimme answers
