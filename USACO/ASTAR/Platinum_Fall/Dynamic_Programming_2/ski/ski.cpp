@@ -2,6 +2,7 @@
 #include <climits>
 #include <algorithm>
 #include <set>
+#include <vector>
 #include <iterator>
 #include <utility>
 
@@ -37,17 +38,18 @@ int main() {
 		cin >> lessons[i].start >> lessons[i].length >> lessons[i].skill;
 		lessonSet.insert(make_pair(lessons[i].start, make_pair(lessons[i].skill, lessons[i].length)));
 	}
-	set<pair<int, int> > slopeSet;
+	vector<pair<int, int> > slopeSet;
 	for (int i = 0; i < n; ++i) {
 		cin >> slopes[i].skill >> slopes[i].length;
-		slopeSet.insert(make_pair(slopes[i].skill, slopes[i].length));
+		slopeSet.push_back(make_pair(slopes[i].skill, slopes[i].length));
 	}
+	sort(slopeSet.begin(), slopeSet.end());
 	optimalSlope[0] = INF;
 	for (int i = 1; i <= MAXC; ++i) {
 		if (i < slopeSet.begin()->first) optimalSlope[i] = INF;
 		else {
-			set<pair<int, int> >::iterator lowerbound = slopeSet.lower_bound(make_pair(i, 0));
-			if (lowerbound->first > i) lowerbound = prev(lowerbound);
+			vector<pair<int, int> >::iterator lowerbound = lower_bound(slopeSet.begin(), slopeSet.end(), make_pair(i, 0));
+			if (lowerbound->first > i) lowerbound = slopeSet.begin() + (int) (lowerbound - slopeSet.begin()) - 1;
 			optimalSlope[i] = min(optimalSlope[i - 1], (lowerbound)->second);
 		}
 	}
