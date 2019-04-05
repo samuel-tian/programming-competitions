@@ -17,43 +17,22 @@ int dist[MAXN];
 int masterdist[MAXN];
 int possible[MAXN];
 
-void bfs(int start) {
-	fill(dist, dist + n, INF);
-	dist[start] = 0;
-	// bfs from ending node, store results from node start in dist[start][...]
-	queue<int> q;
-	q.push(start);
-	while (!q.empty()) {
-		int cur = q.front();
-		q.pop();
-		for (int i = 0; i < adj[cur].size(); ++i) {
-			pair<int, int> next = adj[cur][i];
-			if (dist[next.first] <= dist[cur] + next.second) continue;
-			dist[next.first] = dist[cur] + next.second;
-			q.push(next.first);
+void dijkstra(ll start) {
+	priority_queue<pair<ll, ll> > pq;
+	fill(dis, dis+v, INF);
+	dis[start] = 0;
+	pq.push(make_pair(0, start));
+	while (!pq.empty()) {
+		ll cur = pq.top().second;
+		pq.pop();
+		for (ll i = 0; i < adj[cur].size(); ++i) {
+			pair<ll, ll> next = adj[cur][i];
+			if (dis[cur]+next.first < dis[next.second]) {
+				dis[next.second] = dis[cur]+next.first;
+				pq.push(make_pair(-dis[next.second], next.second));
+			}
 		}
 	}
-	return;
-}
-
-void masterbfs(int start) {
-	// masterdist is to store results from bfs starting at n-1
-	fill(masterdist, masterdist + n, INF);
-	masterdist[start] = 0;
-	// bfs from ending node, store results from node start in dist[start][...]
-	queue<int> q;
-	q.push(start);
-	while (!q.empty()) {
-		int cur = q.front();
-		q.pop();
-		for (int i = 0; i < adj[cur].size(); ++i) {
-			pair<int, int> next = adj[cur][i];
-			if (masterdist[next.first] <= masterdist[cur] + next.second) continue;
-			masterdist[next.first] = masterdist[cur] + next.second;
-			q.push(next.first);
-		}
-	}
-	return;
 }
 
 int main() {
