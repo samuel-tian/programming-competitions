@@ -1,98 +1,103 @@
-/*input
-3 800
-300 2 30 50 25 80
-600 1 50 130
-400 3 40 70 30 40 35 60
-*/
-
 #include <iostream>
-#include <algorithm>
 #include <climits>
-#include <vector>
+#include <algorithm>
 #include <utility>
 
 using namespace std;
 
 #define endl '\n'
+#define INF INT_MAX
 #define MAXN 50
 #define MAXG 10
-#define MAXP 100
 #define MAXV 100000
-#define INF INT_MAX
 
 int n, v;
-int consoleprice[MAXN][2];
-int gameprice[MAXN][MAXG][2];
-int dpgames[MAXN][MAXG + 1][MAXP * MAXG + 1];
-int dpconsole[MAXN + 1][MAXV + 1];
+int consolePrice[MAXN];
+int numberGames[MAXN];
+pair<int, int> gameUncondensed[MAXN][MAXG];
+// .first is the game price, .second is the game production value
+bool games[MAXG];
+pair<int, int> gameCondensed[MAXN][1<<MAXG];
+// .first is the game price, .second is the game production value
+int dp[MAXN + 1][MAXV + 1];
+//	for dp[i][j]
+//		i represents the current console, will run from 0 to N inclusive
+//		j represents the price, will run from 0 to 100000 inclusive
+
+void recurse(int console, int index) {
+	if (index == numberGames[console]) {
+		int insertIndex = 0, price = 0, production = 0, powerOfTwo = 1;
+		for (int i = 0; i < numberGames[console]; ++i) {
+			if (games[i]) {
+				insertIndex = insertIndex + powerOfTwo;
+				price = price + gameUncondensed[console][i].first;
+				production = production + gameUncondensed[console][i].second;
+			}
+			powerOfTwo *= 2;
+		}
+		gameCondensed[console][insertIndex] = make_pair(price, production);
+		return;
+	}
+	else {
+		games[index] = false;
+		recurse(console, index + 1);
+		games[index] = true;
+		recurse(console, index + 1);
+		return;
+	}
+}
 
 int main() {
+//	freopen("input.txt", "r", stdin);
 	cin >> n >> v;
 	for (int i = 0; i < n; ++i) {
-		cin >> consoleprice[i][0] >> consoleprice[i][1];
-		for (int j = 0; j < consoleprice[i][1]; ++j) {
-			cin >> gameprice[i][j][0] >> gameprice[i][j][1];
+		cin >> consolePrice[i] >> numberGames[i];
+		for (int j = 0; j < numberGames[i]; ++j) {
+			cin >> gameUncondensed[i][j].first >> gameUncondensed[i][j].second;
 		}
+		recurse(i, 0);
+//		cout << "console:    " << consolePrice[i] << endl;
+		/*cout << "price:      ";
+		for (int j = 1; j < (1 << numberGames[i]); ++j) {
+			printf("%-2d ", gameCondensed[i][j].first);
+		}
+		cout << endl;*/
+		/*cout << "production: ";
+		for (int j = 1; j < (1 << numberGames[i]); ++j) {
+			printf("%-2d ", gameCondensed[i][j].second);
+		}
+		cout << endl;*/
 	}
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j <= consoleprice[i][1]; ++j) {
-			for (int k = 0; k <= consoleprice[i][1] * MAXP + 1; ++k) {
-				if (j == 0 || k == 0) {
-					dpgames[i][j][k] = 0;
-				}
-				else if (gameprice[i][j - 1][0] <= k) {
-					dpgames[i][j][k] = max(dpgames[i][j - 1][k], dpgames[i][j - 1][k - gameprice[i][j - 1][0]] + gameprice[i][j - 1][1]);
-				}
-				else {
-					dpgames[i][j][k] = dpgames[i][j - 1][k];
-				}
-			}
-		}
-	}
-	/*for (int i = 0; i < n; ++i) {
-		for (int j = 0; j <= consoleprice[i][1]; ++j) {
-			for (int k = 0; k <= consoleprice[i][1] * MAXP + 1; ++k) {
-				printf("%-3d ", dpgames[i][j][k]);
-			}
-			cout << endl << endl;;
-		}
-		cout << endl;
-	}*/
 	for (int i = 0; i <= n; ++i) {
 		for (int j = 0; j <= v; ++j) {
-			if (i == 0 || j == 0) {
-				dpconsole[i][j] = 0;
+			dp[i][j] = -1;
+		}
+	}
+	dp[0][0] = 0;
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j <= v; ++j) {
+			if (dp[i][j] == -1) continue;
+			for (int k = 1; k < (1 << numberGames[i]); ++k) {
+				int next = j + gameCondensed[i][k].first + consolePrice[i];
+				if (next > v) continue;
+				dp[i + 1][next] = max(dp[i + 1][next], dp[i][j] + gameCondensed[i][k].second);
 			}
-			else {
-				for (int k = 0; k <= consoleprice[i][1] * MAXP + 1; ++k) {
-					if (k + consoleprice[i][0] <= j) {
-						dpconsole[i][j] = max(dpconsole[i - 1][j], dpconsole[i - 1][j - (k + consoleprice[i][0])] + dpgames[i][consoleprice[i][1]][k]);
-					}
-				}
-				if (dpconsole[i][j] == 0) {
-					dpconsole[i][j] = dpconsole[i - 1][j];
-				}
-			}
-			/*if ((j == 0) ^ (i == 0)) {
-				dpconsole[i][j] = 0;
-			}
-			else { 
-				if ((i != 0 && j != 0) && dpconsole[i][j] == 0) {
-					dpconsole[i][j] = dpconsole[i - 1][j];
-				}
-				for (int k = 0; k <= consoleprice[i][1] * MAXP + 1; ++k) {
-					if (j + k + consoleprice[i][0] <= v) {
-						dpconsole[i + 1][j + k + consoleprice[i][0]] = max(dpconsole[i + 1][j + k + consoleprice[i][0]], dpconsole[i][j] + dpgames[i][consoleprice[i][1]][k]);
-					}
-				}
-			}*/
+			dp[i + 1][j] = max(dp[i + 1][j], dp[i][j]);
 		}
 	}
 	/*for (int i = 0; i <= n; ++i) {
-		for (int j = 0; j <= v; ++j) {
-			cout << dpconsole[i][j] << " ";
+		for (int j = 0; j <= 100; ++j) {
+			if (dp[i][j] == -1) dp[i][j] = 0;
+			printf("%-2d:%-2d ", j, dp[i][j]);
 		}
 		cout << endl;
 	}*/
-	cout << dpconsole[n][v] << endl;
+	int ret = -1;
+	for (int j = 0; j <= v; ++j) {
+		if (dp[n][j] > ret) {
+			ret = dp[n][j];
+		}
+	}
+	cout << ret << endl;
+	return 0;
 }
