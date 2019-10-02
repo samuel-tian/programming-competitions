@@ -3,8 +3,8 @@
 //
 
 /*
- * Floyd-Warshall algorithm
- * ------------------------
+ * Floyd-Warshall all-pairs shortest path algorithm
+ * ------------------------------------------------
  * all-pairs shortest path that allows for negative edge weights
  * 1) initialize an adjacency matrix that stores the weights of the shortest paths
  * 2) calculate shortest paths

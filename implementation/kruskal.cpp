@@ -9,7 +9,7 @@
  * 2) iterate through the edges, adding them to a disjoint set data structure if no cycle is created
  * 		a) disjoint set allows for O(log n) union and find operations
  * 		b) a cycle is created if the two endpoints of an edge are elements of the same subset
- * time complexity: O(E log E) = O(E log V)
+ * time complexity: O(E log E)
  */
 
 #include <bits/stdc++.h>
