@@ -80,7 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Samuel/Documents/Coding/programming-competitions/implementation/lca.cpp">
+		<Unit filename="C:/Users/Samuel/Documents/Coding/programming-competitions/implementation/kruskal.cpp">
 			<Option target="implementation"/>
 		</Unit>
 		<Unit filename="C:/Users/Samuel/Documents/Coding/programming-competitions/implementation/CMakeLists.txt">

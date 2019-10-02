@@ -3,4 +3,4 @@ project(implementation)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(implementation lca.cpp)
+add_executable(implementation kruskal.cpp)

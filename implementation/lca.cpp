@@ -19,6 +19,7 @@
  * 		b) the following step depends on if nodes A and B are directly related (one is the descendant of another)
  * 			i) if not directly related, return parent of resulting node
  * 			ii) if directly related, return resulting node
+ * time complexity: 0(n log n)
  */
 
 #include <bits/stdc++.h>
