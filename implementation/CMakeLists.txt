@@ -3,4 +3,4 @@ project(implementation)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(implementation graham-scan.cpp)
+add_executable(implementation segment-tree.cpp)

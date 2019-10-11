@@ -4,9 +4,11 @@
 
 /*
  * Graham scan for convex hull generation
+ * --------------------------------------
  * 1) find the point with the least x coordinate
  * 2) calculate the angles to all of the other points with respect to the horizontal and sort the points by angle
  * 3) append points to the hull, until the appended point makes a concave angle with the previous two points
+ * time complexity: O(n log n)
  */
 
 #include <bits/stdc++.h>
