@@ -11,11 +11,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c67709-fa5d-40f7-8899-8edda624dee1" name="Default Changelist" comment="convex hull trick implementation">
-      <change afterPath="$PROJECT_DIR$/hld.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Fall_2/1_DP/cowrun/cowrun.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Fall_2/1_DP/cowrun/cowrun.cpp" afterDir="false" />
+    <list default="true" id="97c67709-fa5d-40f7-8899-8edda624dee1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/build.make" afterDir="false" />
@@ -28,7 +25,6 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/implementation.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/implementation.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/implementation.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/implementation.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segment-tree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/segment-tree.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hld.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+            <state relative-caret-position="330">
+              <caret line="22" column="48" lean-forward="true" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -177,7 +173,7 @@
       <workItem from="1569902549670" duration="7484000" />
       <workItem from="1574138115853" duration="4520000" />
       <workItem from="1574919313997" duration="6630000" />
-      <workItem from="1574926688768" duration="2436000" />
+      <workItem from="1574926688768" duration="2691000" />
     </task>
     <task id="LOCAL-00001" summary="lca implementation">
       <created>1569903529572</created>
@@ -193,30 +189,36 @@
       <option name="project" value="LOCAL" />
       <updated>1569981328327</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="heavy light decomposition implementation">
+      <created>1574965525600</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574965525600</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21070000" />
+    <option name="totallyTimeSpent" value="21325000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25906184" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25906184" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.45788914" visible="true" weight="0.4301192" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.45788914" weight="0.4301192" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4936034" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.45149255" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" sideWeight="0.45095947" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.54211086" side_tool="true" visible="true" weight="0.4301192" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5490405" side_tool="true" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4989339" weight="0.32936078" />
       <window_info anchor="bottom" id="CMake" order="12" sideWeight="0.49946696" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -270,7 +272,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="lca implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="lca implementation" />
+    <MESSAGE value="heavy light decomposition implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="heavy light decomposition implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -335,13 +338,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hld.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/ext/new_allocator.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -365,6 +361,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/output.txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hld.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="48" lean-forward="true" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
