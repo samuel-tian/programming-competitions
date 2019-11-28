@@ -122,32 +122,32 @@ implementation/fast:
 	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/build
 .PHONY : implementation/fast
 
-kruskal.obj: kruskal.cpp.obj
+main.obj: main.cpp.obj
 
-.PHONY : kruskal.obj
+.PHONY : main.obj
 
 # target to build an object file
-kruskal.cpp.obj:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/kruskal.cpp.obj
-.PHONY : kruskal.cpp.obj
+main.cpp.obj:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.obj
+.PHONY : main.cpp.obj
 
-kruskal.i: kruskal.cpp.i
+main.i: main.cpp.i
 
-.PHONY : kruskal.i
+.PHONY : main.i
 
 # target to preprocess a source file
-kruskal.cpp.i:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/kruskal.cpp.i
-.PHONY : kruskal.cpp.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-kruskal.s: kruskal.cpp.s
+main.s: main.cpp.s
 
-.PHONY : kruskal.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-kruskal.cpp.s:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/kruskal.cpp.s
-.PHONY : kruskal.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -158,9 +158,9 @@ help:
 	@echo ... implementation
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... kruskal.obj
-	@echo ... kruskal.i
-	@echo ... kruskal.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 .PHONY : help
 
 

@@ -56,27 +56,27 @@ include CMakeFiles/implementation.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/implementation.dir/flags.make
 
-CMakeFiles/implementation.dir/kruskal.cpp.obj: CMakeFiles/implementation.dir/flags.make
-CMakeFiles/implementation.dir/kruskal.cpp.obj: ../kruskal.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/implementation.dir/kruskal.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\implementation.dir\kruskal.cpp.obj -c C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\kruskal.cpp
+CMakeFiles/implementation.dir/main.cpp.obj: CMakeFiles/implementation.dir/flags.make
+CMakeFiles/implementation.dir/main.cpp.obj: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/implementation.dir/main.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\implementation.dir\main.cpp.obj -c C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\main.cpp
 
-CMakeFiles/implementation.dir/kruskal.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/implementation.dir/kruskal.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\kruskal.cpp > CMakeFiles\implementation.dir\kruskal.cpp.i
+CMakeFiles/implementation.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/implementation.dir/main.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\main.cpp > CMakeFiles\implementation.dir\main.cpp.i
 
-CMakeFiles/implementation.dir/kruskal.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/implementation.dir/kruskal.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\kruskal.cpp -o CMakeFiles\implementation.dir\kruskal.cpp.s
+CMakeFiles/implementation.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/implementation.dir/main.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\main.cpp -o CMakeFiles\implementation.dir\main.cpp.s
 
 # Object files for target implementation
 implementation_OBJECTS = \
-"CMakeFiles/implementation.dir/kruskal.cpp.obj"
+"CMakeFiles/implementation.dir/main.cpp.obj"
 
 # External object files for target implementation
 implementation_EXTERNAL_OBJECTS =
 
-implementation.exe: CMakeFiles/implementation.dir/kruskal.cpp.obj
+implementation.exe: CMakeFiles/implementation.dir/main.cpp.obj
 implementation.exe: CMakeFiles/implementation.dir/build.make
 implementation.exe: CMakeFiles/implementation.dir/linklibs.rsp
 implementation.exe: CMakeFiles/implementation.dir/objects1.rsp

@@ -48,7 +48,6 @@ int query(int node, int a, int b, int i, int j) {
         int mid = (a + b) / 2;
         return query(2 * node + 1, a, mid, i, j) + query(2 * node + 2, mid + 1, b, i, j);
     }
-
 }
 
 /*

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Samuel/Documents/Coding/programming-competitions/implementation/kruskal.cpp" "C:/Users/Samuel/Documents/Coding/programming-competitions/implementation/cmake-build-debug/CMakeFiles/implementation.dir/kruskal.cpp.obj"
+  "C:/Users/Samuel/Documents/Coding/programming-competitions/implementation/main.cpp" "C:/Users/Samuel/Documents/Coding/programming-competitions/implementation/cmake-build-debug/CMakeFiles/implementation.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

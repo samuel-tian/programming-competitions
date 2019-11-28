@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/implementation.dir/kruskal.cpp.obj"
+  "CMakeFiles/implementation.dir/main.cpp.obj"
   "implementation.pdb"
   "implementation.exe"
   "implementation.exe.manifest"
