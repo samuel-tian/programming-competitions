@@ -3,8 +3,8 @@
 //
 
 /*
- * Segment Tree (without lazy propagation)
- * ---------------------------------------
+ * Segment Tree (without lazy propagation, range sum queries)
+ * ----------------------------------------------------------
  * A segment tree allows for O(log n) update and range query operations.
  * - each node in the segment tree represents a segment of the desired data
  *      - 2*n+1 and 2*n+2 are the two children of node n
