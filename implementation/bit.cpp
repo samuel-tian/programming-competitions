@@ -38,7 +38,7 @@ int get(int index) {
     return ret;
 }
 
-int psum(int l, int r) { // exclusive
+int psum(int l, int r) { // inclusive
     return get(r) - get(l - 1);
 }
 

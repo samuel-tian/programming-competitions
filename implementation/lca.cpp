@@ -49,6 +49,10 @@ void calcDepth(int node, int depth) {
 }
 
 void calcST() {
+	d[0] = 0;
+	par[0][0] = 0;
+	visited[0] = true;
+	calcDepth(0, 1);
 	for (int j = 1; j < MAXLOG; ++j) {
 		for (int i = 1; i < n; ++i) {
 			par[i][j] = par[par[i][j-1]][j-1];
@@ -88,16 +92,5 @@ int main() {
 		adj[a].push_back(b);
 		adj[b].push_back(a);
 	}
-	d[0] = 0;
-	par[0][0] = 0;
-	visited[0] = true;
-	calcDepth(0, 1);
 	calcST();
-//	for (int i = 0; i < n; ++i) {
-//		for (int j = 0; j < MAXLOG; ++j) {
-//			cout << par[i][j] << " ";
-//		}
-//		cout << endl;
-//	}
-//	cout << d[3] << " " << d[6] << endl;
 }
