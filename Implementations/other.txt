@@ -1,4 +1,0 @@
-Bellman-Ford implemented in jobhunt
-inversion counting is implemented in fenwick
-least common ancestor (LCA) algorithm implemented in maxflow
-modified Floyd-Warshall implemented in toll
