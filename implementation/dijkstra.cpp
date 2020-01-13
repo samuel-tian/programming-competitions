@@ -5,7 +5,7 @@
 /*
  * Dijkstra's shortest path algorithm
  * ----------------------------------
- * 1) bfs through the graph, but traverse nodes with smaller path distance before nodes with larger distance
+ * BFS through the graph, but traverse nodes with smaller path distance before nodes with larger distance
  * time complexity: O(E log V)
  */
 

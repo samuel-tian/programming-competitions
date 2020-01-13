@@ -36,7 +36,7 @@ int ccw(pair<int, int> a, pair<int, int> b, pair<int, int> c) {
 }
 
 double convexHull() {
-    vector<pair<int, int> > hull;
+vector<pair<int, int> > hull;
     int minIndex = -1;
     int minX = INF;
     for (int i = 0; i < n; ++i) {
@@ -62,9 +62,6 @@ double convexHull() {
         }
         hull.push_back(angles[i].second);
     }
-    double ret = 0;
-    for (int i = 0; i < hull.size(); ++i) {
-        ret += dist(hull[i], hull[(i + 1) % hull.size()]);
     }
     return ret;
 }

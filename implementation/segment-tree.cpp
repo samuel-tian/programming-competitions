@@ -11,12 +11,12 @@
  *      - each parent node is twice the size of both children
  * // update() //
  * 1) recurse through all segments in the tree
- *      a) if segment contains the updating index, add the update value to the segment
+ *      a) if segment is completely contained in the update range, add the update value to the segment
  *      b) otherwise, return
  * // query() //
  * 2) recurse through all segments in the tree
- *      a) if segment completely contains the updating range, return the value of the segment
- *      b) if segment partially contains the updating range, recurse to its children
+ *      a) if segment is completely contained in the query range, return the value of the segment
+ *      b) if segment is partially contained in the query range, recurse to its children
  *      c) otherwise, return 0
  */
 

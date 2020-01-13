@@ -5,7 +5,18 @@
 /*
  * Lazy Propagation in Segment Trees (range sum queries)
  * -----------------------------------------------------
- * 1)
+ * postpone updates to child nodes using a lazy array
+ * // update() //
+ * 1) recurse through all segments in the tree
+ * 		a) if the interval is completely contained in the update range, update the current node and postpone children updates
+ * 		b) if the interval partially overlaps with the update range, recurse to chlid nodes and update after
+ * 		c) otherwise, return
+ * // query() //
+ * 2) recurse through all segments in the tree
+ * 		a) if the segment is completely contained in the query range, return the value of the segment
+ * 		b) if the segment is partially contained in the query range, recurse to the children
+ * 		c) otherwise, return 0
+ * 3) if the current segment has a lazy update, update the value of the segment before calling the query
  */
 
 #include <bits/stdc++.h>
@@ -39,10 +50,10 @@ void update(int node, int a, int b, int i, int j, int value) {
 	}
 	if (a > b || a > j || b < i) return;
 	if (a >= i && b <= j) {
-		segTree[node] += value;
+		segTree[node] += value * (b - a + 1);
 		if (a != b) {
 			lazy[2 * node + 1] += value;
-			lazy[2 * node +2 ] += value;
+			lazy[2 * node + 2] += value;
 		}
 		return;
 	}

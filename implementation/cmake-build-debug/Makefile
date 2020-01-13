@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.3\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Samuel\Documents\Coding\programming-competitions\implementation
+CMAKE_SOURCE_DIR = C:\Users\samue\Documents\programming-competitions\implementation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\samue\Documents\programming-competitions\implementation\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\cmake-build-debug\CMakeFiles C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\samue\Documents\programming-competitions\implementation\cmake-build-debug\CMakeFiles C:\Users\samue\Documents\programming-competitions\implementation\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Samuel\Documents\Coding\programming-competitions\implementation\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\samue\Documents\programming-competitions\implementation\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,32 +122,32 @@ implementation/fast:
 	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/build
 .PHONY : implementation/fast
 
-main.obj: main.cpp.obj
+rotating-calipers.obj: rotating-calipers.cpp.obj
 
-.PHONY : main.obj
+.PHONY : rotating-calipers.obj
 
 # target to build an object file
-main.cpp.obj:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.obj
-.PHONY : main.cpp.obj
+rotating-calipers.cpp.obj:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/rotating-calipers.cpp.obj
+.PHONY : rotating-calipers.cpp.obj
 
-main.i: main.cpp.i
+rotating-calipers.i: rotating-calipers.cpp.i
 
-.PHONY : main.i
+.PHONY : rotating-calipers.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.i
-.PHONY : main.cpp.i
+rotating-calipers.cpp.i:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/rotating-calipers.cpp.i
+.PHONY : rotating-calipers.cpp.i
 
-main.s: main.cpp.s
+rotating-calipers.s: rotating-calipers.cpp.s
 
-.PHONY : main.s
+.PHONY : rotating-calipers.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.s
-.PHONY : main.cpp.s
+rotating-calipers.cpp.s:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/rotating-calipers.cpp.s
+.PHONY : rotating-calipers.cpp.s
 
 # Help Target
 help:
@@ -158,9 +158,9 @@ help:
 	@echo ... implementation
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... rotating-calipers.obj
+	@echo ... rotating-calipers.i
+	@echo ... rotating-calipers.s
 .PHONY : help
 
 
