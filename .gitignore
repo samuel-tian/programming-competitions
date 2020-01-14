@@ -39,3 +39,8 @@ Thumbs.db
 # Extras #
 ##########
 *.mp4
+
+# CLion #
+#########
+*.xml
+*.iml
