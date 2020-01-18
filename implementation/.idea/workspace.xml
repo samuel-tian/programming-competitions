@@ -11,14 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c67709-fa5d-40f7-8899-8edda624dee1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/cowrun2 (incomplete)/cowrun2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/damage (incomplete)/damage.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/nearcows (incomplete)/nearcows.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/telephone (incomplete)/telephone.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="97c67709-fa5d-40f7-8899-8edda624dee1" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,8 +88,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graham-scan.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="69" column="13" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+            <state relative-caret-position="216">
+              <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -234,7 +227,7 @@
       <workItem from="1576088643430" duration="5490000" />
       <workItem from="1577047919223" duration="13810000" />
       <workItem from="1578499744965" duration="239000" />
-      <workItem from="1578514302579" duration="2528000" />
+      <workItem from="1578514302579" duration="2889000" />
     </task>
     <task id="LOCAL-00001" summary="lca implementation">
       <created>1569903529572</created>
@@ -261,7 +254,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60834000" />
+    <option name="totallyTimeSpent" value="61195000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -274,6 +267,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4973545" visible="true" weight="0.2736842" />
       <window_info id="Structure" order="1" sideWeight="0.5026455" side_tool="true" weight="0.28987855" />
@@ -525,8 +519,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graham-scan.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="69" column="13" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+        <state relative-caret-position="216">
+          <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
         </state>
       </provider>
     </entry>
