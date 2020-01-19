@@ -11,7 +11,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c67709-fa5d-40f7-8899-8edda624dee1" name="Default Changelist" comment="" />
+    <list default="true" id="97c67709-fa5d-40f7-8899-8edda624dee1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/Week 1/cowrun2 (incomplete)/cowrun2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/Week 1/damage/damage.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/Week 1/damage/damage.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/Week 1/nearcows/nearcows.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/Week 1/nearcows/nearcows.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/Week 1/telephone/telephone.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/Week 1/telephone/telephone.txt" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
