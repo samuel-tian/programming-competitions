@@ -74,7 +74,7 @@ void dfs(int node) {
     for (int i = 0; i < adj[node].size(); ++i) {
         int next = adj[node][i];
         if (in[next] == -1) {
-            tarjans(next);
+            dfs(next);
             low[node] = min(low[node], low[next]);
         }
         else if (instack[next]) {
