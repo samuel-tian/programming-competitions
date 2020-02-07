@@ -122,32 +122,32 @@ implementation/fast:
 	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/build
 .PHONY : implementation/fast
 
-rotating-calipers.obj: rotating-calipers.cpp.obj
+scc.obj: scc.cpp.obj
 
-.PHONY : rotating-calipers.obj
+.PHONY : scc.obj
 
 # target to build an object file
-rotating-calipers.cpp.obj:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/rotating-calipers.cpp.obj
-.PHONY : rotating-calipers.cpp.obj
+scc.cpp.obj:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/scc.cpp.obj
+.PHONY : scc.cpp.obj
 
-rotating-calipers.i: rotating-calipers.cpp.i
+scc.i: scc.cpp.i
 
-.PHONY : rotating-calipers.i
+.PHONY : scc.i
 
 # target to preprocess a source file
-rotating-calipers.cpp.i:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/rotating-calipers.cpp.i
-.PHONY : rotating-calipers.cpp.i
+scc.cpp.i:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/scc.cpp.i
+.PHONY : scc.cpp.i
 
-rotating-calipers.s: rotating-calipers.cpp.s
+scc.s: scc.cpp.s
 
-.PHONY : rotating-calipers.s
+.PHONY : scc.s
 
 # target to generate assembly for a file
-rotating-calipers.cpp.s:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/rotating-calipers.cpp.s
-.PHONY : rotating-calipers.cpp.s
+scc.cpp.s:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/scc.cpp.s
+.PHONY : scc.cpp.s
 
 # Help Target
 help:
@@ -158,9 +158,9 @@ help:
 	@echo ... implementation
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... rotating-calipers.obj
-	@echo ... rotating-calipers.i
-	@echo ... rotating-calipers.s
+	@echo ... scc.obj
+	@echo ... scc.i
+	@echo ... scc.s
 .PHONY : help
 
 

@@ -98,18 +98,20 @@ void tarjans() {
     fill(scc, scc + n, -1);
     for (int i = 0; i < n; ++i) {
         if (scc[i] == -1) {
-            tarjans(i);
+            dfs(i);
         }
     }
 }
 
 int main() {
-    setIO("stdio");
+    setIO("input");
     cin >> n;
     FOR (i, 0, n) {
         int a;
         cin >> a;
         adj[i].pb(a - 1);
     }
+    tarjans();
+    PRSP(i, n, scc);
     cout << num << endl;
 }

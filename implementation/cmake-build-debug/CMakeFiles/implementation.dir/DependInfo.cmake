@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/samue/Documents/programming-competitions/implementation/rotating-calipers.cpp" "C:/Users/samue/Documents/programming-competitions/implementation/cmake-build-debug/CMakeFiles/implementation.dir/rotating-calipers.cpp.obj"
+  "C:/Users/samue/Documents/programming-competitions/implementation/scc.cpp" "C:/Users/samue/Documents/programming-competitions/implementation/cmake-build-debug/CMakeFiles/implementation.dir/scc.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
