@@ -1,0 +1,43 @@
+Travelling Salesman Problem
+===========================
+
+Given N cities (1 < N < 20) and M two-way roads between cities, 
+the problem is to find the shortest possible path that visits 
+every city exactly once.
+
+PROBLEM NAME: tsp
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: N and M.
+
+* Line 2..M+1: three space-separated integers: V1, V2 and D
+        Distance D of the road between cities V1 and V2 
+        (0 < D <= 1000).
+
+SAMPLE INPUT:
+
+5 8
+3 5 8
+5 4 11
+2 5 7
+5 1 12
+4 2 10
+1 2 4
+4 3 6
+3 2 9
+
+OUTPUT FORMAT:
+
+* Line 1: A line containing a single integer, the total distance
+        of the shortest path that travels all cities exactly once. 
+        If it is impossible output "IMPOSSIBLE".
+
+SAMPLE OUTPUT:
+
+25
+
+OUTPUT DETAILS:
+
+One can travel using the path 1-2-5-3-4. The total distance is
+4 + 7 + 8 + 6 = 25.

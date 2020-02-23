@@ -80,7 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/samue/Documents/programming-competitions/implementation/scc.cpp">
+		<Unit filename="C:/Users/samue/Documents/programming-competitions/implementation/topological-sort.cpp">
 			<Option target="implementation"/>
 		</Unit>
 		<Unit filename="C:/Users/samue/Documents/programming-competitions/implementation/CMakeLists.txt">

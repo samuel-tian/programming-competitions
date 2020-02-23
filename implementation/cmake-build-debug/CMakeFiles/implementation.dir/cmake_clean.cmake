@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/implementation.dir/scc.cpp.obj"
+  "CMakeFiles/implementation.dir/topological-sort.cpp.obj"
   "implementation.pdb"
   "implementation.exe"
   "implementation.exe.manifest"

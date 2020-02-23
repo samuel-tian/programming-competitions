@@ -56,27 +56,27 @@ include CMakeFiles/implementation.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/implementation.dir/flags.make
 
-CMakeFiles/implementation.dir/scc.cpp.obj: CMakeFiles/implementation.dir/flags.make
-CMakeFiles/implementation.dir/scc.cpp.obj: ../scc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\samue\Documents\programming-competitions\implementation\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/implementation.dir/scc.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\implementation.dir\scc.cpp.obj -c C:\Users\samue\Documents\programming-competitions\implementation\scc.cpp
+CMakeFiles/implementation.dir/topological-sort.cpp.obj: CMakeFiles/implementation.dir/flags.make
+CMakeFiles/implementation.dir/topological-sort.cpp.obj: ../topological-sort.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\samue\Documents\programming-competitions\implementation\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/implementation.dir/topological-sort.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\implementation.dir\topological-sort.cpp.obj -c C:\Users\samue\Documents\programming-competitions\implementation\topological-sort.cpp
 
-CMakeFiles/implementation.dir/scc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/implementation.dir/scc.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\samue\Documents\programming-competitions\implementation\scc.cpp > CMakeFiles\implementation.dir\scc.cpp.i
+CMakeFiles/implementation.dir/topological-sort.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/implementation.dir/topological-sort.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\samue\Documents\programming-competitions\implementation\topological-sort.cpp > CMakeFiles\implementation.dir\topological-sort.cpp.i
 
-CMakeFiles/implementation.dir/scc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/implementation.dir/scc.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\samue\Documents\programming-competitions\implementation\scc.cpp -o CMakeFiles\implementation.dir\scc.cpp.s
+CMakeFiles/implementation.dir/topological-sort.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/implementation.dir/topological-sort.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\samue\Documents\programming-competitions\implementation\topological-sort.cpp -o CMakeFiles\implementation.dir\topological-sort.cpp.s
 
 # Object files for target implementation
 implementation_OBJECTS = \
-"CMakeFiles/implementation.dir/scc.cpp.obj"
+"CMakeFiles/implementation.dir/topological-sort.cpp.obj"
 
 # External object files for target implementation
 implementation_EXTERNAL_OBJECTS =
 
-implementation.exe: CMakeFiles/implementation.dir/scc.cpp.obj
+implementation.exe: CMakeFiles/implementation.dir/topological-sort.cpp.obj
 implementation.exe: CMakeFiles/implementation.dir/build.make
 implementation.exe: CMakeFiles/implementation.dir/linklibs.rsp
 implementation.exe: CMakeFiles/implementation.dir/objects1.rsp

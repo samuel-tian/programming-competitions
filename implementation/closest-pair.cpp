@@ -7,7 +7,7 @@
  *      a) create a vector of points that are less than D units away from the dividing line
  *      b) sort the vector by y-coordinate
  *      c) for each point, compare with the next 15 points in the vector
- *              i) geometrically proven that you only need 15 comparisons
+ *          i) geometrically proven that you only need 15 comparisons
  * 4) merge the left and right halves
  * Time Complexity: O(n log n)
  */

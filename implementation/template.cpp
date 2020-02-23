@@ -22,6 +22,7 @@ typedef vector<pair<int, int> > vpi;
 
 const int MAXN = 100005;
 const int INF = INT_MAX;
+const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 
@@ -40,5 +41,5 @@ void setIO(string name) {
 }
 
 int main() {
-
+	setIO("input");
 }
