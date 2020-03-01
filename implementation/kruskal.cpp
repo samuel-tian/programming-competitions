@@ -1,7 +1,3 @@
-//
-// Created by Samuel on 10/1/2019.
-//
-
 /*
  * Kruskal's minimum spanning tree algorithm
  * -----------------------------------------

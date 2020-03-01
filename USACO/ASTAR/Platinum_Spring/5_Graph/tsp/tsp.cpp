@@ -1,12 +1,3 @@
-/*
- * Traveling Salesman Problem
- * --------------------------
- * 1) dp[bitmask][i] represents the minimum distance traversing all the nodes in bitmask, ending at node i
- * 2) dp[bitmask][i] can be computed by iterating all neighboring points and taking the minimum of the previous dp state and the edge weight
- *      a) dp[bitmask][i] = min{all dp[bitmask ^ i][k] + dist(i, k)}
- *
- * time complexity: O(2^n * n^2)
- */
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -50,7 +41,7 @@ void setIO(string name) {
 }
 
 int n, m;
-//vpi adj[MAXN];
+vpi adj[MAXN];
 int dist[MAXN][MAXN];
 //unordered_map<int, int[MAXN]> dp;
 int dp[1<<MAXN][MAXN];
