@@ -12,9 +12,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97c67709-fa5d-40f7-8899-8edda624dee1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../USACO/ASTAR/Platinum_Spring/5_Graph/tsp (incomplete)/tsp.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tsp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeRCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeRCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/objects.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/scc.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/implementation.dir/topological-sort.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/implementation.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/implementation.cbp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,17 +56,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
+            <state relative-caret-position="75">
               <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="495">
+              <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -47,17 +74,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tsp.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
+            <state relative-caret-position="1275">
               <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/floyd-warshall.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="36" selection-end-column="5" />
+            <state relative-caret-position="465">
+              <caret line="31" column="59" lean-forward="true" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -69,7 +96,7 @@
       <find>$PROJECT_DIR$/../../Chess/cmake-build-debug</find>
       <find>$PROJECT_DIR$/../../Chess/</find>
       <find>$PROJECT_DIR$/../../Chess</find>
-      <find>$PROJECT_DIR$/../../../../Samuel/Documents/Coding/programming-competitions/implementation</find>
+      <find>$USER_HOME$/Samuel/Documents/Coding/programming-competitions/implementation</find>
       <find>pair&lt;int, int&gt;</find>
     </findStrings>
   </component>
@@ -112,10 +139,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="1104" />
-    <option name="height" value="1944" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -197,6 +224,7 @@
       <workItem from="1582459603516" duration="636000" />
       <workItem from="1582647323199" duration="675000" />
       <workItem from="1582822580191" duration="143000" />
+      <workItem from="1584240136222" duration="637000" />
     </task>
     <task id="LOCAL-00001" summary="lca implementation">
       <created>1569903529572</created>
@@ -223,7 +251,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78488000" />
+    <option name="totallyTimeSpent" value="79125000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -235,10 +263,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4973545" visible="true" weight="0.2145749" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4973545" visible="true" weight="0.17270789" />
       <window_info id="Structure" order="1" sideWeight="0.5026455" side_tool="true" weight="0.28987855" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -509,29 +537,29 @@
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/input.txt" />
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="75">
           <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tsp.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
+        <state relative-caret-position="1275">
           <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/floyd-warshall.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="36" selection-end-column="5" />
+        <state relative-caret-position="465">
+          <caret line="31" column="59" lean-forward="true" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
         </state>
       </provider>
     </entry>
