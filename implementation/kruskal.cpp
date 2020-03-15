@@ -40,7 +40,7 @@ void unionRank(int aa, int bb) { // append b to a
 	int a = find(aa);
 	int b = find(bb);
 	if (r[b] > r[a]) {
-		unionRank(b, a);
+		unionRank(bb, aa);
 		return;
 	}
 	par[b] = a;
@@ -48,6 +48,8 @@ void unionRank(int aa, int bb) { // append b to a
 }
 
 int kruskal() {
+    initPar();
+    sort(edges.begin(), edges.end());
 	int ret = 0;
 	for (int i = 0; i < edges.size(); ++i) {
 		pair<int, int> e = edges[i].second;
@@ -69,8 +71,6 @@ int main() {
 //        adj[b].push_back(make_pair(c, a));
 		edges.push_back(make_pair(c, make_pair(a, b)));
 	}
-	initPar();
-	sort(edges.begin(), edges.end());
 	cout << kruskal() << endl;
 	return 0;
 }
