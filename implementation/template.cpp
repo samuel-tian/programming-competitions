@@ -2,6 +2,7 @@
 
 using namespace std;
 
+typedef long long ll;
 typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
@@ -27,19 +28,19 @@ const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 
 void setIO(string name) {
-	ios_base::sync_with_stdio(0); cin.tie(0);
-	if (name == "input") {
-		freopen("input.txt","r",stdin);
-	}
-	else if (name == "stdio") {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    if (name == "input") {
+        freopen("input.txt","r",stdin);
+    }
+    else if (name == "stdio") {
 
-	}
-	else {
-		freopen((name+".in").c_str(),"r",stdin);
-		freopen((name+".out").c_str(),"w",stdout);
-	}
+    }
+    else {
+        freopen((name+".in").c_str(),"r",stdin);
+        freopen((name+".out").c_str(),"w",stdout);
+    }
 }
 
 int main() {
-	setIO("input");
+    setIO("input");
 }
