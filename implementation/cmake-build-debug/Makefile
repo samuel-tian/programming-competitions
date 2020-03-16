@@ -122,32 +122,32 @@ implementation/fast:
 	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/build
 .PHONY : implementation/fast
 
-topological-sort.obj: topological-sort.cpp.obj
+main.obj: main.cpp.obj
 
-.PHONY : topological-sort.obj
+.PHONY : main.obj
 
 # target to build an object file
-topological-sort.cpp.obj:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/topological-sort.cpp.obj
-.PHONY : topological-sort.cpp.obj
+main.cpp.obj:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.obj
+.PHONY : main.cpp.obj
 
-topological-sort.i: topological-sort.cpp.i
+main.i: main.cpp.i
 
-.PHONY : topological-sort.i
+.PHONY : main.i
 
 # target to preprocess a source file
-topological-sort.cpp.i:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/topological-sort.cpp.i
-.PHONY : topological-sort.cpp.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-topological-sort.s: topological-sort.cpp.s
+main.s: main.cpp.s
 
-.PHONY : topological-sort.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-topological-sort.cpp.s:
-	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/topological-sort.cpp.s
-.PHONY : topological-sort.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles\implementation.dir\build.make CMakeFiles/implementation.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -158,9 +158,9 @@ help:
 	@echo ... implementation
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... topological-sort.obj
-	@echo ... topological-sort.i
-	@echo ... topological-sort.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 .PHONY : help
 
 
