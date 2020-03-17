@@ -1,7 +1,3 @@
-//
-// Created by samue on 10/11/2019.
-//
-
 /*
  * Segment Tree (without lazy propagation, range sum queries)
  * ----------------------------------------------------------

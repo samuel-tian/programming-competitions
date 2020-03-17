@@ -1,7 +1,3 @@
-//
-// Created by Samuel on 11/29/2019.
-//
-
 /*
  * Lazy Propagation in Segment Trees (range sum queries)
  * -----------------------------------------------------
@@ -29,8 +25,8 @@ using namespace std;
 #define endl '\n'
 
 int n, q;
-int segTree[MAXLOG];
-int lazy[MAXLOG];
+int segTree[MAXSEG];
+int lazy[MAXSEG];
 
 /*
  * node is the current node

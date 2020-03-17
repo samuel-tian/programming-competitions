@@ -1,13 +1,7 @@
-//
-// Created by samue on 10/2/2019.
-//
-
 /*
- * Prim's minimum spanning tree algorithm
- * --------------------------------------
- * 1) start at an arbitrary node, and append all incident edges to a fibonacci heap
- * 2) greedily select edges with the lowest weight from the heap, then append the incident edges to that neighboring node
- * 3) repeat the process until n-1 edges have been selected
+ * Dijkstra's shortest path algorithm
+ * ----------------------------------
+ * BFS through the graph, but traverse nodes with smaller path distance before nodes with larger distance
  * time complexity: O(E log V)
  */
 
@@ -19,30 +13,33 @@ using namespace std;
 #define MAXN 100000
 #define endl '\n'
 
-int n, m;
+int n, m, s;
 vector<pair<int, int> > adj[MAXN];
 bool visited[MAXN];
+int dist[MAXN];
 
-int prims() {
+void dijkstra(int start) {
     priority_queue<pair<int, int> > pq;
-    pq.push(make_pair(0, 0));
-    int ret = 0;
+    fill(dist, dist + n, INF);
+    dist[start] = 0;
+    pq.push(make_pair(0, start));
     while (!pq.empty()) {
         pair<int, int> cur = pq.top();
         pq.pop();
         if (visited[cur.second]) continue;
         visited[cur.second] = true;
-        ret += (-1 * cur.first);
         for (int i = 0; i < adj[cur.second].size(); ++i) {
             pair<int, int> next = adj[cur.second][i];
-            pq.push(make_pair(-1*next.first, next.second));
+            if (dist[cur.second] + next.first < dist[next.second]) {
+                dist[next.second] = dist[cur.second] + next.first;
+                pq.push(make_pair(-dist[next.second], next.second));
+            }
         }
     }
-    return ret;
 }
 
 int main() {
-    cin >> n >> m;
+    cin >> n >> m >> s;
     for (int i = 0; i < m; ++i) {
         int a, b, c;
         cin >> a >> b >> c;
@@ -50,5 +47,8 @@ int main() {
         adj[a].push_back(make_pair(c, b));
         adj[b].push_back(make_pair(c, a));
     }
-    cout << prims() << endl;
+    dijkstra(s-1);
+    for (int i = 0; i < n; ++i) {
+        cout << (dist[i] == INF ? -1 : dist[i]) << endl;
+    }
 }

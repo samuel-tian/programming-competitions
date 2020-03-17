@@ -1,7 +1,3 @@
-//
-// Created by samue on 10/4/2019.
-//
-
 /*
  * Inversion Counting
  * ------------------

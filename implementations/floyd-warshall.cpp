@@ -1,7 +1,3 @@
-//
-// Created by samue on 10/2/2019.
-//
-
 /*
  * Floyd-Warshall all-pairs shortest path algorithm
  * ------------------------------------------------

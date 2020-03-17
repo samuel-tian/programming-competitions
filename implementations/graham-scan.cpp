@@ -1,7 +1,3 @@
-//
-// Created by samue on 10/8/2019.
-//
-
 /*
  * Graham scan for convex hull generation
  * --------------------------------------

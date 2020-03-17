@@ -1,3 +1,8 @@
+/*
+ * Tarjan's Algorithm for Edge Biconnected Components
+ * --------------------------------------------------
+ */
+
 #include <bits/stdc++.h>
 
 using namespace std;

@@ -1,7 +1,3 @@
-//
-// Created by Samuel on 9/30/2019.
-//
-
 /*
  * least common ancestor using sparse table
  * ----------------------------------------

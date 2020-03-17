@@ -1,9 +1,5 @@
-//
-// Created by Samuel on 11/27/2019.
-//
-
 /*
- * heavy-light decomposition (range max tree queries)
+ * Heavy-Light Decomposition (Range Max Tree Queries)
  * --------------------------------------------------
  * - a heavy edge from node A to node B means that the size of the subtree of B is greater than all of its siblings
  * - a heavy path from node A consists of heavy paths and a single light path going up to the root

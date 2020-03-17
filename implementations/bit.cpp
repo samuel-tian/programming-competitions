@@ -1,7 +1,3 @@
-//
-// Created by samue on 10/3/2019.
-//
-
 /*
  * Binary Indexed Tree (Fenwick Tree)
  * ----------------------------------
