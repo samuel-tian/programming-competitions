@@ -3,8 +3,7 @@
  * ----------------------------------------------------
  * strongly connected components - in a directed graph, a strongly connected component is a set of nodes such that for
  * every pair of nodes u and v there exists a path from u to v and a path from v to u
- * 1) keep track of in[] and low[], which stores the time the node was visited in a DFS and the lowest in[] of the set
- * of nodes that can be reached, respectively
+ * 1) keep track of in[] and low[], which stores the time the node was visited in a DFS and the lowest in[] of the set of nodes that can be reached, respectively
  * 2) DFS through the tree
  *      a) push the traversed nodes onto a stack
  *      b) after traversing all neighboring nodes, update low[]

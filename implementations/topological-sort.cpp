@@ -52,14 +52,22 @@ void setIO(string name) {
 int n, m;
 vi adj[MAXN];
 bool visited[MAXN];
+bool temp[MAXN];
 vi tsorted;
+bool cyclic = false;
 
 void dfs(int cur) {
     if (visited[cur]) return;
-    visited[cur] = true;
+    if (temp[cur]) {
+        cyclic = true;
+        return;
+    }
+    temp[cur] = true;
     FOR (i, 0, adj[cur].size()) {
         dfs(adj[cur][i]);
     }
+    temp[cur] = false;
+    visited[cur] = true;
     tsorted.pb(cur);
 }
 
@@ -79,5 +87,5 @@ int main() {
         adj[a].pb(b);
     }
     topologicalSort();
-    PRSP(i, n, tsorted);
+    cyclic ? cout << "NOT A DAG" << endl; : PRSP(i, n, tsorted);
 }

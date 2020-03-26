@@ -20,12 +20,15 @@ typedef vector<pair<int, int> > vpi;
 #define PRSP(i, a, x) for (int i = 0; i < (a); ++i) {cout << x[i] << " ";} cout << endl;
 #define mppi(a, b, c) mp(mp((a), (b)), (c))
 #define mpip(a, b, c) mp((a), mp((b), (c)))
+#define max3(a, b, c) max(max((a), (b)), (c));
 
 const int MAXN = 100005;
 const int INF = INT_MAX;
 const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
+const int MUL = 1000001;
+const int MOD = 1000000007;
 
 void setIO(string name) {
     ios_base::sync_with_stdio(0); cin.tie(0);

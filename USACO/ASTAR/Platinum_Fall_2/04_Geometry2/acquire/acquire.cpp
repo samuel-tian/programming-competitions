@@ -1,7 +1,3 @@
-//
-// Created by Samuel on 11/18/2019.
-//
-
 /*
  * Convex Hull Trick
  * -----------------
