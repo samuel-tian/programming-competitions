@@ -1,20 +1,13 @@
-/*
- * Monotone Priority Queue (MPQ)
- * -----------------------------
- * - an MPQ satisfies the invariant that mpq[i] < mpq[j] for all i < j
- * - used for sliding window min/max queries
- */
-
- #include <bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-typedef long long ll;
 typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
 typedef vector<int> vi;
 typedef vector<pair<int, int> > vpi;
+typedef long long ll;
 
 #define f first
 #define s second
@@ -29,7 +22,7 @@ typedef vector<pair<int, int> > vpi;
 #define mpip(a, b, c) mp((a), mp((b), (c)))
 #define max3(a, b, c) max(max((a), (b)), (c));
 
-const int MAXN = 100005;
+const int MAXN = 200005;
 const int INF = INT_MAX;
 const int NINF = INT_MIN;
 const int MAXLOG = 21;
@@ -51,40 +44,61 @@ void setIO(string name) {
 	}
 }
 
-struct min_queue {
-	int sz = 0;
-	deque<pi> q;
-	min_queue(int sz) {
-		this->sz = sz;
-	}
-	void insert(pi a) {
-		while (!q.empty() && q.back().f <= a.f) {
-			q.pop_back();
-		}
-		q.push_back(a);
-	}
-	int query(int i) {
-		while (q.front().s < i - sz + 1) {
-			q.pop_front();
-		}
-		return q.front().f;
-	}
-};
-
 int n, m;
-int a[MAXN];
-int mini[MAXN];
+vpi adj[MAXN];
+int p[MAXN];
+int d[MAXN];
+bool v[MAXN];
 
 int main() {
 	setIO("input");
 	cin >> n >> m;
-	FOR (i, 0, n) {
-		cin >> a[i];
+	int a, b;
+	FOR (i, 0, m) {
+		cin >> a >> b;
+		adj[a-1].pb(mp(b, 1));
+		adj[b].pb(mp(a-1, -1));
 	}
-	min_queue mpq(m);
 	FOR (i, 0, n) {
-		mpq.insert(mp(a[i], i));
-		mini[i] = mpq.query(i);
+		adj[i].pb(mp(i+1, 1));
+		adj[i+1].pb(mp(i, 0));
 	}
-	PRSP(i, n, mini);
+	fill(p, p + n + 1, 0);
+	FORd (i, n, 1) {
+		FOR (j, 0, adj[i].size()) {
+			pi next = adj[i][j];
+			p[next.f] = min(p[next.f], p[i] + next.s);
+		}
+	}
+//	PRSP(i, n+1, p);
+	FOR (i, 0, n+1) {
+		printf("%d: ", i);
+		FOR (j, 0, adj[i].size()) {
+			adj[i][j].s += (p[i] - p[adj[i][j].f]);
+			printf("(%d, %d) ", adj[i][j].f, adj[i][j].s);
+			/*if (adj[i][j].s < 0) {
+				cout << -1 << endl;
+				return 0;
+			}*/
+		}
+		printf("\n");
+	}
+	priority_queue<pi> pq;
+	fill(d, d+n+1, INF);
+	d[0] = 0;
+	pq.push(mp(0, 0));
+	while (!pq.empty()) {
+		int cur = pq.top().s;
+		pq.pop();
+		if (v[cur]) continue;
+		v[cur] = true;
+		FOR (i, 0, adj[cur].size()) {
+			pi next = adj[cur][i];
+			if (d[cur] + next.s < d[next.f]) {
+				d[next.f] = d[cur] + next.s;
+				pq.push(mp(-d[next.f], next.f));
+			}
+		}
+	}
+	cout << d[n] + p[n] - p[0] << endl;
 }

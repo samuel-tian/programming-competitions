@@ -1,0 +1,73 @@
+A Strip of Land
+===============
+
+The residents of Dingilville are trying to locate a region to build 
+an airport. The map of the land is at hand. The map is a rectangular 
+grid of unit squares. The height of every square is shown on the map.
+Your task is to find the size of the rectangular region of squares with 
+the largest area (i.e. a rectangular region consisting of the largest 
+number of squares) such that:
+  1) the height difference between the highest and the lowest squares 
+  of the region is less than or equal to a given limit C, and
+  2) the width (i.e. the number of squares along the west-east direction) 
+  of the region is at most 100.
+
+PROBLEM NAME: land
+
+INPUT FORMAT:
+
+* Line 1: Three space-separated integers: the number of squares in the 
+        east-west direction, U (1 <= U <= 700), the number of squares in 
+        the north-south direction, V (1 <= V <= 700), and C (0 <= C <= 10).
+        
+* Lines 2..V+1: Each line contains U integers in the interval 
+        [-30,000, 30,000].
+
+SAMPLE INPUT:
+
+10 15 4
+41 40 41 38 39 39 40 42 40 40
+39 40 43 40 36 37 35 39 42 42
+44 41 39 40 38 40 41 38 35 37
+38 38 33 39 36 37 32 36 38 40
+39 40 39 39 39 40 40 41 43 41
+39 40 41 38 39 38 39 39 39 42
+36 39 39 39 39 40 39 41 40 41
+31 37 36 41 41 40 39 41 40 40
+40 40 40 42 41 40 39 39 39 39
+42 40 44 40 38 40 39 39 37 41
+41 41 40 39 39 40 41 40 39 40
+47 45 49 43 43 41 41 40 39 42
+42 41 41 39 40 39 42 40 42 42
+41 44 49 43 46 41 42 41 42 42
+45 40 42 42 46 42 44 40 42 41
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer representing the maximum region size
+        where the height difference is less than or equal to C.
+
+SAMPLE OUTPUT:
+
+35
+
+OUTPUT DETAILS:
+
+Maximum size of the rectangle is 35 from row 5 to 11 and columns
+4 to 8 as marked below:
+
+41 40 41 38 39 39 40 42 40 40
+39 40 43 40 36 37 35 39 42 42
+44 41 39 40 38 40 41 38 35 37
+38 38 33 39 36 37 32 36 38 40
+39 40 39[39 39 40 40 41]43 41
+39 40 41[38 39 38 39 39]39 42
+36 39 39[39 39 40 39 41]40 41
+31 37 36[41 41 40 39 41]40 40
+40 40 40[42 41 40 39 39]39 39
+42 40 44[40 38 40 39 39]37 41
+41 41 40[39 39 40 41 40]39 40
+47 45 49 43 43 41 41 40 39 42
+42 41 41 39 40 39 42 40 42 42
+41 44 49 43 46 41 42 41 42 42
+45 40 42 42 46 42 44 40 42 41
