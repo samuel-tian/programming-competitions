@@ -29,22 +29,40 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 1000000007;
+const int MOD = 998244353;
 
 void setIO(string name) {
-    ios_base::sync_with_stdio(0); cin.tie(0);
-    if (name == "input") {
-        freopen("input.txt","r",stdin);
-    }
-    else if (name == "stdio") {
+	ios_base::sync_with_stdio(0); cin.tie(0);
+	if (name == "input") {
+		freopen("input.txt","r",stdin);
+	}
+	else if (name == "stdio") {
 
-    }
-    else {
-        freopen((name+".in").c_str(),"r",stdin);
-        freopen((name+".out").c_str(),"w",stdout);
-    }
+	}
+	else {
+		freopen((name+".in").c_str(),"r",stdin);
+		freopen((name+".out").c_str(),"w",stdout);
+	}
 }
 
 int main() {
-    setIO("input");
+	setIO("stdio");
+	ll N, K;
+	cin >> N >> K;
+	int a[N];
+	FOR (i, 0, N) {
+		cin >> a[i];
+	}
+	cout << (N * (N+1))/2 - ((N-K)*(N-K+1))/2 << " ";
+	int prev_max = -1;
+	ll ret = 1;
+	FOR (i, 0, N) {
+		if (a[i] >= N-K+1) {
+			if (prev_max != -1) {
+				ret = (ret * (i - prev_max)) % MOD;
+			}
+			prev_max = i;
+		}
+	}
+	cout << ret << endl;
 }

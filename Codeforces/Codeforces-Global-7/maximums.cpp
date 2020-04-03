@@ -32,19 +32,36 @@ const int MUL = 1000001;
 const int MOD = 1000000007;
 
 void setIO(string name) {
-    ios_base::sync_with_stdio(0); cin.tie(0);
-    if (name == "input") {
-        freopen("input.txt","r",stdin);
-    }
-    else if (name == "stdio") {
+	ios_base::sync_with_stdio(0); cin.tie(0);
+	if (name == "input") {
+		freopen("input.txt","r",stdin);
+	}
+	else if (name == "stdio") {
 
-    }
-    else {
-        freopen((name+".in").c_str(),"r",stdin);
-        freopen((name+".out").c_str(),"w",stdout);
-    }
+	}
+	else {
+		freopen((name+".in").c_str(),"r",stdin);
+		freopen((name+".out").c_str(),"w",stdout);
+	}
 }
 
 int main() {
-    setIO("input");
+	setIO("stdio");
+	int n;
+	cin >> n;
+	ll a[n], b[n], x[n];
+	FOR (i, 0, n) {
+		cin >> b[i];
+	}
+	x[0] = 0;
+	a[0] = b[0] + x[0];
+	int rmax = x[0];
+	FOR (i, 1, n) {
+		x[i] = max(x[i-1], a[i-1]);
+		a[i] = b[i] + x[i];
+	}
+	FOR (i, 0, n) {
+		if (i == 0) cout << a[i];
+		else cout << " " << a[i];
+	}
 }

@@ -24,81 +24,203 @@ using namespace std;
 #define MAXLOG 262144
 #define endl '\n'
 
-int n, q;
-int segTree[MAXSEG];
-int lazy[MAXSEG];
+struct sum_seg_lazy {
+	int n;
+	int segTree[MAXSEG];
+	int lazy[MAXSEG];
+	sum_seg_lazy() {
+		this->n = 0;
+		fill(lazy, lazy + MAXSEG, 0);
+		fill(segTree, segTree + MAXSEG, 0);
+	}
+	sum_seg_lazy(int n) {
+		this->n = n;
+		fill(lazy, lazy + MAXSEG, 0);
+		fill(segTree, segTree + MAXSEG, 0);
+	}
+	int query(int i, int j) {
+		return queryUtil(0, 0, n-1, i, j);
+	}
+	/*
+	 * node is the current node
+	 * a, b are the starting and ending iterators
+	 * i, j is the query range
+	 * iterators and nodes are inclusive
+	 */
+	int queryUtil(int node, int a, int b, int i, int j) {
+		if (lazy[node] != 0) {
+			segTree[node] += lazy[node] * (b - a + 1);
+			if (a != b) {
+				lazy[2 * node + 1] += lazy[node];
+				lazy[2 * node + 2] += lazy[node];
+			}
+			lazy[node] = 0;
+		}
+		if (a > b || a > j || b < i) return INF;
+		if (a >= i && b <= j) return segTree[node];
+		int mid = (a + b) / 2;
+		int left = queryUtil(2 * node + 1, a, mid, i, j);
+		int right = queryUtil(2 * node + 2, mid + 1, b, i, j);
+		return left + right;
+	}
+	void update(int i, int j, int val) {
+		updateUtil(0, 0, n-1, i, j, val);
+	}
+	/*
+	 * node is the current node
+	 * a, b are the starting and ending iterators
+	 * i, j is the update range
+	 * value is the updated value
+	 * iterators and nodes are inclusive
+	 */
+	void updateUtil(int node, int a, int b, int i, int j, int val) {
+		if (lazy[node] != 0) {
+			segTree[node] += lazy[node] * (b - a + 1);
+			if (a != b) {
+				lazy[2 * node + 1] += lazy[node];
+				lazy[2 * node + 2] += lazy[node];
+			}
+			lazy[node] = 0;
+		}
+		if (a > b || a > j || b < i) return;
+		if (a >= i && b <= j) {
+			segTree[node] += val;
+			if (a != b) {
+				lazy[2 * node + 1] += val;
+				lazy[2 * node + 2] += val;
+			}
+			return;
+		}
+		int mid = (a + b) / 2;
+		updateUtil(node * 2 + 1, a, mid, i, j, val);
+		updateUtil(node * 2 + 2, mid + 1, b, i, j, val);
+		segTree[node] = segTree[2 * node + 1] + segTree[2 * node + 2];
+	}
+};
 
-/*
- * node is the current node
- * a, b are the starting and ending iterators
- * i, j is the update range
- * value is the updated value
- * iterators and nodes are inclusive
- */
-void update(int node, int a, int b, int i, int j, int value) {
-	if (lazy[node] != 0) {
-		segTree[node] += lazy[node] * (b - a + 1);
-		if (a != b) {
-			lazy[2 * node + 1] += lazy[node];
-			lazy[2 * node + 2] += lazy[node];
-		}
-		lazy[node] = 0;
+struct max_seg_lazy {
+	int n;
+	int segTree[MAXSEG];
+	int lazy[MAXSEG];
+	max_seg_lazy() {
+		this->n = 0;
+		fill(lazy, lazy + MAXSEG, 0);
+		fill(segTree, segTree + MAXSEG, 0);
 	}
-	if (a > b || a > j || b < i) return;
-	if (a >= i && b <= j) {
-		segTree[node] += value * (b - a + 1);
-		if (a != b) {
-			lazy[2 * node + 1] += value;
-			lazy[2 * node + 2] += value;
-		}
-		return;
+	max_seg_lazy(int n) {
+		this->n = n;
+		fill(lazy, lazy + MAXSEG, 0);
+		fill(segTree, segTree + MAXSEG, 0);
 	}
-	int mid = (a + b) / 2;
-	update(node * 2 + 1, a, mid, i, j, value);
-	update(node * 2 + 2, mid + 1, b, i, j, value);
-	segTree[node] = segTree[2 * node + 1] + segTree[2 * node + 2];
-}
+	int query(int i, int j) {
+		return queryUtil(0, 0, n-1, i, j);
+	}
+	int queryUtil(int node, int a, int b, int i, int j) {
+		if (lazy[node] != 0) {
+			segTree[node] += lazy[node];
+			if (a != b) {
+				lazy[2 * node + 1] += lazy[node];
+				lazy[2 * node + 2] += lazy[node];
+			}
+			lazy[node] = 0;
+		}
+		if (a > b || a > j || b < i) return NINF;
+		if (a >= i && b <= j) return segTree[node];
+		int mid = (a + b) / 2;
+		int left = queryUtil(2 * node + 1, a, mid, i, j);
+		int right = queryUtil(2 * node + 2, mid + 1, b, i, j);
+		return max(left, right);
+	}
+	void update(int i, int j, int val) {
+		updateUtil(0, 0, n-1, i, j, val);
+	}
+	void updateUtil(int node, int a, int b, int i, int j, int val) {
+		if (lazy[node] != 0) {
+			segTree[node] += lazy[node];
+			if (a != b) {
+				lazy[2 * node + 1] += lazy[node];
+				lazy[2 * node + 2] += lazy[node];
+			}
+			lazy[node] = 0;
+		}
+		if (a > b || a > j || b < i) return;
+		if (a >= i && b <= j) {
+			segTree[node] += val;
+			if (a != b) {
+				lazy[2 * node + 1] += val;
+				lazy[2 * node + 2] += val;
+			}
+			return;
+		}
+		int mid = (a + b) / 2;
+		updateUtil(node * 2 + 1, a, mid, i, j, val);
+		updateUtil(node * 2 + 2, mid + 1, b, i, j, val);
+		segTree[node] = max(segTree[2 * node + 1], segTree[2 * node + 2]);
+	}
+};
 
-/*
- * node is the current node
- * a, b are the starting and ending iterators
- * i, j is the query range
- * iterators and nodes are inclusive
- */
-int query(int node, int a, int b, int i, int j) {
-	if (lazy[node] != 0) {
-		segTree[node] += lazy[node] * (b - a + 1);
-		if (a != b) {
-			lazy[2 * node + 1] += lazy[node];
-			lazy[2 * node + 2] += lazy[node];
-		}
-		lazy[node] = 0;
+struct min_seg_lazy {
+	int n;
+	int segTree[MAXSEG];
+	int lazy[MAXSEG];
+	min_seg_lazy() {
+		this->n = 0;
+		fill(lazy, lazy + MAXSEG, 0);
+		fill(segTree, segTree + MAXSEG, 0);
 	}
-	if (a > b || a > j || b < i) return 0;
-	if (a >= i && b <= j) return segTree[node];
-	int mid = (a + b) / 2;
-	int left = query(2 * node + 1, a, mid, i, j);
-	int right = query(2 * node + 2, mid + 1, b, i, j);
-	return left + right;
-}
+	min_seg_lazy(int n) {
+		this->n = n;
+		fill(lazy, lazy + MAXSEG, 0);
+		fill(segTree, segTree + MAXSEG, 0);
+	}
+	int query(int i, int j) {
+		return queryUtil(0, 0, n-1, i, j);
+	}
+	int queryUtil(int node, int a, int b, int i, int j) {
+		if (lazy[node] != 0) {
+			segTree[node] += lazy[node];
+			if (a != b) {
+				lazy[2 * node + 1] += lazy[node];
+				lazy[2 * node + 2] += lazy[node];
+			}
+			lazy[node] = 0;
+		}
+		if (a > b || a > j || b < i) return INF;
+		if (a >= i && b <= j) return segTree[node];
+		int mid = (a + b) / 2;
+		int left = queryUtil(2 * node + 1, a, mid, i, j);
+		int right = queryUtil(2 * node + 2, mid + 1, b, i, j);
+		return min(left, right);
+	}
+	void update(int i, int j, int val) {
+		updateUtil(0, 0, n-1, i, j, val);
+	}
+	void updateUtil(int node, int a, int b, int i, int j, int val) {
+		if (lazy[node] != 0) {
+			segTree[node] += lazy[node];
+			if (a != b) {
+				lazy[2 * node + 1] += lazy[node];
+				lazy[2 * node + 2] += lazy[node];
+			}
+			lazy[node] = 0;
+		}
+		if (a > b || a > j || b < i) return;
+		if (a >= i && b <= j) {
+			segTree[node] += val;
+			if (a != b) {
+				lazy[2 * node + 1] += val;
+				lazy[2 * node + 2] += val;
+			}
+			return;
+		}
+		int mid = (a + b) / 2;
+		updateUtil(node * 2 + 1, a, mid, i, j, val);
+		updateUtil(node * 2 + 2, mid + 1, b, i, j, val);
+		segTree[node] = min(segTree[2 * node + 1], segTree[2 * node + 2]);
+	}
+};
 
 int main() {
 	freopen("input.txt", "r", stdin);
-	cin >> n >> q;
-	for (int i = 0; i < q; ++i) {
-		char c;
-		cin >> c;
-		if (c == 'U') {
-			int u, v, w;
-			cin >> u >> v >> w;
-			--u; --v;
-			update(0, 0, n-1, u, v, w);
-		}
-		else if (c == 'Q') {
-			int u, v;
-			cin >> u >> v;
-			--u; --v;
-			cout << query(0, 0, n-1, u, v) << endl;
-		}
-	}
+	min_seg_lazy segtree(10);
 }

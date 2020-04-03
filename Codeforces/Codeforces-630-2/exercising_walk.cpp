@@ -3,7 +3,6 @@
 using namespace std;
 
 typedef long long ll;
-typedef unsigned long long ull;
 typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
@@ -32,19 +31,43 @@ const int MUL = 1000001;
 const int MOD = 1000000007;
 
 void setIO(string name) {
-    ios_base::sync_with_stdio(0); cin.tie(0);
-    if (name == "input") {
-        freopen("input.txt","r",stdin);
-    }
-    else if (name == "stdio") {
+	ios_base::sync_with_stdio(0); cin.tie(0);
+	if (name == "input") {
+		freopen("input.txt","r",stdin);
+	}
+	else if (name == "stdio") {
 
-    }
-    else {
-        freopen((name+".in").c_str(),"r",stdin);
-        freopen((name+".out").c_str(),"w",stdout);
-    }
+	}
+	else {
+		freopen((name+".in").c_str(),"r",stdin);
+		freopen((name+".out").c_str(),"w",stdout);
+	}
 }
 
+int t;
+int a, b, c, d;
+int x, y, x1, y11, x2, y2;
+
 int main() {
-    setIO("input");
+	setIO("stdio");
+	cin >> t;
+	FOR (i, 0, t) {
+		cin >> a >> b >> c >> d;
+		cin >> x >> y >> x1 >> y11 >> x2 >> y2;
+		int nx = x + b - a;
+		int ny = y + d - c;
+		if (nx > x2 || nx < x1 || ny > y2 || ny < y11) {
+			cout << "No" << endl;
+		}
+		else if ((a > 0 || b > 0) && x+1>x2 && x-1 < x1) {
+			cout << "No" << endl;
+		}
+		else if ((c > 0 || d > 0) && y+1>y2 && y-1 < y11) {
+			cout << "No" << endl;
+		}
+		else {
+			cout << "Yes" << endl;
+		}
+	}
+
 }
