@@ -18,12 +18,11 @@ typedef vector<pair<int, int> > vpi;
 
 #define FOR(i, a, b) for (int i = (a); i < (b); ++i)
 #define FORd(i, a, b) for (int i = (a); i >= (b); --i)
-#define PRSP(i, a, x) for (int i = 0; i < (a); ++i) {cout << x[i] << " ";} cout << endl;
+#define PRSP(x, a) for (int rv = 0; rv < a; ++rv) {cout << ((rv==0 ? "" : " ")) << x[rv];} cout << endl;
 #define mppi(a, b, c) mp(mp((a), (b)), (c))
 #define mpip(a, b, c) mp((a), mp((b), (c)))
 #define max3(a, b, c) max(max((a), (b)), (c));
 
-const int MAXN = 100005;
 const int INF = INT_MAX;
 const int NINF = INT_MIN;
 const int MAXLOG = 21;
