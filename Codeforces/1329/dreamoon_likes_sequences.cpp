@@ -1,8 +1,3 @@
-/*
- * Knuth-Morris-Pratt String Matching
- * ----------------------------------
- */
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -28,14 +23,6 @@ typedef vector<pair<int, int> > vpi;
 #define mpip(a, b, c) mp((a), mp((b), (c)))
 #define max3(a, b, c) max(max((a), (b)), (c));
 
-const int MAXN = 100005;
-const int INF = INT_MAX;
-const int NINF = INT_MIN;
-const int MAXLOG = 21;
-const int MAXSEG = (1<<18);
-const int MUL = 1000001;
-const int MOD = 1000000007;
-
 void setIO(string name) {
 	ios_base::sync_with_stdio(0); cin.tie(0);
 	if (name == "input") {
@@ -50,38 +37,42 @@ void setIO(string name) {
 	}
 }
 
-int pre[MAXN];
+const int INF = INT_MAX;
+const int NINF = INT_MIN;
+const int MAXLOG = 21;
+const int MAXSEG = (1<<18);
+const int MUL = 1000001;
+const int MOD = 1000000007;
 
-void prefix_function(string s) {
-	int n = s.size();
-	FOR (i, 1, n) {
-		int j = pre[i-1];
-		while (j > 0 && s[i] != s[j]) {
-			j = pre[j-1];
-		}
-		if (s[i] == s[j]) {
-			++j;
-		}
-		pre[i] = j;
-	}
-}
-
-vi kmp(string t, string p) {
-	string s = p + "?" + t;
-	prefix_function(s);
-	vi ret;
-	FOR (i, p.size() + 1, s.size()) {
-		if (pre[i] == p.size()) {
-			ret.pb(i - 2 * p.size());
-		}
-	}
-	return ret;
-}
+ll dp[33][33];
 
 int main() {
-	setIO("input");
-	string t, p;
-	cin >> t >> p;
-	vi matches = kmp(t, p);
-	PRSP(matches, matches.size());
+	setIO("stdio");
+	int t;
+	cin >> t;
+	dp[0][0] = 1;
+	FOR (rv, 0, t) {
+		ll d, m;
+		cin >> d >> m;
+		int sz = d ? 32 - __builtin_clz(d) : NINF;
+		FOR (i, 1, sz + 1) {
+			ll mul = 1;
+			ll pre = 0;
+			FOR (j, 1, sz + 1) {
+				if (j == sz) {
+					mul = d - (1<<(sz-1)) + 1;
+				}
+				pre = (pre + dp[i-1][j-1]) % m;
+				dp[i][j] = (pre * mul) % m;
+				mul *= 2;
+			}
+		}
+		ll ans = 0;
+		FOR (i, 1, sz + 1) {
+			FOR (j, 1, sz + 1) {
+				ans = (ans + dp[i][j]) % m;
+			}
+		}
+		cout << ans << endl;
+	}
 }

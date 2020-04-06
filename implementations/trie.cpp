@@ -56,24 +56,54 @@ void setIO(string name) {
 
 const int MAXC = 26;
 struct node {
-	node *c[MAXC];
+	node *c[MAXC], *par;
 	bool is_end;
+	int id, ind, cnt;
 	node() {
 		FOR (i, 0, MAXC) {
 			this->c[i] = NULL;
-			this->is_end = false;
 		}
+		this->par = NULL;
+		this->id = -1;
+		this->ind = this->cnt = this->is_end = 0;
 	}
-	void insert(string &s, int i) {
-		if (i == s.size()) {
-			this->is_end = true;
-			return;
+};
+struct trie {
+	node* root;
+	trie() {
+		this->root = new node();
+	}
+	void insert(string &s, int id) {
+		node *rt = this->root;
+		int sz = s.size();
+		FOR (i, 0, sz) {
+			int k = s[i] - 'a';
+			if (rt->c[k] == NULL) {
+				rt->c[k] = new node();
+				rt->c[k]->par = rt;
+				rt->cnt++;
+			}
+			rt = rt->c[k];
+			rt->ind = k;
 		}
-		int k = s[i] - 'a';
-		if (this->c[k] == NULL) {
-			this->c[k] = new node();
+		rt->is_end = true;
+		root->id = id;
+	}
+	void remove(int s) {
+		node *rt = this->root;
+		int sz = s.size();
+		FOR (i, 0, sz) {
+			int k = s[i] - 'a';
+			rt = rt->c[k];
 		}
-		c[k]->insert(s, i+1);
+		rt->is_end = false;
+		while (rt->cnt == 0 && !rt->is_end) {
+			node* p = rt;
+			rt = rt->par;
+			rt->c[p->ind] = NULL;
+			delete p;
+			rt->cnt--;
+		}
 	}
 };
 

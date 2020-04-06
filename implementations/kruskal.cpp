@@ -23,12 +23,6 @@ vector<pair<int, pair<int, int> > > edges;
 int par[MAXN];
 int r[MAXN];
 
-void initPar() {
-	for (int i = 0; i < n; ++i) {
-		par[i] = i;
-	}
-}
-
 int find(int i) {
 	if (par[i] != i) {
 		par[i] = find(par[i]);
@@ -48,7 +42,9 @@ void unionRank(int aa, int bb) { // append b to a
 }
 
 int kruskal() {
-    initPar();
+    for (int i = 0; i < n; ++i) {
+		par[i] = i;
+	}
     sort(edges.begin(), edges.end());
 	int ret = 0;
 	for (int i = 0; i < edges.size(); ++i) {

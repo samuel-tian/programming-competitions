@@ -1,8 +1,3 @@
-/*
- * Knuth-Morris-Pratt String Matching
- * ----------------------------------
- */
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -28,14 +23,6 @@ typedef vector<pair<int, int> > vpi;
 #define mpip(a, b, c) mp((a), mp((b), (c)))
 #define max3(a, b, c) max(max((a), (b)), (c));
 
-const int MAXN = 100005;
-const int INF = INT_MAX;
-const int NINF = INT_MIN;
-const int MAXLOG = 21;
-const int MAXSEG = (1<<18);
-const int MUL = 1000001;
-const int MOD = 1000000007;
-
 void setIO(string name) {
 	ios_base::sync_with_stdio(0); cin.tie(0);
 	if (name == "input") {
@@ -50,38 +37,41 @@ void setIO(string name) {
 	}
 }
 
-int pre[MAXN];
-
-void prefix_function(string s) {
-	int n = s.size();
-	FOR (i, 1, n) {
-		int j = pre[i-1];
-		while (j > 0 && s[i] != s[j]) {
-			j = pre[j-1];
-		}
-		if (s[i] == s[j]) {
-			++j;
-		}
-		pre[i] = j;
-	}
-}
-
-vi kmp(string t, string p) {
-	string s = p + "?" + t;
-	prefix_function(s);
-	vi ret;
-	FOR (i, p.size() + 1, s.size()) {
-		if (pre[i] == p.size()) {
-			ret.pb(i - 2 * p.size());
-		}
-	}
-	return ret;
-}
+const int INF = INT_MAX;
+const int NINF = INT_MIN;
+const int MAXLOG = 21;
+const int MAXSEG = (1<<18);
+const int MUL = 1000001;
+const int MOD = 1000000007;
 
 int main() {
-	setIO("input");
-	string t, p;
-	cin >> t >> p;
-	vi matches = kmp(t, p);
-	PRSP(matches, matches.size());
+	setIO("stdio");
+	int n, m;
+	cin >> n >> m;
+	ll l[m];
+	FOR (i, 0, m) {
+		cin >> l[i];
+	}
+	ll ssum[m];
+	FORd (i, m-1, 0) {
+		if (i == m-1) ssum[i] = l[i];
+		else ssum[i] = ssum[i+1] + l[i];
+	}
+	ll max_colored = -1;
+	ll last_colored = -1;
+	vector<ll> ans;
+	FOR (i, 0, m) {
+		ll ret = max(last_colored + 1, n - ssum[i]);
+		if (ret > max_colored + 1) break;
+		if (ret > n - l[i]) break;
+		ans.pb(ret + 1);
+		last_colored = ret;
+		max_colored = ret + l[i] - 1;
+	}
+	if (ans.size() < m || max_colored < m-1) {
+		cout << -1 << endl;
+	}
+	else {
+		PRSP(ans, ans.size());
+	}
 }
