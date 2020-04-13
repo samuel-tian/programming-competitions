@@ -65,6 +65,49 @@ vi adj[MAXN], decomp_adj[MAXN];
 int c[MAXN], d[MAXN];
 bool centroid[MAXN];
 int par[MAXN];
+int exppar[MAXN][MAXLOG];
+
+void calc_d(int a) {
+	for (int b : adj[a]) {
+		if (b == exppar[a][0]) continue;
+		exppar[b][0] = a;
+		d[b] = d[a] + 1;
+		calc_d(b);
+	}
+}
+
+void init_st(int a) {
+	d[a] = 0;
+	exppar[a][0] = a;
+	calc_d(a);
+	FOR (j, 1, MAXLOG) {
+		FOR (i, 1, n) {
+			exppar[i][j] = exppar[exppar[i][j-1]][j-1];
+		}
+	}
+}
+
+int lca(int n1, int n2) {
+	// propagate to same depth
+	int difference = d[n1] - d[n2];
+	if (difference < 0) return lca(n2, n1); // n1 is lower
+	for (int i = 0; i < MAXLOG; ++i) {
+		if (difference & 1<<i) {
+			n1 = exppar[n1][i];
+		}
+	}
+	for (int i = MAXLOG - 1; i >= 0; --i) {
+		if (exppar[n1][i] == exppar[n2][i]) continue;
+		n1 = exppar[n1][i];
+		n2 = exppar[n2][i];
+	}
+	if (n1 != n2) {
+		return exppar[n1][0];
+	}
+	else { // n1 is a descendant of n2
+		return n1;
+	}
+}
 
 void dfs(int a) {
 	if (adj[a].size()==1 && adj[a][0]==par[a]) {
@@ -128,6 +171,25 @@ int decomp(int a, int sz) {
 	return centr;
 }
 
+int dist(int a, int b) {
+	int anc = lca(a, b);
+	return d[a] + d[b] - 2*d[anc];
+}
+
+int npar[MAXN];
+int ans[MAXN];
+
+void dfs3(int a) {
+	if (decomp_adj[a].size()==1 && decomp_adj[a][0]==npar[a]) {
+		return;
+	}
+	for (int b : decomp_adj[a]) {
+		if (b == npar[a]) continue;
+		npar[b] = a;
+		dfs3(b);
+	}
+}
+
 int main() {
 	setIO("stdio");
 	cin >> n >> m;
@@ -138,11 +200,42 @@ int main() {
 		adj[b-1].pb(a-1);
 	}
 	int root = decomp(0, n);
-	FOR (i, 0, n) {
+	/*FOR (i, 0, n) {
 		cout << i+1 << ": ";
 		for (int j : decomp_adj[i]) {
 			cout << j+1 << " ";
 		}
 		cout << endl;
+	}*/
+	init_st(0);
+	npar[root] = -1;
+	dfs3(root);
+//	PRSP(npar, n);
+	fill(ans, ans + n, INF);
+	FOR (iteration, 0, m+1) {
+		int a, b;
+		if (iteration == 0) {
+			a = 1; b = 1;
+		}
+		else cin >> a >> b;
+		--b;
+		int x = b;
+		if (a == 1) {
+			while (x != -1) {
+				ans[x] = min(ans[x], dist(b, x));
+				x = npar[x];
+			}
+		}
+		else {
+			int ret = INF;
+			while (x != -1) {
+				if (ans[x] != INF) {
+					ret = min(ret, ans[x] + dist(x, b));
+				}
+				x = npar[x];
+			}
+			cout << ret << endl;
+		}
+//		PRSP(ans, n);
 	}
 }
