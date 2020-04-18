@@ -28,10 +28,10 @@ typedef vector<pair<int, int> > vpi;
 #define min3(a, b, c) min(min((a), (b)), (c))
 
 void setIO(string name = "") {
-    ios_base::sync_with_stdio(0); cin.tie(0);
-    if (name == "") return;
-    if (name == "input") {freopen("input.txt","r",stdin);}
-    else {freopen((name+".in").c_str(),"r",stdin); freopen((name+".out").c_str(),"w",stdout);}
+	ios_base::sync_with_stdio(0); cin.tie(0);
+	if (name == "") return;
+	if (name == "input") {freopen("input.txt","r",stdin);}
+	else {freopen((name+".in").c_str(),"r",stdin); freopen((name+".out").c_str(),"w",stdout);}
 }
 
 const int INF = INT_MAX;
@@ -44,5 +44,25 @@ const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count(
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
 int main() {
-    setIO();
+	setIO();
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		vi v(n);
+		FOR (i, 0, n) {
+			int a;
+			cin >> a;
+			v[a-1]++;
+		}
+		int tot = 0, maxi = 0;
+		FOR (i, 0, n) {
+			if (v[i]) tot++;
+			maxi = max(maxi, v[i]);
+		}
+		int ans = min3(tot, maxi, n/2);
+		if (ans == maxi) ans = min3(tot-1, maxi, n/2);
+		cout << ans << endl;
+	}
 }

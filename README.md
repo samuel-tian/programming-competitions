@@ -12,6 +12,7 @@
 	* tutorial: https://www.quora.com/q/threadsiiithyderabad/Centroid-Decomposition-of-a-Tree
 	* problems: https://codeforces.com/blog/entry/52492
 * dynamic programming
+	* tutorial and problems: https://codeforces.com/blog/entry/67679
 	* optimizations: https://codeforces.com/blog/entry/8219
 	* dynamic programming on trees: https://codeforces.com/blog/entry/20935
 * hashing
