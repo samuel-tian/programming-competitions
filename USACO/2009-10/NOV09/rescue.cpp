@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -18,6 +11,7 @@ typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
 typedef vector<int> vi;
+typedef vector<long long> vll;
 typedef vector<pair<int, int> > vpi;
 
 #define f first
@@ -47,43 +41,51 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-template <class T> struct fenwick {
-	int n;
-	vector<T> arr;
-	fenwick() {
-		n = 0; arr = {};
-	}
-	fenwick(int n) {
-		this->n = n; arr.resize(n + 1);
-	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v) % MOD;
-			i += i & (-i);
-		}
-	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]) % MOD;
-			i -= i & (-i);
-		}
-		return ret;
-	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
-};
+const int N = 100005;
+const int M = 10005;
+
+int n, m;
+pi s;
+pi e[M];
+
+int solve(pi a, pi b) {
+    if (a.f > b.f) return solve(b, a);
+    else if (a.f == b.f) return abs(a.s - b.s);
+    if (a.s % 2 == 0) return 1 + min( solve(mp(a.f, a.s-1), b), solve(mp(a.f, a.s+1), b) );
+    int l = a.s + 1, r = a.s + (b.f - a.f) * 2 - 1, d = (b.f - a.f) * 2 - 1;
+    if (b.s >= r) return d + solve(mp(b.f, r), b);
+    else if (b.s <= l) return d + solve(mp(b.f, l), b);
+    else {
+        if (b.s % 2) return d + 1;
+        else return d;
+    }
+}
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+    cin >> n >> m;
+    cin >> s.f >> s.s;
+    FOR (i, 0, m) cin >> e[i].f >> e[i].s;
+    int ret = INF;
+    pi coor = mp(INF, INF);
+    FOR (i, 0, m) {
+        int d = 1 + solve(s, e[i]);
+        if (d < ret) {
+            ret = d; coor = e[i];
+        }
+        else if (d == ret) {
+            if (e[i] < coor) coor = e[i];
+        }
+    }
+    cout << coor.f << " " << coor.s << endl;
+    cout << ret << endl;
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }

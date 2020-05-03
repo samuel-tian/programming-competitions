@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -47,43 +40,62 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
-
-template <class T> struct fenwick {
-	int n;
-	vector<T> arr;
-	fenwick() {
-		n = 0; arr = {};
-	}
-	fenwick(int n) {
-		this->n = n; arr.resize(n + 1);
-	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v) % MOD;
-			i += i & (-i);
-		}
-	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]) % MOD;
-			i -= i & (-i);
-		}
-		return ret;
-	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
-};
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
 
+	int n, m;
+	cin >> n >> m;
+	vi d(m);
+	FOR (i, 0, m) cin >> d[i];
+	sort(d.begin(), d.end());
+	int g, r;
+	cin >> g >> r;
+	vector<vector<bool> > vis(m, vector<bool>(g));
+	FOR (i, 0, m) {
+		FOR (j, 0, g) {
+			vis[i][j] = false;
+		}
+	}
+	vi v; v.pb(0);
+	int t = 0;
+	int ans = INF;
+	while (!v.empty()) {
+		queue<pi> q;
+//		PRSP(v, v.size());
+		TRAV (i, v) {
+			q.push(mp(i, 0));
+		}
+		v.clear();
+		while (!q.empty()) {
+			pi cur = q.front(); q.pop();
+			if (vis[cur.f][cur.s]) continue;
+			vis[cur.f][cur.s] = true;
+			for (int j : {cur.f-1, cur.f+1}) {
+				if (j >= m || j < 0) continue;
+				int next_time = cur.s + abs(d[j] - d[cur.f]);
+				if (next_time > g) continue;
+				if (j == m-1) {
+					ans = min(ans, next_time + t*(r+g));
+					break;
+				}
+				if (next_time == g) {
+					v.pb(j);
+				}
+				else {
+					q.push(mp(j, next_time));
+				}
+			}
+		}
+		t++;
+	}
+	cout << (ans==INF ? -1 : ans) << endl;
+
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }

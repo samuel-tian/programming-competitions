@@ -65,14 +65,17 @@ void setIO(string name) {
 
 struct sum_seg_tree {
 	int n;
-	int segTree[MAXSEG];
+	vi segTree;
 	sum_seg_tree() {
 		this->n = 0;
-		fill(segTree, segTree + MAXSEG, 0);
+		segTree.resize(1);
+		fill(segTree.begin(), segTree.end(), 0);
 	}
 	sum_seg_tree(int n) {
 		this->n = n;
-		fill(segTree, segTree + MAXSEG, 0);
+		int sz = (1<<(1+(int)ceil(log2(n))));
+		segTree.resize(sz);
+		fill(segTree.begin(), segTree.end(), 0);
 	}
 	/*
 	 * node is the current node
@@ -123,14 +126,17 @@ struct sum_seg_tree {
 
 struct max_seg_tree {
 	int n;
-	int segTree[MAXSEG];
+	vi segTree;
 	max_seg_tree() {
 		this->n = 0;
-		fill(segTree, segTree + MAXSEG, 0);
+		segTree.resize(1);
+		fill(segTree.begin(), segTree.end(), 0);
 	}
 	max_seg_tree(int n) {
 		this->n = n;
-		fill(segTree, segTree + MAXSEG, 0);
+		int sz = (1<<(1+(int)ceil(log2(n))));
+		segTree.resize(sz);
+		fill(segTree.begin(), segTree.end(), 0);
 	}
 	int query(int i, int j) {
 		return queryUtil(0, 0, n-1, i, j);
@@ -168,14 +174,17 @@ struct max_seg_tree {
 
 struct min_seg_tree {
 	int n;
-	int segTree[MAXSEG];
+	vi segTree;
 	min_seg_tree() {
 		this->n = 0;
-		fill(segTree, segTree + MAXSEG, 0);
+		segTree.resize(1);
+		fill(segTree.begin(), segTree.end(), 0);
 	}
 	min_seg_tree(int n) {
 		this->n = n;
-		fill(segTree, segTree + MAXSEG, 0);
+		int sz = (1<<(1+(int)ceil(log2(n))));
+		segTree.resize(sz);
+		fill(segTree.begin(), segTree.end(), 0);
 	}
 	int query(int i, int j) {
 		return queryUtil(0, 0, n-1, i, j);

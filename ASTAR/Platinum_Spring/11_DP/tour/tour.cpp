@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -47,43 +40,58 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
-
-template <class T> struct fenwick {
-	int n;
-	vector<T> arr;
-	fenwick() {
-		n = 0; arr = {};
-	}
-	fenwick(int n) {
-		this->n = n; arr.resize(n + 1);
-	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v) % MOD;
-			i += i & (-i);
-		}
-	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]) % MOD;
-			i -= i & (-i);
-		}
-		return ret;
-	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
-};
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+	int N, V;
+	cin >> N >> V;
+	vector<vi> adj;
+	adj.resize(N);
+	unordered_map<string, int> ump;
+	FOR (i, 0, N) {
+		string s;
+		cin >> s;
+		ump[s] = i;
+	}
+	FOR (i, 0, V) {
+		string s, t;
+		cin >> s >> t;
+		adj[ump[s]].pb(ump[t]);
+		adj[ump[t]].pb(ump[s]);
+	}
+	int dp[N][N];
+	FOR (i, 0, N) {
+		FOR (j, 0, N) {
+			dp[i][j] = NINF;
+		}
+	}
+	dp[0][0] = 1;
+	FOR (i, 0, N) {
+		FOR (j, 0, N) {
+			if (i==j && i!=N-1) continue;
+			if (i > j) dp[i][j] = dp[j][i];
+			else {
+				TRAV (k, adj[j]) {
+					if (dp[i][k] == NINF) continue;
+					dp[i][j] = max(dp[i][j], dp[i][k] + 1);
+				}
+			}
+		}
+	}
+	/*FOR (i, 0, N) {
+		FOR (j, 0, N) {
+			if (dp[i][j] == NINF) cout << -1 << " ";
+			else cout << dp[i][j] << " ";
+		}
+		cout << endl;
+	}*/
+	cout << ((dp[N-1][N-1]==NINF) ? 1 : dp[N-1][N-1]-1) << endl;
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }

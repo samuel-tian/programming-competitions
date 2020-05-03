@@ -1,12 +1,3 @@
-/*
- * Bellman Ford Algorithm
- * ----------------------
- * 1) for n-1 times, perform relaxations on all the edges
- *      a) a relaxation for edge u-v is dist[v] = min(dist[v], dist[u] + weight)
- * 2) on the nth iteration, if edges are still being relaxed, then a negative cycle exists
- *
- * time complexity: O(E*V)
- */
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -20,7 +11,6 @@ typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
 typedef vector<int> vi;
-typedef vector<long long> vll;
 typedef vector<pair<int, int> > vpi;
 
 #define f first
@@ -39,10 +29,10 @@ typedef vector<pair<int, int> > vpi;
 #define min3(a, b, c) min(min((a), (b)), (c))
 
 void setIO(string name = "") {
-    ios_base::sync_with_stdio(0); cin.tie(0);
-    if (name == "") return;
-    if (name == "input") {freopen("input.txt","r",stdin);}
-    else {freopen((name+".in").c_str(),"r",stdin); freopen((name+".out").c_str(),"w",stdout);}
+	ios_base::sync_with_stdio(0); cin.tie(0);
+	if (name == "") return;
+	if (name == "input") {freopen("input.txt","r",stdin);}
+	else {freopen((name+".in").c_str(),"r",stdin); freopen((name+".out").c_str(),"w",stdout);}
 }
 
 const int INF = INT_MAX;
@@ -54,33 +44,35 @@ const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-int n, m;
-vector<ppi> edges;
-int d[N];
-
-bool bellman_ford(int s = 0) {
-    fill(d, d + n, INF);
-    d[s] = 0;
-    bool bad = false;
-    FOR (j, 0, n) {
-        TRAV (x, edges) {
-            int u = x.f.f, v = x.f.s, w = x.s;
-            if (d[u] != INF && d[u] + w < d[v]) {
-                d[v] = d[u] + w;
-                if (j == n-1) bad = true;
-            }
-        }
-    }
-    return bad;
-}
-
 int main() {
-    setIO("input");
-    cin >> n >> m;
-    int a, b, c;
-    for (int i = 0; i < m; ++i) {
-        cin >> a >> b >> c;
-        edges.pb(mp(mp(a-1, b-1), c));
-    }
-    bellman_ford();
+	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
+
+	setIO();
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		ll a[n];
+		FOR (i, 0, n) cin >> a[i];
+		ll ret = 0; bool pos = (a[0] > 0);
+		ll cur_max = a[0];
+		FOR (i, 0, n) {
+			if (pos) {
+				if (a[i] > 0) cur_max = max(cur_max, a[i]);
+				else { ret += cur_max; pos = !pos; cur_max = a[i]; }
+			}
+			else {
+				if (a[i] < 0) cur_max = max(cur_max, a[i]);
+				else { ret += cur_max; pos = !pos; cur_max = a[i]; }
+			}
+			if (i == n-1) {
+				ret += cur_max;
+			}
+		}
+		cout << ret << endl;
+	}
+
+	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }

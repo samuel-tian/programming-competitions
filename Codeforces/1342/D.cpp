@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -47,43 +40,63 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-template <class T> struct fenwick {
-	int n;
-	vector<T> arr;
-	fenwick() {
-		n = 0; arr = {};
+int find(vi &a, vi &lb, int cnt) {
+	int lo = 0, hi = a.size() - 1;
+	while (lo < hi) {
+		int mid = (lo + hi + 1) / 2;
+		if (a[mid] > lb[cnt-1]) hi = mid - 1;
+		else lo = mid;
 	}
-	fenwick(int n) {
-		this->n = n; arr.resize(n + 1);
-	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v) % MOD;
-			i += i & (-i);
-		}
-	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]) % MOD;
-			i -= i & (-i);
-		}
-		return ret;
-	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
-};
+	return lo;
+}
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+	int n, k;
+	cin >> n >> k;
+	vi a(n);
+	FOR (i, 0, n) cin >> a[i];
+	sort(a.begin(), a.end());
+	vi c(k);
+	FOR (i, 0, k) cin >> c[i];
+	vi lb(n);
+	int iter = k;
+	FOR (i, 0, n) {
+		while (iter > 0 && c[iter-1] < i+1)  iter--;
+		lb[i] = iter;
+	}
+//	PRSP(lb, lb.size());
+	vector<vi> ans;
+	while (!a.empty()) {
+		vi ret;
+		int cnt = 1;
+		int iter = find(a, lb, cnt);
+		while (true) {
+			if (a.empty()) break;
+			iter = find(a, lb, cnt);
+			if (iter == 0 && a[iter] > lb[cnt-1]) break;
+			ret.pb(a[iter]);
+			a.erase(a.begin() + iter);
+//			if (iter != 0) --iter;
+			cnt++;
+		}
+		/*cout << ret.size() << " ";
+		PRSP(ret, ret.size());*/
+		assert(!ret.empty());
+		ans.pb(ret);
+	}
+	cout << ans.size() << endl;
+	TRAV (x, ans) {
+		cout << x.size() << " ";
+		PRSP(x, x.size());
+	}
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }

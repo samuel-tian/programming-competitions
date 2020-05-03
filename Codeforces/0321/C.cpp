@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -47,43 +40,72 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-template <class T> struct fenwick {
-	int n;
-	vector<T> arr;
-	fenwick() {
-		n = 0; arr = {};
+const int MAXN = (int)1e5 + 5;
+
+int N;
+vi adj[MAXN];
+bool centr[MAXN];
+int sz[MAXN], ans[MAXN];
+
+void dfs(int a, int p) {
+	sz[a] = 1;
+	TRAV (b, adj[a]) {
+		if (centr[b] || b == p) continue;
+		dfs(b, a);
+		sz[a] += sz[b];
 	}
-	fenwick(int n) {
-		this->n = n; arr.resize(n + 1);
-	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v) % MOD;
-			i += i & (-i);
+}
+
+int dfs2(int a) {
+	dfs(a, -1);
+	int hi = sz[a] / 2;
+	int p = -1;
+	while (true) {
+		bool found = false;
+		TRAV (b, adj[a]) {
+			if (centr[b] || b == p || sz[b] <= hi) continue;
+			found = true;
+			p = a; a = b; break;
 		}
+		if (!found) return a;
 	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]) % MOD;
-			i -= i & (-i);
-		}
-		return ret;
+}
+
+void decomp(int a, int x) {
+	int c = dfs2(a);
+	centr[c] = true;
+	ans[c] = x;
+	TRAV (b, adj[c]) {
+		if (centr[b]) continue;
+		decomp(b, x + 1);
 	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
-};
+}
 
 int main() {
-	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
-
+//	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 	setIO();
-
-	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+	cin >> N;
+	int a, b;
+	FOR (i, 0, N-1) {
+		cin >> a >> b;
+		--a; --b;
+		adj[a].pb(b);
+		adj[b].pb(a);
+	}
+	fill(ans, ans + N, -1);
+	decomp(0, 0);
+	bool good = true;
+	FOR (i, 0, N) if (ans[i] >= 26) good = false;
+//	PRSP (ans, N);
+	if (good) {
+		FOR (i, 0, N) cout << ((char)('A' + ans[i])) << " ";
+		cout << endl;
+	}
+	else cout << "Impossible!" << endl;
+//	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
+//	cout << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << endl;
 }

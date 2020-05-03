@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -18,6 +11,7 @@ typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
 typedef vector<int> vi;
+typedef vector<long long> vll;
 typedef vector<pair<int, int> > vpi;
 
 #define f first
@@ -47,43 +41,62 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-template <class T> struct fenwick {
-	int n;
-	vector<T> arr;
-	fenwick() {
-		n = 0; arr = {};
-	}
-	fenwick(int n) {
-		this->n = n; arr.resize(n + 1);
-	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v) % MOD;
-			i += i & (-i);
+const int N = 1000 + 5;
+
+int n, m;
+vector<ppi> edges;
+vector<pair<pi, double> > trans;
+int f[N];
+double d[N];
+
+bool bellman_ford(int s = 0) {
+	fill(d, d + n, DBL_MAX);
+	d[s] = 0;
+	bool bad = false;
+	FOR (j, 0, n) {
+		TRAV (x, trans) {
+			int u = x.f.f, v = x.f.s;
+			double w = x.s;
+			if (d[u] != DBL_MAX && d[u] + w < d[v]) {
+				d[v] = d[u] + w;
+				if (j == n-1) bad = true;
+			}
 		}
 	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]) % MOD;
-			i -= i & (-i);
-		}
-		return ret;
-	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
-};
+	return bad;
+}
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
-	setIO();
+	setIO("input");
+	cin >> n >> m;
+	FOR (i, 0, n) cin >> f[i];
+//	FOR (i, 0, n) f[i] *= 100;
+	edges.resize(m); trans.resize(m);
+	int a, b, c;
+	FOR (i, 0, m) {
+		cin >> a >> b >> c;
+		--a, --b;
+		edges[i] = (mppi(a, b, c));
+	}
+	double lo = 0, hi = 1000;
+	FOR (t, 0, 100) {
+//		cout << lo << " " << hi << endl;
+		double mid = (lo + hi) / 2;
+		FOR (i, 0, edges.size()) {
+			trans[i] = edges[i];
+			trans[i].s = edges[i].s * mid - f[trans[i].f.f];
+		}
+		if (bellman_ford()) lo = mid;
+		else hi = mid;
+	}
+	printf("%.2f\n", round(100*lo)/100.0);
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }

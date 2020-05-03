@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -51,6 +44,14 @@ const int MOD = 998244353;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
+const int MAXN = (int) 5e5 + 5;
+const int MAXK = 32;
+
+int n, m, k;
+ll dp[MAXK][MAXN];
+ppi restr[MAXN];
+int l[MAXN];
+
 template <class T> struct fenwick {
 	int n;
 	vector<T> arr;
@@ -83,7 +84,48 @@ int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+	cin >> n >> k >> m;
+	FOR (i, 0, m) { cin >> restr[i].f.f >> restr[i].f.s >> restr[i].s; --restr[i].f.f; --restr[i].f.s; }
+	ll ret = 1;
+	FOR (i, 0, k) {
+		vi ones; ones.resize(n+1);
+		vi l; l.resize(n+1);
+		fill(l.begin(), l.end(), -1);
+		int last = -1;
+		FOR (j, 0, m) {
+			if ((restr[j].s & (1<<i)) > 0) {
+				ones[restr[j].f.f]++; ones[restr[j].f.s + 1]--;
+			}
+			else {
+				l[restr[j].f.s + 1] = max(restr[j].f.f, l[restr[j].f.s + 1]);
+				last = max(last, restr[j].f.f);
+			}
+		}
+		FOR (j, 1, n) ones[j] += ones[j-1];
+		FOR (j, 1, n) l[j] = max(l[j], l[j-1]);
+//		PRSP(ones, ones.size()-1); PRSP(l, l.size()-1);
+		dp[i][0] = 1;
+		ll sum = 0, lp = 0;
+		FOR (j, 0, n) {
+			sum = (sum + dp[i][j]) % MOD;
+			if (ones[j]) continue;
+			while (lp < l[j] + 1) {
+				sum = (sum - dp[i][lp] + MOD) % MOD;
+				++lp;
+			}
+			dp[i][j+1] = sum;
+		}
+//		PRSP(dp[i], n+1);
+//		cout << last.f << " " << last.s << endl;
+//		cout << endl;
+		ll temp = 0;
+		FOR (j, last+1, n+1) {
+			temp = (temp + dp[i][j]) % MOD;
+		}
+		ret = (ret * temp) % MOD;
+	}
+	cout << ret << endl;
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }

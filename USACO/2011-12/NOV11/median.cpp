@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -47,7 +40,7 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
@@ -61,14 +54,15 @@ template <class T> struct fenwick {
 		this->n = n; arr.resize(n + 1);
 	}
 	void clear() { arr.clear(); }
-	void update(int i, T v) {
+	void update(ll i, T v) {
 		++i;
 		while (i <= n) {
 			arr[i] = (arr[i] + v) % MOD;
 			i += i & (-i);
 		}
 	}
-	T get(int i) {
+	T get(ll i) {
+		if (i == -1) return 0;
 		T ret = 0; ++i;
 		while (i > 0) {
 			ret = (ret + arr[i]) % MOD;
@@ -76,14 +70,30 @@ template <class T> struct fenwick {
 		}
 		return ret;
 	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
+	T query(ll i, ll j) { return (get(j) - get(i-1) + MOD) % MOD; }
 };
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
-	setIO();
+	setIO("input");
+	ll n, x;
+	cin >> n >> x;
+	vector<ll> h(n), p(n+1);
+	FOR (i, 0, n) cin >> h[i];
+	FOR (i, 0, n) p[i+1] = (h[i]>=x) ? 1 : -1;
+	FOR (i, 1, n+1) p[i] += p[i-1];
+	FOR (i, 0, n+1) p[i] += n+1;
+	reverse(p.begin(), p.end());
+//	PRSP(p, p.size());
+	fenwick<ll> f(2*n+100);
+	ll ans = 0;
+	FOR (i, 0, n+1) {
+		ans += f.query(0, p[i]-1);
+		f.update(p[i], 1);
+	}
+	cout << (n*(n+1))/2 - ans << endl;
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+	// cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1-t0).count << " ms" << endl;
 }

@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -47,42 +40,60 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-template <class T> struct fenwick {
-	int n;
-	vector<T> arr;
-	fenwick() {
-		n = 0; arr = {};
-	}
-	fenwick(int n) {
-		this->n = n; arr.resize(n + 1);
-	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v) % MOD;
-			i += i & (-i);
-		}
-	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]) % MOD;
-			i -= i & (-i);
-		}
-		return ret;
-	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
-};
+const int MAXN = 16;
+bool adj[MAXN][MAXN];
+vector<ll> dp[1<<MAXN][MAXN];
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+	int N;
+	cin >> N;
+	FOR (i, 0, N) {
+		string s; cin >> s;
+		FOR (j, 0, N) {
+			adj[i][j] = (s[j] == '1');
+		}
+	}
+	FOR (i, 0, 1<<N) {
+		FOR (j, 0, N) {
+			dp[i][j].resize(1<<max(0, __builtin_popcount(i)-1));
+		}
+	}
+	dp[0][0][0] = 1;
+	FOR (i, 0, N) {
+		dp[1<<i][i][0] = 1;
+	}
+	FOR (i, 0, (1<<N)) {
+		FOR (j, 0, N) {
+			if ((i & (1<<j)) == 0) continue;
+			int mask = (i ^ (1<<j));
+			FOR (k, 0, N) {
+				if ((mask & (1<<k)) == 0) continue;
+				FOR (l, 0, dp[mask][k].size()) {
+					if (adj[j][k]) {
+						dp[i][j][(l<<1)+1] += dp[mask][k][l];
+					}
+					else {
+						dp[i][j][l<<1] += dp[mask][k][l];
+					}
+				}
+			}
+		}
+	}
+	int final_mask = (1<<N) - 1;
+	FOR (i, 0, 1<<(N-1)) {
+		ll ret = 0;
+		FOR (j, 0, N) {
+			ret += dp[final_mask][j][i];
+		}
+		cout << ret << " ";
+	} cout << endl;
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;

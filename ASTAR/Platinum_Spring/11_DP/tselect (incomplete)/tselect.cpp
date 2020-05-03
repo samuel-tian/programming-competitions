@@ -1,10 +1,3 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
@@ -47,42 +40,85 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-template <class T> struct fenwick {
-	int n;
-	vector<T> arr;
-	fenwick() {
-		n = 0; arr = {};
+const int MAXN = 505;
+
+int N, X;
+vi adj[MAXN];
+int v[MAXN];
+vi roots;
+int sz[MAXN];
+int dp[MAXN][MAXN][2];
+
+void dfs(int a, int p) {
+
+	sz[a] = 1;
+	TRAV (b, adj[a]) {
+		if (b == p) continue;
+		dfs(b, a);
+		sz[a] += sz[b];
 	}
-	fenwick(int n) {
-		this->n = n; arr.resize(n + 1);
+	FOR (i, 0, N) {
+		dp[a][i][0] = NINF; dp[a][i][1] = NINF;
 	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v) % MOD;
-			i += i & (-i);
+	dp[a][0][0] = 0; dp[a][0][1] = v[a];
+	TRAV (b, adj[a]) {
+		FOR (j, 0, sz[b]) {
+			FORd (i, sz[a]-1, 0) {
+				if (i-j>=0 && dp[a][i-j][0] != NINF && (dp[b][j][0] != NINF || dp[b][j][1] != NINF)) {
+					dp[a][i][0] = max(dp[a][i][0], dp[a][i-j][0] + max(dp[b][j][0], dp[b][j][1]));
+				}
+				if (i-j>=0 && dp[a][i-j][0] != NINF && dp[b][i][0] != NINF) {
+					dp[a][i][1] = max(dp[a][i][1], dp[a][i-j][1] + dp[b][j][0]);
+				}
+				if (i-j-1>=0 && dp[a][i-j-1][1] != NINF) {
+					dp[a][i][1] = max(dp[a][i][1], dp[a][i-j-1][1] + dp[b][j][1]);
+				}
+			}
 		}
 	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]) % MOD;
-			i -= i & (-i);
+	cout << ">>> " << a << " <<<" << endl;
+	FOR (k, 0, 2) {
+		FOR (i, 0, N) {
+			FOR (j, 0, N) {
+				if (dp[i][j][k] == NINF) cout << "NINF ";
+				else cout << dp[i][j][k] << " ";
+			}
+			cout << endl;
 		}
-		return ret;
+		cout << endl;
 	}
-	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
-};
+}
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
-	setIO();
+	setIO("input");
+	cin >> N >> X;
+	FOR (i, 0, N) {
+		int a, b;
+		cin >> a >> b;
+		v[i] = a;
+		if (b != 0) { adj[i].pb(b-1); adj[b-1].pb(i); }
+		else roots.pb(i);
+	}
+	TRAV (a, roots) {
+		dfs(a, -1);
+	}
+	PRSP(sz, N);
+	FOR (k, 0, 2) {
+		FOR (i, 0, N) {
+			FOR (j, 0, N) {
+				if (dp[i][j][k] == NINF) cout << "NINF ";
+				else cout << dp[i][j][k] << " ";
+			}
+			cout << endl;
+		}
+		cout << endl;
+	}
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
