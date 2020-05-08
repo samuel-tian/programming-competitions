@@ -21,12 +21,24 @@
 		* part 2: https://codeforces.com/blog/entry/48798
 * hashing
 	* anti-hash tests: https://codeforces.com/blog/entry/62393
+* policy data structures
+	* general: https://codeforces.com/blog/entry/11080
 	* STL hash map alternatives: https://codeforces.com/blog/entry/60737
 * segment trees
 	* problems: https://codeforces.com/blog/entry/22616
 * sqrt decomposition
 	* tutorial: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
 	* problems: https://codeforces.com/blog/entry/23005
+	* Mo's algorithm
+		* tutorial: https://blog.anudeep2011.com/mos-algorithm/
+		* Mo's algorithm on trees: https://codeforces.com/blog/entry/43230
+		* Hilbert curve speedup: https://codeforces.com/blog/entry/61203
 * treaps
 	* tutorial and problems: https://codeforces.com/blog/entry/3767
 	* more problems: https://codeforces.com/blog/entry/46479
+
+## TODO
+* Aho-Corasick
+* treaps
+* max flows
+* graph matching, Konig's algorithm
