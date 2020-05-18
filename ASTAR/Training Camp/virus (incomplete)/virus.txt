@@ -1,0 +1,84 @@
+Virus Experiment
+[Memory: 64 MB, CPU: 1 sec]
+
+JOI Company developed new virus “JOI Virus.” JOI Company wants to do an experiment by infecting the inhabitants of IOI Island with JOI Virus.
+
+IOI Island takes a rectangular shape. There are R − 1 parallel roads from east to west and C − 1 parallel roads from the north to the south. They are separating the island into RC sections. Each section has just 1 inhabitant living in there. We call the inhabitant living in the section i-th from north and j-th from west (1 ≤ i ≤ R,1 ≤ j ≤ C) “inhabitant (i, j).”
+
+In IOI Island, there are M time periods in a day. We call kth time period “time period k.” Wind is always blowing from some direction: North, South, East or West. The direction may change depending on the time period. If the time period is the same, wind blows from the same direction independent of the day.
+
+Every inhabitants has a status “resistance.” The resistance of inhabitant (i, j) (1 ≤ i ≤ R,1 ≤ j ≤ C) will be represented by a non-negative integer Ui,j.
+
+If Ui,j equals to 0, it means that inhabitant (i, j) has high resistance and he or she don’t get infected with JOI Virus.
+If Ui,j is a positive integer, it means that inhabitant (i, j) may get infected with JOI Virus. If the following condition continues for Ui,j time periods, he or she will get infected from the next time period:
+The inhabitant living in the adjacent section on the direction which wind is blowing from is already infected with JOI Virus.
+Note that the last time period of a day and the first time period of the next day is continuous.
+
+With respect to the experiment purpose, we want to infect at least 1 inhabitant, but we don’t want to infect too many inhabitants. At the beginning, we choose 1 inhabitant as the first infected person, and infect him or her with JOI Virus. We can’t choose inhabitants with resistance equals to 0 as the first infected person.
+
+Given the direction wind blow from in each time period and the resistance of each inhabitant, write a program which calculates the minimum number of the infected inhabitants after 10100 days, and the number of the inhabitant who achieves the minimum number when we choose him or her as the first infected person.
+
+Input
+Read the following data from the standard input.
+
+M R C
+D
+U1,1 ··· U1,C
+   :          :
+UR,1 ··· UR,C
+D is the string with length M which denotes the direction wind blow from in IOI Island. D consist of 4 kinds of characters N, S, W or E. The k-th character (1 ≤ k ≤ M) denotes the direction wind blow from in the time period k. Note that this is not the direction wind blow toward. N stands for North, S stands for South, W stands for West and E stands for East.
+Output
+Write the two lines to the standard output.
+
+The first line should contain the minimum number of the infected inhabitants after 10100 days. The second line should contain the number of inhabitants who achieves the minimum number of the infected inhabitants when we choose him or her as the first infected person.
+
+Constraints
+1 ≤ M ≤ 100000.
+1 ≤ R ≤ 800.
+1 ≤ C ≤ 800.
+D is a string with length M, only contains N, S, W, and E.
+0 ≤ Ui,j ≤ 100000 (1 ≤ i ≤ R,1 ≤ j ≤ C).
+There is at least 1 pair (i, j) such that 1 ≤ Ui,j (1 ≤ i ≤ R,1 ≤ j ≤ C).
+Subtasks
+(12 points) D only contains W and E.
+(8 points) 1 ≤ R ≤ 50，1 ≤ C ≤ 50.
+(80 points) There are no additional constraints.
+Sample Input and Output
+Sample Input 1
+
+Sample Output 1
+
+6 3 4
+SWNEES
+2 1 1 2
+1 0 1 3
+1 1 2 2
+8
+8
+Let us consider the condition that we choose inhabitant (3,1) as the first infected person.
+
+For inhabitant (2,1), during the time period 1 of the day 1, wind blow from South and the adjacent inhabitant on South is already infected, so he or she will get infected from the time period 2 of the day 1.
+For inhabitant (3,2), during the time period 2 of the day 1, wind blow from West and the adjacent inhabitant on West is already infected, so he or she will get infected from the time period 3 of the day 1.
+For inhabitant (1,1), during the time period 6 of the day 1, wind blow from South and the adjacent inhabitant on South is already infected, and during the time period 1 of the day 2 , wind blow from South and the adjacent inhabitant on South is already infected, so he or she will get infected from the time period 2 of the day 2.
+For inhabitant (1,2), during the time period 2 of the day 2, wind blow from West and the adjacent inhabitant on West is already infected, so he or she will get infected from the time period 3 of the day 2.
+For inhabitant (1,3), during the time period 2 of the day 3, wind blow from West and the adjacent inhabitant on West is already infected, so he or she will get infected from the time period 3 of the day 3.
+For inhabitant (2,3), during the time period 3 of the day 3, wind blow from North and the adjacent inhabitant on North is already infected, so he or she will get infected from the time period 4 of the day 3.
+For inhabitant (3,3), during the time period 2 of the day 4, wind blow from West and the adjacent inhabitant on West is already infected, and during the time period 3 of the day 4 , wind blow from North and the adjacent inhabitant on North is already infected, so he or she will get infected from the time period 4 of the day 4.
+No more inhabitant will be infected with JOI Virus. Hence, when we choose inhabitant (3,1) as the first infected person, 8 inhabitants will be infected with JOI Virus after 10100 days.
+
+Whichever inhabitant we choose as the first infected person, We can’t make the number of inhabitants infected with JOI Virus after 10100 days less than 8, so you should output 8 in the first line. If we choose inhabitant (1,1),(1,2),(1,3),(2,1),(2,3),(3,1),(3,2) or (3,3) as the first infected person, the number of inhabitants infected after 10100 days will be 8, so you should output 8 in the second line.
+
+Sample Input 2
+
+Sample Output 2
+
+4 4 4
+EWWE
+1 2 1 2
+1 1 1 1
+0 0 0 0
+2 2 2 4
+3
+3
+
+This sample input and output satisfies the constraints of Subtask 1.

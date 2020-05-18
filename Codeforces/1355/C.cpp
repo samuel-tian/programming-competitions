@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
-#pragma G++ optimize ("O3")
+#include <ext/pb_ds/tree_policy.hpp>
 
 using namespace std;
 using namespace __gnu_pbds;
@@ -12,7 +12,10 @@ typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
 typedef vector<int> vi;
+typedef vector<long long> vll;
 typedef vector<pair<int, int> > vpi;
+template<class T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define f first
 #define s second
@@ -20,12 +23,14 @@ typedef vector<pair<int, int> > vpi;
 #define mp make_pair
 #define endl '\n'
 
-#define FOR(i, a, b) for (int i = (a); i < (b); ++i)
-#define FORd(i, a, b) for (int i = (a); i >= (b); --i)
+#define FOR(i, a, b) for (int (i) = (a); i < (b); ++i)
+#define FORd(i, a, b) for (int (i) = (a); i >= (b); --i)
+#define TRAV(i, x) for (auto& (i) : (x))
 #define PRSP(x, a) for (int rv = 0; rv < a; ++rv) {cout << ((rv==0 ? "" : " ")) << x[rv];} cout << endl;
 #define mppi(a, b, c) mp(mp((a), (b)), (c))
 #define mpip(a, b, c) mp((a), mp((b), (c)))
-#define max3(a, b, c) max(max((a), (b)), (c));
+#define max3(a, b, c) max(max((a), (b)), (c))
+#define min3(a, b, c) min(min((a), (b)), (c))
 
 void setIO(string name = "") {
 	ios_base::sync_with_stdio(0); cin.tie(0);
@@ -43,63 +48,34 @@ const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-const int MAXN = 10005;
-const int MAXM = 1005;
+const int N = 1000005;
 
-int n, m;
-string s, p;
-int dp[MAXN][MAXM];
-vi pre;
-
-void prefix_function(string s) {
-	int n = s.size();
-	pre.resize(n+1);
-	FOR (i, 1, n) {
-		int j = pre[i];
-		while (j > 0 && s[i] != s[j]) {
-			j = pre[j];
-		}
-		if (s[i] == s[j]) {
-			++j;
-		}
-		pre[i+1] = j;
-	}
-	pre[0] = -1;
-}
+ll pre[N];
 
 int main() {
-	setIO("necklace");
-	cin >> s >> p;
-	n = s.size(); m = p.size();
-	prefix_function(p);
-	FOR (i, 0, n+1) {
-		FOR (j, 0, m+1) {
-			dp[i][j] = INF;
-		}
-	}
-	dp[0][0] = 0;
-//	PRSP(pre, pre.size());
-	FOR (i, 0, n) {
-		FOR (j, 0, m) {
-			if (dp[i][j] == INF) continue;
-			int k = j;
-			while (k != -1 && p[k] != s[i]) {
-				k = pre[k];
-			}
-			k++;
-			dp[(i+1)][k] = min(dp[(i+1)][k], dp[i][j]);
-			dp[(i+1)][j] = min(dp[(i+1)][j], dp[i][j] + 1);
-		}
-	}
-	int ret = INF;
-	/*FOR (i, 0, n+1) {
-		FOR (j, 0, m) {
-			cout << dp[i][j] << " ";
-		}
-		cout << endl;
-	}*/
-	FOR (i, 0, m) {
-		ret = min(dp[n][i], ret);
-	}
-	cout << ret << endl;
+	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
+
+	setIO();
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    FOR (x, a, b+1) {
+        pre[x+b]++;
+        pre[x+c+1]--;
+    }
+    FOR (i, 0, N) {
+        if (i == 0) continue;
+        pre[i] += pre[i-1];
+    }
+    ll cnt = 1;
+    ll ans = 0;
+    FOR (i, c+1, b + c + 1) {
+        ans += cnt * pre[i];
+        if (i > d) continue;
+        cnt++;
+    }
+    cout << ans << endl;
+
+	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+

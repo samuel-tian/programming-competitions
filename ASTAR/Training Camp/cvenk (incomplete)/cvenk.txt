@@ -1,0 +1,70 @@
+Cvenk
+[Memory: 64 MB, CPU: 3 sec]
+
+A group of Czech tourists is walking in a labyrinth of a strange self-similar shape. The ground plan of the labyrinth is a Sierpinski triangle – a fractal structure named after the Polish mathematician Wacław
+
+Sierpiński.
+
+The labyrinth consists of a billion rows numbered from 0 to 109−1 from top to bottom, and a billion columns numbered from 0 to 109− 1 from left to right. The fields in the labyrinth can be either free or blocked.
+
+The field in row Xand column Yis free if the result of the bitwise ‘and’ operation on the numbers Xand Y is equal to zero, otherwise it is blocked. In other words, a field is blocked if, when Xand are switched to binary, there is an integer ksuch that the kth digit from the right of the number Xand the kth digit from the right of the number Yare equal to 1.
+
+
+
+The first 32 rows and columns of the labyrinth. The blocked fields are colored in black.
+
+The Czech tourists are tired from a long day of wandering and would like to meet up in a free field and exchange experiences. In each step, one tourist can jump to one of the adjacent free fields (up, down, left or right).
+
+Write a programme that will, based on the current tourists’ locations, determine minimum total number of steps necessary in order for all the tourists to meet in the same field.
+
+INPUT
+The first line of input contains an integer N – the number of tourists. Each of the following N lines contains two integers Ri and Si – the row and column of the field where the ith tourist is located.
+
+All the tourists are located in free fields, and it is possible that there are multiple tourists in the same field.
+
+OUTPUT
+The first and only line of output must contain the required minimum number of steps.
+
+Please note: We recommend that you use a 64-bit integer data type (int64 in Pascal, long long in C/C++).
+
+SCORING
+subtask
+
+subscore
+
+constraints
+
+1	20	N = 2
+0 ≤ RK , SK < 109
+2	20	2 ≤ N ≤ 100
+0 ≤ RK , SK < 109
+3	20	2 ≤ N ≤ 105
+0 ≤ RK , SK < 500
+4	40	2 ≤ N ≤ 105
+0 ≤ RK , SK < 109
+SAMPLE TESTS
+input
+2
+2 1
+4 3
+
+
+
+output
+6
+input
+6
+2 5
+3 4
+8 7
+9 6
+10 5
+11 4
+output
+6
+
+
+Clarification of the first example: One of the fields where the brave Czech tourists could have met is (2, 0).
+
+Clarification of the second example: One of the fields where the playful Czech tourists could have met is (8, 4).
+

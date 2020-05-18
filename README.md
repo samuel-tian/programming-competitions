@@ -3,9 +3,14 @@
 ## Links
 * C++ Reference: http://www.cplusplus.com/reference
 * Codedrills: https://recommender.codedrills.io/profile?handles=ricefarmer
-* Codeforces problem sets: https://codeforces.com/problemset
 * CP-Algorithms: https://cp-algorithms.com
 * good list: https://codeforces.com/blog/entry/23054
+* a long problem list: https://codeforces.com/blog/entry/55274
+* my problem list: https://docs.google.com/document/d/1D0O8RxPqfpTZKR7SGA-UE6YPq8ehp9VTAc98CD9pmIU/edit#
+
+### Online Judges and Problem Repositories
+* Baekjoon Online Judge (with old USACO problems): https://www.acmicpc.net/category/106
+* Timus Online Judge: https://acm.timus.ru/
 
 ## Topics and Problems
 * centroid decomposition
@@ -14,7 +19,11 @@
 * dynamic programming
 	* tutorial and problems: https://codeforces.com/blog/entry/67679
 	* optimizations: https://codeforces.com/blog/entry/8219
+		* convex hull trick
+			* tutorial and problems: https://codeforces.com/blog/entry/63823
+			* tutorial: https://cp-algorithms.com/geometry/convex_hull_trick.html (includes Li Chao tree)
 	* dynamic programming on trees: https://codeforces.com/blog/entry/20935
+	* digit DP: https://codeforces.com/blog/entry/53960
 * fast fourier transform
 	* tutorial
 		* part 1: https://codeforces.com/blog/entry/43499
@@ -42,3 +51,11 @@
 * treaps
 * max flows
 * graph matching, Konig's algorithm
+
+## UPDATES
+* fix segtree implementations
+* update centroid decomposition implementations
+* add namespaces for long algorithms
+* segtree variants
+	* merge sort tree
+	* 2D segment tree

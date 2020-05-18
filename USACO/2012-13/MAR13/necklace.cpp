@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
-#pragma G++ optimize ("O3")
 
 using namespace std;
 using namespace __gnu_pbds;
@@ -48,7 +47,7 @@ const int MAXM = 1005;
 
 int n, m;
 string s, p;
-int dp[MAXN][MAXM];
+int dp[3][MAXM];
 vi pre;
 
 void prefix_function(string s) {
@@ -68,27 +67,30 @@ void prefix_function(string s) {
 }
 
 int main() {
-	setIO("necklace");
+	setIO();
 	cin >> s >> p;
 	n = s.size(); m = p.size();
 	prefix_function(p);
 	FOR (i, 0, n+1) {
 		FOR (j, 0, m+1) {
-			dp[i][j] = INF;
+			dp[i%3][j] = INF;
 		}
 	}
 	dp[0][0] = 0;
 //	PRSP(pre, pre.size());
 	FOR (i, 0, n) {
 		FOR (j, 0, m) {
-			if (dp[i][j] == INF) continue;
+			dp[(i+2)%3][j] = INF;
+		}
+		FOR (j, 0, m) {
+			if (dp[i%3][j] == INF) continue;
 			int k = j;
 			while (k != -1 && p[k] != s[i]) {
 				k = pre[k];
 			}
 			k++;
-			dp[(i+1)][k] = min(dp[(i+1)][k], dp[i][j]);
-			dp[(i+1)][j] = min(dp[(i+1)][j], dp[i][j] + 1);
+			dp[(i+1)%3][k] = min(dp[(i+1)%3][k], dp[i%3][j]);
+			dp[(i+1)%3][j] = min(dp[(i+1)%3][j], dp[i%3][j] + 1);
 		}
 	}
 	int ret = INF;
@@ -99,7 +101,7 @@ int main() {
 		cout << endl;
 	}*/
 	FOR (i, 0, m) {
-		ret = min(dp[n][i], ret);
+		ret = min(dp[n%3][i], ret);
 	}
 	cout << ret << endl;
 }

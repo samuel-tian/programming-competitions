@@ -1,0 +1,82 @@
+Cloud computing
+[Memory: 64 MB, CPU: 1 sec]
+
+Johnny is founding Bytecomp, a company that offers computing power in the cloud. Companies with this profile usually have many fast computers on which customers’ computations can be made.
+
+Johnny still has not bought any machines. He went to a computer shop and received a list of all n available computers. Every computer is specified by the number of (processor) cores ci, the clock rate fi, and the price vi. Such a computer contains ci separate cores that do not interfere with each other, so they can be assigned to different tasks.
+
+When a customer makes an order for resources, she specifies the required number of cores Cj and the minimum needed clock rate Fj. An order also contains the price Vj that the customer is willing to pay in return. If an order is accepted, Bytecomp needs to provide exclusive access to computing power required by the customer. Johnny needs to choose Cj cores (possibly from different computers), each with clock rate at least Fj. Those cores cannot be assigned to any other order.
+
+Help Johnny earn as much as possible: choose an optimal subset of orders to accept and a subset of computers from the shop to satisfy all the accepted orders. Your goal is to maximize the total profit, that is, the difference between earnings for providing computing power to customers and the cost of buying the computers.
+
+Input
+The first line of the standard input contains an integer n (1 ≤ n ≤ 2000), the number of computers that are available at the shop. Each of next n lines contains a description of one computer. It consists of three space-separated integers ci, fi, and vi (1 ≤ ci ≤ 50, 1 ≤ fi ≤ 109, 1 ≤ vi ≤ 109) which represent the number of cores, the clock rate, and the price, respectively.
+
+The next line contains an integer m (1 ≤ m ≤ 2000), the number of orders. Each of next m lines contains a description of one order. It consists of three space-separated integers Cj, Fj, and Vj (1 ≤ Cj ≤ 50, 1 ≤ Fj ≤ 109, 1 ≤ Vj ≤ 109) which represent the number of cores needed, the minimum allowed clock rate, and the customer’s budget, respectively.
+
+Output
+The only line of the standard output should contain one integer, the maximum total profit that can be achieved.
+
+Grading
+The test set is divided into the following subtasks with additional constraints. Tests in each of the subtasks consist of one or more separate test groups. Each test group may contain one or more test cases.
+
+Subtask
+
+Constraints
+
+Points
+
+1
+
+n ≤ 15
+
+18
+
+2
+
+m ≤ 15
+
+18
+
+3
+
+n,m ≤ 250, ci = Cj = 1
+
+18
+
+4
+
+fi = Fj = 1
+
+18
+
+5
+
+vi = Vj = 1
+
+18
+
+6
+
+no additional constraints
+
+10
+
+ 
+
+Example
+For the input data:
+
+4
+4 2200 700
+2 1800 10
+20 2550 9999
+4 2000 750
+3
+1 1500 300
+6 1900 1500
+3 2400 4550
+a correct result is:
+
+350
+Explanation of the example: There are four available computers and three orders. It is optimal to buy two quad-core computers that cost 700 and 750 (1450 in total) and then accept the first two orders to earn 300 + 1500 = 1800 in total. We then have four cores with clock rate 2000 and four cores with clock rate 2200. We can assign any six of them to the second order (clock rate 1900 needed) and one to the first order (clock rate 1500 needed). One core will not be used, what is allowed. The total profit is 1800 − 1450 = 350.
