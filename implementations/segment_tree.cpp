@@ -77,12 +77,6 @@ struct sum_seg_tree {
 		segTree.resize(sz);
 		fill(segTree.begin(), segTree.end(), 0);
 	}
-	/*
-	 * node is the current node
-	 * a, b are the starting and ending iterators
-	 * i, j are the query range
-	 * iterators and nodes are inclusive
-	 */
 	int query(int i, int j) {
 		return queryUtil(0, 0, n-1, i, j);
 	}
@@ -101,13 +95,6 @@ struct sum_seg_tree {
 	void update(int i, int val) {
 		updateUtil(0, 0, n-1, i, val);
 	}
-	/*
-	 * node is the current node
-	 * a, b are the starting and ending iterators
-	 * i is the updated index
-	 * value is the updated value
-	 * iterators and nodes are inclusive
-	 */
 	void updateUtil(int node, int a, int b, int i, int val) {
 		if (i < a || i > b) {
 			return;

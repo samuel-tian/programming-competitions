@@ -89,23 +89,6 @@ vector<ull> factor(ull n) {
 	return l;
 }
 
-ull dist(ull a, ull b, vector<ull> &factors) {
-	if (b > a) return dist(b, a, factors);
-	vi sub_factors;
-	sub_factors.resize(factors.size());
-	FOR (i, 0, factors.size()) {
-		while (a != 0 && a % factors[i] == 0) {
-			a = a / factors[i];
-			sub_factors[i]++;
-		}
-		while (b != 0 && b % factors[i] == 0) {
-			b = b / factors[i];
-			sub_factors[i]--;
-		}
-	}
-	return mod_multinom(sub_factors, MOD);
-}
-
 int main() {
 	setIO();
 	ull d;

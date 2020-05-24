@@ -10,6 +10,7 @@
 
 ### Online Judges and Problem Repositories
 * Baekjoon Online Judge (with old USACO problems): https://www.acmicpc.net/category/106
+* Peking University Online Judge: http://poj.org/
 * Timus Online Judge: https://acm.timus.ru/
 
 ## Topics and Problems
@@ -34,6 +35,7 @@
 	* general: https://codeforces.com/blog/entry/11080
 	* STL hash map alternatives: https://codeforces.com/blog/entry/60737
 * segment trees
+	* tutorial: https://codeforces.com/blog/entry/15890
 	* problems: https://codeforces.com/blog/entry/22616
 * sqrt decomposition
 	* tutorial: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
