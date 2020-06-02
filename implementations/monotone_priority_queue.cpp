@@ -54,11 +54,12 @@ void setIO(string name) {
 struct min_queue {
 	int sz = 0;
 	deque<pi> q;
+	min_queue() = default;
 	min_queue(int sz) {
 		this->sz = sz;
 	}
 	void insert(pi a) {
-		while (!q.empty() && q.back().f <= a.f) {
+		while (!q.empty() && q.back().f >= a.f) {
 			q.pop_back();
 		}
 		q.push_back(a);

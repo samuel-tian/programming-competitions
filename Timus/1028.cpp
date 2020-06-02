@@ -1,12 +1,6 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 
 using namespace std;
 using namespace __gnu_pbds;
@@ -18,7 +12,10 @@ typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
 typedef vector<int> vi;
+typedef vector<long long> vll;
 typedef vector<pair<int, int> > vpi;
+template<class T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define f first
 #define s second
@@ -47,44 +44,72 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
 template <class T>
-struct BIT {
+struct fenwick {
 	int n;
 	vector<T> arr;
-	BIT() {
+	fenwick() {
 		n = 0; arr = {};
 	}
-	BIT(int n) {
+	fenwick(int n) {
 		this->n = n; arr.resize(n + 1);
 	}
 	void clear() { arr.clear(); }
 	void update(int i, T v) {
 		++i;
 		while (i <= n) {
-			arr[i] = (arr[i] + v);
+			arr[i] = (arr[i] + v) % MOD;
 			i += i & (-i);
 		}
 	}
 	T get(int i) {
 		T ret = 0; ++i;
 		while (i > 0) {
-			ret = (ret + arr[i]);
+			ret = (ret + arr[i]) % MOD;
 			i -= i & (-i);
 		}
 		return ret;
 	}
-	T query(int i, int j) { return (get(j) - get(i-1)); }
+	T query(int i, int j) { return (get(j) - get(i-1) + MOD) % MOD; }
 };
+
+const int N = 15005;
+
+int n;
+pi stars[N];
+fenwick<int> bit;
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+    cin >> n;
+    ordered_set<int> s;
+    FOR (i, 0, n) {
+        int x, y; cin >> x >> y;
+        stars[i] = mp(x, y);
+        s.insert(x); s.insert(y);
+    }
+    FOR (i, 0, n) {
+        stars[i].f = s.order_of_key(stars[i].f);
+        stars[i].s = s.order_of_key(stars[i].s);
+    }
+    bit = fenwick<int>(2*n);
+    vi ans; ans.resize(n);
+    FOR (i, 0, n) {
+        int q = bit.get(stars[i].f);
+        ans[q]++;
+        bit.update(stars[i].f, 1);
+    }
+    FOR (i, 0, n) {
+        cout << ans[i] << endl;
+    }
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+

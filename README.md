@@ -53,6 +53,7 @@
 * treaps
 * max flows
 * graph matching, Konig's algorithm
+* nim, game theory
 
 ## UPDATES
 * fix segtree implementations

@@ -58,7 +58,6 @@ vector<pair<int, int> > hull;
         }
         hull.push_back(angles[i].second);
     }
-    }
     return ret;
 }
 

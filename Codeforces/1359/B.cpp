@@ -1,12 +1,6 @@
-/*
- * Binary Indexed Tree (Fenwick Tree)
- * ----------------------------------
- * allows for O(log n) update and range sum queries
- * time complexity: O(n log n) for n updates and queries
- */
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 
 using namespace std;
 using namespace __gnu_pbds;
@@ -18,7 +12,10 @@ typedef pair<int, int> pi;
 typedef pair<pair<int, int>, int> ppi;
 typedef pair<int, pair<int, int> > pip;
 typedef vector<int> vi;
+typedef vector<long long> vll;
 typedef vector<pair<int, int> > vpi;
+template<class T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define f first
 #define s second
@@ -47,44 +44,55 @@ const int NINF = INT_MIN;
 const int MAXLOG = 21;
 const int MAXSEG = (1<<18);
 const int MUL = 1000001;
-const int MOD = 998244353;
+const int MOD = 1000000007;
 const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
 struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
 
-template <class T>
-struct BIT {
-	int n;
-	vector<T> arr;
-	BIT() {
-		n = 0; arr = {};
-	}
-	BIT(int n) {
-		this->n = n; arr.resize(n + 1);
-	}
-	void clear() { arr.clear(); }
-	void update(int i, T v) {
-		++i;
-		while (i <= n) {
-			arr[i] = (arr[i] + v);
-			i += i & (-i);
-		}
-	}
-	T get(int i) {
-		T ret = 0; ++i;
-		while (i > 0) {
-			ret = (ret + arr[i]);
-			i -= i & (-i);
-		}
-		return ret;
-	}
-	T query(int i, int j) { return (get(j) - get(i-1)); }
-};
+const int N = 1005;
+
+int n, m;
+int x, y;
+char grid[N][N];
+
+void solve(){
+    cin >> n >> m;
+    cin >> x >> y;
+    FOR (i, 0, n) {
+        string s; cin >> s;
+        FOR (j, 0, m) {
+            grid[i][j] = s[j];
+        }
+    }
+    ll ans = 0;
+    FOR (i, 0, n) {
+        FOR (j, 0, m) {
+            if (grid[i][j] == '*') continue;
+            if (2 * x < y) {
+                ans += x;
+            }
+            else {
+                if (j == m-1 || grid[i][j+1] == '*') ans += x;
+                else {
+                    ans += y;
+                    j++;
+                }
+            }
+        }
+    }
+    cout << ans << endl;
+}
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+
