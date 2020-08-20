@@ -1,86 +1,79 @@
 #include <bits/stdc++.h>
+#include <ext/pb_ds/tree_policy.hpp>
 #include <ext/pb_ds/assoc_container.hpp>
 
 using namespace std;
 using namespace __gnu_pbds;
-
+ 
 typedef long long ll;
-typedef unsigned long long ull;
-typedef long double ld;
-typedef pair<int, int> pi;
-typedef pair<pair<int, int>, int> ppi;
-typedef pair<int, pair<int, int> > pip;
 typedef vector<int> vi;
-typedef vector<long long> vll;
-typedef vector<pair<int, int> > vpi;
+typedef pair<int, int> pii;
+template <class T> using Tree = tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update>;
 
+#define FOR(i, a, b) for (int i=a; i<(b); i++)
+#define F0R(i, a) for (int i=0; i<(a); i++)
+#define FORd(i,a,b) for (int i = (b)-1; i >= a; i--)
+#define F0Rd(i,a) for (int i = (a)-1; i >= 0; i--)
+
+#define sz(x) (int)(x).size()
+#define mp make_pair
+#define pb push_back
 #define f first
 #define s second
-#define pb push_back
-#define mp make_pair
-#define endl '\n'
+#define lb lower_bound
+#define ub upper_bound
+#define all(x) x.begin(), x.end()
 
-#define FOR(i, a, b) for (int (i) = (a); i < (b); ++i)
-#define FORd(i, a, b) for (int (i) = (a); i >= (b); --i)
-#define TRAV(i, x) for (auto& (i) : (x))
-#define PRSP(x, a) for (int rv = 0; rv < a; ++rv) {cout << ((rv==0 ? "" : " ")) << x[rv];} cout << endl;
-#define mppi(a, b, c) mp(mp((a), (b)), (c))
-#define mpip(a, b, c) mp((a), mp((b), (c)))
-#define max3(a, b, c) max(max((a), (b)), (c))
-#define min3(a, b, c) min(min((a), (b)), (c))
+const int MOD = 1000000007;
+const int MX = 1000001;
 
-void setIO(string name = "") {
-	ios_base::sync_with_stdio(0); cin.tie(0);
-	if (name == "") return;
-	if (name == "input") {freopen("input.txt","r",stdin);}
-	else {freopen((name+".in").c_str(),"r",stdin); freopen((name+".out").c_str(),"w",stdout);}
+int n,k, sz[MX], nex[MX][20];
+ll m;
+
+int get(int x, int lef) {
+    F0Rd(i,20) if (lef&(1<<i)) x = nex[x][i];
+    return x;
 }
 
-const int INF = INT_MAX;
-const int NINF = INT_MIN;
-const int MAXLOG = 21;
-const int MAXSEG = (1<<18);
-const int MUL = 1000001;
-const int MOD = 1000000007;
-const ll RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
-struct chash { ll operator()(ll x) const { return x ^ RANDOM; } };
+void solve(int x) {
+    if (m <= n) cout << get(x,m) << " ";
+    else {
+        x = get(x,n);
+        cout << get(x,(m-n)%sz[x]) << " ";
+    }
+}
 
-int lcm(int a, int b) {return a * b / __gcd(a, b);}
+ll p[MX];
+
+void genNex() {
+    pii cur = {1,k+1};
+    FOR(i,1,n+1) {
+        while (cur.s < n && p[cur.s+1]-p[i] < p[i]-p[cur.f]) cur.f ++, cur.s ++;
+        if (p[i]-p[cur.f] >= p[cur.s]-p[i]) nex[i][0] = cur.f;
+        else nex[i][0] = cur.s;
+    }
+}
+
+int visit[MX];
+
+void cycSize() {
+    FOR(i,1,n+1) {
+        int I = i;
+        for (;visit[I] == 0; I = nex[I][0]) visit[I] = i;
+        if (visit[I] != i) continue;
+        
+        int cur = 0;
+        for (;visit[I] == i; I = nex[I][0]) { cur ++; visit[I] += n; }
+        for (;visit[I] == i+n; I = nex[I][0]) { sz[I] = cur; visit[I] += n; }
+    }
+}
 
 int main() {
-	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
-
-	setIO("input");
-	int m, n, k;
-	cin >> m >> n >> k;
-	int a[n];
-	FOR (i, 0, n) {
-		cin >> a[i];
-	}
-	int s = 0;
-	int i = 0;
-	int tot = 0;
-	while (i < n) {
-		vi ans;
-		int j = i;
-		int maxi = 0, l = 1;
-		int ret = l;
-		while (j < n) {
-			ret = l;
-			maxi = max(maxi, a[j]);
-			l = lcm(l, a[j]);
-			if (l > maxi) break;
-			ans.pb(a[j]);
-			j++;
-		}
-		PRSP(ans, ans.size());
-		tot += ans.size();
-		s += ret;
-		i = j;
-	}
-	assert(tot == n);
-	cout << s << endl;
-
-	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-//	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    cin >> n >> k >> m;
+    FOR(i,1,n+1) cin >> p[i];
+    genNex();
+    FOR(i,1,20) FOR(j,1,n+1) nex[j][i] = nex[nex[j][i-1]][i-1];
+    cycSize();
+    FOR(i,1,n+1) solve(i);
 }
