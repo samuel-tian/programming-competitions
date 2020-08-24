@@ -62,47 +62,86 @@ struct chash {
 };
 
 const int N = 200005;
-const int M = 200005;
-const int Q = 200005;
-const int LOGN = 20;
 
-int n, m, q;
-int a[N], p[M], perm[N];
-vi loc[N];
-int prev[LOGN][N];
+int n;
+vi adj[2*N];
+int val[2*N];
+int cnt = 0;
 
-int get(vi& v, int k) {
-    int lo = 0, hi = v.size()-1;
-    while (lo < hi) {
-        int mid = (lo + hi + 1) / 2;
-        if (v[mid] >= k)
-            hi = mid - 1;
-        else
-            lo = mid;
+void update(vi& arr, int i, int v) {
+    i++;
+    while (i <= n) {
+        arr[i] = arr[i] + v;
+        i += i & (-i);
     }
-    return lo;
+}
+
+int get(vi& arr, int i) {
+    int ret = 0;
+    i++;
+    while (i > 0) {
+        ret = ret + arr[i];
+        i -= i & (-i);
+    }
+    return ret;
+}
+
+int query(vi& v, int i, int j) {
+    return get(v, j) - get(v, i-1);
+}
+
+int read() {
+    int a;
+    cin >> a;
+    if (a != 0) {
+        val[cnt] = a;
+        return cnt++;
+    }
+    else {
+        int cur = cnt++;
+        int l = read();
+        int r = read();
+        adj[cur].pb(l);
+        adj[cur].pb(r);
+        adj[l].pb(cur);
+        adj[r].pb(cur);
+        return cur;
+    }
+}
+
+pair<vi, vi> dfs(int a, int p) {
+    vi fenwick, vals;
+    if (val[a] != 0) {
+        fenwick = vi(N);
+        vals = {val[a]};
+        return mp(fenwick, vals);
+    }
+    pi p = {-1, -1};
+    pair<vi, vi> fen_c;
+    pair<vi, vi> val_c;
+    TRAV (b, adj[a]) {
+        if (b == p)
+            continue;
+        pair<vi, vi> tmp = dfs(b, a);
+        if (p.f == -1) {
+            p.f = b;
+            fen_c.f = tmp.f;
+            val_c.f = tmp.s;
+        }
+        else {
+            p.s = b;
+            fen_c.s = tmp.f;
+            val_c.s = tmp.s;
+        }
+    }
+    
+    return mp(fenwick, vals);
 }
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> n >> m >> q;
-    FOR (i, 0, n) {
-        cin >> p[i];
-        p[i]--;
-        loc[p[i]].pb(i);
-    }
-    FOR (i, 0, m) {
-        cin >> a[i];
-        a[i]--;
-    }
-    FOR (i, 0, n)
-        sort(loc[i].begin(), loc[i].end());
-    FOR (i, 0, n) {
-
-        prev[0][i] = 
-    }
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
