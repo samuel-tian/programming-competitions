@@ -61,60 +61,12 @@ struct chash {
     }
 };
 
-const int N = 100005;
-
-int n;
-ll color[N];
-vi adj[N];
-unordered_map<ll, int> col_freq[N];
-unordered_map<int, ll> col_sum[N];
-int max_freq[N];
-ll ans[N];
-
-void dfs(int a, int p) {
-    col_freq[a][color[a]]++;
-    col_sum[a][1] += color[a];
-    max_freq[a] = 1;
-    TRAV (b, adj[a]) {
-        if (b == p)
-            continue;
-        dfs(b, a);
-        if (col_freq[a].size() < col_freq[b].size()) {
-            swap(col_freq[a], col_freq[b]);
-            swap(col_sum[a], col_sum[b]);
-            swap(max_freq[a], max_freq[b]);
-        }
-        TRAV (v, col_freq[b]) {
-            col_sum[a][col_freq[a][v.f]] -= v.f;
-            col_sum[a][col_freq[a][v.f]+v.s] += v.f;
-            col_freq[a][v.f] += v.s;
-            max_freq[a] = max(max_freq[a], col_freq[a][v.f]);
-        }
-        col_freq[b].clear();
-        col_sum[b].clear();
-    }
-    ans[a] = col_sum[a][max_freq[a]];
-}
-
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> n;
-    FOR (i, 0, n)
-        cin >> color[i];
-    FOR (i, 0, n-1) {
-        int a, b;
-        cin >> a >> b;
-        a--;
-        b--;
-        adj[a].pb(b);
-        adj[b].pb(a);
-    }
-    dfs(0, -1);
-    FOR (i, 0, n)
-        cout << ans[i] << " ";
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+
