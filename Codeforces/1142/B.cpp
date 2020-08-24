@@ -61,11 +61,89 @@ struct chash {
     }
 };
 
+const int N = 200005;
+const int M = 200005;
+const int Q = 200005;
+const int LOGN = 20;
+
+int n, m, q;
+int p[N], a[M];
+vi loc[N];
+int pre[LOGN][M], inv[N], ans[M];
+
+int get(vi& vec, int v) {
+    int lo = 0, hi = vec.size()-1;
+    if (vec.empty() || vec[0] > v)
+        return -1;
+    while (lo < hi) {
+        int mid = (lo + hi + 1) / 2;
+        if (vec[mid] >= v)
+            hi = mid - 1;
+        else
+            lo = mid;
+    }
+    return vec[lo];
+}
+
+int go(int a, int k) {
+    FOR (i, 0, LOGN) {
+        if (a == -1)
+            break;
+        if (k & (1<<i))
+            a = pre[i][a];
+    }
+    return a;
+}
+
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+    cin >> n >> m >> q;
+    FOR (i, 0, n) {
+        cin >> p[i];
+        p[i]--;
+        inv[p[i]] = i;
+    }
+    FOR (i, 0, m) {
+        cin >> a[i];
+        a[i]--;
+        loc[a[i]].pb(i);
+    }
+    FOR (i, 0, m) {
+        int v = p[(inv[a[i]]-1+n) % n];
+        pre[0][i] = get(loc[v], i);
+    }
+    FOR (i, 1, LOGN) {
+        FOR (j, 0, m) {
+            if (pre[i-1][j] == -1)
+                pre[i][j] = -1;
+            else
+                pre[i][j] = pre[i-1][pre[i-1][j]];
+        }
+    }
+    FOR (i, 0, m) {
+        if (i == 0)
+            ans[i] = go(i, n-1);
+        else
+            ans[i] = max(ans[i-1], go(i, n-1));
+    }
+    FOR (i, 0, q) {
+        int a, b;
+        cin >> a >> b;
+        a--;
+        b--;
+        if (ans[b] < a)
+            cout << 0;
+        else
+            cout << 1;
+        if (i == q-1)
+            cout << '\n';
+    }
+    
+    return 0;
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+

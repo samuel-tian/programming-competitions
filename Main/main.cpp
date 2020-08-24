@@ -67,6 +67,9 @@ int n;
 vi adj[2*N];
 int val[2*N];
 int cnt = 0;
+vi inv_dat[2*N]; // BIT
+vi inv_val[2*N];
+int inv[2*N];
 
 void update(vi& arr, int i, int v) {
     i++;
@@ -109,39 +112,57 @@ int read() {
     }
 }
 
-pair<vi, vi> dfs(int a, int p) {
-    vi fenwick, vals;
-    if (val[a] != 0) {
-        fenwick = vi(N);
-        vals = {val[a]};
-        return mp(fenwick, vals);
+void dfs(int a, int p) {
+    if (val[a] != -1) {
+        inv_dat[a].resize(N);
+        update(inv_dat[a], val[a], 1);
+        inv_val[a].pb(val[a]);
     }
-    pi p = {-1, -1};
-    pair<vi, vi> fen_c;
-    pair<vi, vi> val_c;
+    vi children = {};
     TRAV (b, adj[a]) {
         if (b == p)
             continue;
-        pair<vi, vi> tmp = dfs(b, a);
-        if (p.f == -1) {
-            p.f = b;
-            fen_c.f = tmp.f;
-            val_c.f = tmp.s;
-        }
-        else {
-            p.s = b;
-            fen_c.s = tmp.f;
-            val_c.s = tmp.s;
-        }
+        dfs(b, a);
+        children.pb(b);
     }
-    
-    return mp(fenwick, vals);
+    if (!children.empty()) {
+        vi& l_bit = inv_dat[children[0]];
+        vi& r_bit = inv_dat[children[1]];
+        vi& l_val = inv_val[children[0]];
+        vi& r_val = inv_val[children[1]];
+        if (r_val.size() > l_val.size()) {
+            swap(r_val, l_val);
+            swap(r_bit, l_bit);
+        }
+        int inv_tmp = 0;
+        TRAV (v, r_val) {
+            inv_tmp += get(l_bit, v-1);
+        }
+        inv_tmp = min(inv_tmp, (int)l_val.size() * (int)r_val.size() - inv_tmp);
+        TRAV (v, r_val) {
+            l_val.pb(v);
+            update(l_bit, v, 1);
+        }
+        swap(inv_dat[a], l_bit);
+        swap(inv_val[a], l_val);
+        inv[a] = inv[children[0]] + inv[children[1]] + inv_tmp;
+        l_bit.clear();
+        r_bit.clear();
+        l_val.clear();
+        r_val.clear();
+    }
+    children.clear();
 }
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
+    cin >> n;
+    fill(val, val + 2*N, -1);
+    read();
+    dfs(0, -1);
+    cout << inv[0] << '\n';
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
