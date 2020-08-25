@@ -61,76 +61,105 @@ struct chash {
     }
 };
 
-const int N = 50005;
-const int M = 50005;
+const int N = 200005;
 
-int n, m;
-vpi adj[N];
-pi edges[N];
-ppi rep[M];
-int ans[N];
-set<int> ind[N]; // replacement indicies
-multiset<int> len[N]; // replacement lengths
+int n;
+pi nex[2*N];
+int val[2*N];
+vi fen[2*N], vals[2*N];
+int ans[2*N];
 
-void dfs(int a, int p) {
-    TRAV (b, adj[a]) {
-        if (b.f == p)
-            continue;
-        dfs(b.f, a);
-        if (len[b.f].empty())
-            ans[b.s] = -1;
-        else
-            ans[b.s] = *(len[b.f].begin());
-        if (ind[b.f].size() > ind[a].size()) {
-            swap(ind[a], ind[b.f]);
-            swap(len[a], len[b.f]);
-        }
-        TRAV (v, ind[b.f]) {
-            set<int>::iterator iter = ind[a].find(v);
-            if (iter == ind[a].end()) {
-                ind[a].insert(v);
-                len[a].insert(rep[v].s);
-            }
-            else {
-                ind[a].erase(iter);
-                len[a].erase(len[a].find(rep[v].s));
-            }
-        }
-        ind[b.f].clear();
-        len[b.f].clear();
+void update(vi& arr, int i, int v) {
+    i++;
+    while (i <= n) {
+        arr[i] = arr[i] + v;
+        i += i & (-i);
     }
+}
+
+int get(vi& arr, int i) {
+    int ret = 0;
+    i++;
+    while (i > 0) {
+        ret = ret + arr[i];
+        i -= i & (-i);
+    }
+    return ret;
+}
+
+int query(vi& v, int i, int j) {
+    return get(v, j) - get(v, i-1);
+}
+
+int cnt = 0;
+int read() {
+    int a;
+    cin >> a;
+    if (a != 0) {
+        val[cnt] = a;
+        return cnt++;
+    }
+    else {
+        int cur = cnt++;
+        int l = read();
+        int r = read();
+        nex[cur] = {l, r};
+        return cur;
+    }
+}
+
+void dfs(int a) {
+    if (val[a] != 0) {
+        fen[a].resize(n+5);
+        update(fen[a], val[a], 1);
+        vals[a].pb(val[a]);
+        return;
+    }
+    int lef = nex[a].f, rig = nex[a].s;
+    dfs(lef);
+    dfs(rig);
+    if (vals[rig].size() > vals[lef].size()) {
+        swap(vals[lef], vals[rig]);
+        swap(fen[lef], fen[rig]);
+    }
+    int tmp = 0;
+    TRAV (v, vals[rig])
+        tmp += get(fen[lef], v-1);
+    tmp = min(tmp, (int)vals[lef].size() * (int)vals[rig].size() - tmp);
+    TRAV (v, vals[rig]) {
+        vals[lef].pb(v);
+        update(fen[lef], v, 1);
+    }
+    swap(fen[a], fen[lef]);
+    swap(vals[a], vals[lef]);
+    ans[a] = ans[lef] + ans[rig] + tmp;
+    FOR (i, 0, cnt) {
+        cout << fen[i].size() << " ";
+        if (i == cnt-1)
+            cout << '\n';
+    }
+    FOR (i, 0, cnt) {
+        cout << vals[i].size() << " ";
+        if (i == cnt-1)
+            cout << '\n';
+    }
+    fen[lef].clear();
+    fen[rig].clear();
+    vals[lef].clear();
+    vals[rig].clear();
 }
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
-	setIO("disrupt");
-    cin >> n >> m;
-    FOR (i, 0, n-1) {
-        int a, b;
-        cin >> a >> b;
-        a--;
-        b--;
-        adj[a].emplace_back(b, i);
-        adj[b].emplace_back(a, i);
-        edges[i] = {a, b};
-    }
-    FOR (i, 0, m) {
-        int a, b, w;
-        cin >> a >> b >> w;
-        a--;
-        b--;
-        rep[i] = {{a, b}, w};
-        ind[a].insert(i);
-        len[a].insert(w);
-        ind[b].insert(i);
-        len[b].insert(w);
-    }
-    dfs(0, -1);
-    FOR (i, 0, n-1)
-        cout << ans[i] << '\n';
+	setIO();
+    cin >> n;
+    read();
+    dfs(0);
+    cout << ans[0] << '\n';
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+
 
