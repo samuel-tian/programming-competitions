@@ -61,67 +61,86 @@ struct chash {
     }
 };
 
-const int N = 200005;
-const int LOGN = 20;
-const int Q = 200005;
-
-int q, n = 1;
-vi adj[N];
-int p[LOGN][N], dep[N];
-pi diam = {0, 0};
-
-int lca(int a, int b) {
-    if (dep[a] > dep[b])
-        swap(a, b);
-    int dif = dep[b] - dep[a];
-    FOR (i, 0, LOGN)
-        if (dif & (1<<i))
-            b = p[i][b];
-    FORd (i, LOGN-1, 0) {
-        if (p[i][a] == p[i][b])
-            continue;
-        a = p[i][a];
-        b = p[i][b];
+template<typename T>
+struct BIT {
+    int n;
+    vector<T> arr1, arr2, arr3;
+    vector<T> arr4;
+    BIT() = default;
+    BIT(int n) {
+        resize(n);
     }
-    if (a != b)
-        return p[0][a];
-    else
-        return a;
-}
-
-int dis(int a, int b) {
-    int l = lca(a, b);
-    return dep[a] + dep[b] - 2*dep[l];
-}
-
-void update(int i) {
-    n++;
-    if (i != -1) {
-        i--;
-        adj[i].pb(n-1);
-        adj[n-1].pb(i);
-        p[0][n-1] = i;
-        dep[n-1] = dep[i] + 1;
+    void resize(int n) {
+        this->n = n;
+        arr1.resize(n+1);
+        arr2.resize(n+1);
+        arr3.resize(n+1);
+        arr4.resize(n+1);
     }
-    FOR (i, 1, LOGN)
-        p[i][n-1] = p[i-1][p[i-1][n-1]];
-    int lat = dis(diam.f, diam.s);
-    if (dis(diam.f, n-1) > lat)
-        diam.s = n-1;
-    else if (dis(diam.s, n-1) > lat)
-        diam.f = n-1;
-    cout << dis(diam.f, diam.s) << " ";
-}
+    void clear() {
+        this->n = 0;
+        arr1.clear();
+        arr2.clear();
+        arr3.clear();
+        arr4.clear();
+    }
+    void set(int i, T v) {
+        update_util(arr4, i, v);
+    }
+	void update_util(vector<T>& arr, int i, T v) {
+        i++;
+		while (i <= n) {
+			arr[i] = arr[i] + v;
+			i += i & (-i);
+		}
+	}
+    void update(long long l, long long r) {
+        update_util(arr1, l, 1);
+        update_util(arr1, r+1, -1);
+        update_util(arr2, l, 3-2*l);
+        update_util(arr2, r+1, 2*l-3);
+        update_util(arr3, l, (l-1) * (l-2));
+        update_util(arr3, r+1, r*r - r*(2*l-3));
+    }
+	T get_util(vector<T>& arr, int i) {
+		T ret = 0;
+        i++;
+		while (i > 0) {
+			ret = ret + arr[i];
+			i -= i & (-i);
+		}
+		return ret;
+	}
+    T get(long long i) {
+        return get_util(arr4, i) + (i*i*get_util(arr1, i) + i*get_util(arr2, i) + get_util(arr3, i)) / 2;
+    }
+	T query(long long i, long long j) {
+        return get(j) - get(i-1);
+    }
+};
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> q;
-    FOR (i, 0, q-1) {
+    int n, q;
+    cin >> n >> q;
+    BIT<long long> bit(n);
+    FOR (i, 0, n) {
         int a;
         cin >> a;
-        update(a);
+        bit.set(i, a);
+    }
+    FOR (i, 0, q) {
+        int type;
+        cin >> type;
+        int a, b;
+        cin >> a >> b;
+        a--, b--;
+        if (type==1)
+            bit.update(a, b);
+        else
+            cout << bit.query(a, b) << '\n';
     }
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
