@@ -61,31 +61,10 @@ struct chash {
     }
 };
 
-const int N = 200005;
-const int Q = 200005;
-const int LOGN = 20;
-
-int n, q;
-vi adj[N];
-int p[LOGN][N];
-
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> n >> q;
-    FOR (i, 0, n) {
-        cin >> p[0][i];
-        p[0][i]--;
-        adj[i].pb(p[0][i]);
-        adj[p[0][i]].pb(i);
-    }
-    FOR (i, 1, LOGN)
-        FOR (j, 0, n)
-            p[i][j] = p[i-1][p[i-1][j]];
-    FOR (i, 0, q) {
-
-    }
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
