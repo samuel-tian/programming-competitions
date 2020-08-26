@@ -62,32 +62,104 @@ struct chash {
 };
 
 const int N = 200005;
-const int Q = 200005;
-const int LOGN = 20;
 
-int n, q;
-vi adj[N];
-int p[LOGN][N];
+int n;
+pi nex[2*N];
+int val[2*N];
+vi fen[2*N], vals[2*N];
+int ans[2*N];
+
+void update(vi& arr, int i, int v) {
+    i++;
+    while (i <= n) {
+        arr[i] = arr[i] + v;
+        i += i & (-i);
+    }
+}
+
+int get(vi& arr, int i) {
+    int ret = 0;
+    i++;
+    while (i > 0) {
+        ret = ret + arr[i];
+        i -= i & (-i);
+    }
+    return ret;
+}
+
+int query(vi& v, int i, int j) {
+    return get(v, j) - get(v, i-1);
+}
+
+int cnt = 0;
+int read() {
+    int a;
+    cin >> a;
+    if (a != 0) {
+        val[cnt] = a;
+        return cnt++;
+    }
+    else {
+        int cur = cnt++;
+        int l = read();
+        int r = read();
+        nex[cur] = {l, r};
+        return cur;
+    }
+}
+
+void dfs(int a) {
+    if (val[a] != 0) {
+        fen[a].resize(n+5);
+        update(fen[a], val[a], 1);
+        vals[a].pb(val[a]);
+        return;
+    }
+    int lef = nex[a].f, rig = nex[a].s;
+    dfs(lef);
+    dfs(rig);
+    if (vals[rig].size() > vals[lef].size()) {
+        swap(vals[lef], vals[rig]);
+        swap(fen[lef], fen[rig]);
+    }
+    int tmp = 0;
+    TRAV (v, vals[rig])
+        tmp += get(fen[lef], v-1);
+    tmp = min(tmp, (int)vals[lef].size() * (int)vals[rig].size() - tmp);
+    TRAV (v, vals[rig]) {
+        vals[lef].pb(v);
+        update(fen[lef], v, 1);
+    }
+    swap(fen[a], fen[lef]);
+    swap(vals[a], vals[lef]);
+    ans[a] = ans[lef] + ans[rig] + tmp;
+    FOR (i, 0, cnt) {
+        cout << fen[i].size() << " ";
+        if (i == cnt-1)
+            cout << '\n';
+    }
+    FOR (i, 0, cnt) {
+        cout << vals[i].size() << " ";
+        if (i == cnt-1)
+            cout << '\n';
+    }
+    fen[lef].clear();
+    fen[rig].clear();
+    vals[lef].clear();
+    vals[rig].clear();
+}
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> n >> q;
-    FOR (i, 0, n) {
-        cin >> p[0][i];
-        p[0][i]--;
-        adj[i].pb(p[0][i]);
-        adj[p[0][i]].pb(i);
-    }
-    FOR (i, 1, LOGN)
-        FOR (j, 0, n)
-            p[i][j] = p[i-1][p[i-1][j]];
-    FOR (i, 0, q) {
-
-    }
+    cin >> n;
+    read();
+    dfs(0);
+    cout << ans[0] << '\n';
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+
 

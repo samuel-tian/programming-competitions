@@ -61,33 +61,77 @@ struct chash {
     }
 };
 
-const int N = 200005;
-const int Q = 200005;
-const int LOGN = 20;
+const int N = 50005;
+const int M = 50005;
 
-int n, q;
-vi adj[N];
-int p[LOGN][N];
+int n, m;
+vpi adj[N];
+pi edges[N];
+ppi rep[M];
+int ans[N];
+set<int> ind[N]; // replacement indicies
+multiset<int> len[N]; // replacement lengths
+
+void dfs(int a, int p) {
+    TRAV (b, adj[a]) {
+        if (b.f == p)
+            continue;
+        dfs(b.f, a);
+        if (len[b.f].empty())
+            ans[b.s] = -1;
+        else
+            ans[b.s] = *(len[b.f].begin());
+        if (ind[b.f].size() > ind[a].size()) {
+            swap(ind[a], ind[b.f]);
+            swap(len[a], len[b.f]);
+        }
+        TRAV (v, ind[b.f]) {
+            set<int>::iterator iter = ind[a].find(v);
+            if (iter == ind[a].end()) {
+                ind[a].insert(v);
+                len[a].insert(rep[v].s);
+            }
+            else {
+                ind[a].erase(iter);
+                len[a].erase(len[a].find(rep[v].s));
+            }
+        }
+        ind[b.f].clear();
+        len[b.f].clear();
+    }
+}
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
-	setIO();
-    cin >> n >> q;
-    FOR (i, 0, n) {
-        cin >> p[0][i];
-        p[0][i]--;
-        adj[i].pb(p[0][i]);
-        adj[p[0][i]].pb(i);
+	setIO("disrupt");
+    cin >> n >> m;
+    FOR (i, 0, n-1) {
+        int a, b;
+        cin >> a >> b;
+        a--;
+        b--;
+        adj[a].emplace_back(b, i);
+        adj[b].emplace_back(a, i);
+        edges[i] = {a, b};
     }
-    FOR (i, 1, LOGN)
-        FOR (j, 0, n)
-            p[i][j] = p[i-1][p[i-1][j]];
-    FOR (i, 0, q) {
-
+    FOR (i, 0, m) {
+        int a, b, w;
+        cin >> a >> b >> w;
+        a--;
+        b--;
+        rep[i] = {{a, b}, w};
+        ind[a].insert(i);
+        len[a].insert(w);
+        ind[b].insert(i);
+        len[b].insert(w);
     }
+    dfs(0, -1);
+    FOR (i, 0, n-1)
+        cout << ans[i] << '\n';
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+
 
