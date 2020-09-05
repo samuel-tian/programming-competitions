@@ -34,9 +34,11 @@ int game(int start, int finish) {
 }
 */
 int main() {
-	scanf("%d", &n);
+    freopen("248.in","r",stdin);
+    freopen("248.out","w",stdout);
+    cin >> n;
 	for (int i = 0; i < n; ++i)
-		scanf("%d", &sequence[i]);
+        cin >> sequence[i];
 
 	for (int i = 0; i <= n; ++i)
 		for (int j = 0; j <= n; ++j)
@@ -69,7 +71,7 @@ int main() {
 			ret = max(ret, dp[i][j]);
 		}
 	}
-	printf("%d\n", ret);
+    cout << ret << '\n';
 
 	return 0;
 }

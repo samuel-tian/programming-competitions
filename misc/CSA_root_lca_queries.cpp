@@ -61,94 +61,101 @@ struct chash {
     }
 };
 
-const int N = 1e5 + 5;
-const int LOGN = 17;
-const int M = 1e5 + 5;
-const int Q = 1e5 + 5;
-const int A = 11;
+const int N = 100005;
+const int Q = 100005;
 
-int n, m, q;
-vi adj[N], cit[N], mins[LOGN][N];
-int dep[N];
-int par[LOGN][N];
-
-void merge(vi& l, vi r) {
-    vi tmp;
-    int lpt = 0, rpt = 0;
-    FOR (i, 0, A) {
-        if (lpt==l.size() || rpt==r.size()) {
-            if (lpt == l.size() && rpt == r.size())
-                break;
-            if (lpt == l.size()) {
-                swap(lpt, rpt);
-                swap(l, r);
-            }
-            tmp.pb(l[lpt++]);
-            continue;
+struct DSU {
+    vector<int> par, r;
+    DSU() = default;
+	DSU(int n) {
+		par.resize(n);
+		r.resize(n);
+        for (int i = 0; i < n; i++) {
+            par[i] = i;
+            r[i] = 0;
         }
-        if (l[lpt] < r[rpt])
-            tmp.pb(l[lpt++]);
-        else
-            tmp.pb(r[rpt++]);
-    }
-    swap(tmp, l);
-}
+	}
+	int find(int i) {
+		if (par[i] != i)
+            par[i] = find(par[i]);
+		return par[i];
+	}
+	bool same_set(int a, int b) {
+		return find(a) == find(b);
+	}
+	void join(int a, int b) {
+		a = find(a), b = find(b);
+		if (r[a] < r[b])
+            swap(a, b);
+		par[b] = a;
+		r[a] = max(r[a], r[b] + 1);
+	}
+};
 
-void dfs(int a, int p=-1) {
-    if (p == -1) {
-        dep[a] = 0;
-        par[0][a] = a;
-        mins[0][a] = {};
+struct Query {
+    int a, b, c;
+    int ind;
+};
+
+int n, q;
+vi adj[N];
+DSU dsu;
+Query qry[N];
+vector<Query> oth[N];
+int vis[N], sz[N], anc[N], ans[Q];
+
+void dfs(int a, int p) {
+    vis[a] = 1;
+    sz[a] = 1;
+    anc[a] = a;
+    unordered_set<int> children;
+    TRAV (b, adj[a]) {
+        if (vis[b])
+            continue;
+        dfs(b, a);
+        sz[a] += sz[b];
+        children.insert(b);
+    }
+    TRAV (q, oth[a]) {
+        int pa = anc[dsu.find(q.a)];
+        int pb = anc[dsu.find(q.b)];
+        if (children.find(pa)==children.end())
+            pa = -1;
+        if (children.find(pb)==children.end())
+            pb = -1;
+        if (pa==-1 && pb==-1) { // C !> A, C !> B
+            ans[q.ind] = 0;
+            // cout << q.ind << " " << 1 << '\n';
+        }
+        else if (pa==pb) { // C > LCA(A, B)
+            ans[q.ind] = 0;
+            // cout << q.ind << " " << 2 << '\n';
+        }
+        else if (pa==-1 || pb==-1) { // C > A, C !> B
+            if (pa==-1)
+                swap(pa, pb);
+            ans[q.ind] = sz[a] - sz[pa];
+            // cout << q.ind << " " << 3 << '\n';
+        }
+        else { // C = LCA(A, B)
+            ans[q.ind] = n - sz[pa] - sz[pb];
+            // cout << q.ind << " " << 4 << '\n';
+        }
     }
     TRAV (b, adj[a]) {
-        if (b == p)
+        if (b==p)
             continue;
-        dep[b] = dep[a] + 1;
-        par[0][b] = a;
-        TRAV (c, cit[a])
-            mins[0][b].pb(c);
-        dfs(b, a);
+        dsu.join(a, b);
     }
-}
-
-pair<int, vi> lca(int a, int b) {
-    if (dep[a] < dep[b])
-        swap(a, b);
-    int acpy = a, bcpy = b;
-    int dif = dep[a] - dep[b];
-    vi amin = {}, bmin = {};
-    FOR (i, 0, LOGN) {
-        if (dif & (1<<i)) {
-            merge(amin, mins[i][a]);
-            a = par[i][a];
-        }
-    }
-    FORd (i, LOGN-1, 0) {
-        if (par[i][a] == par[i][b])
-            continue;
-        merge(amin, mins[i][a]);
-        merge(bmin, mins[i][b]);
-        a = par[i][a];
-        b = par[i][b];
-    }
-    if (a == b) {
-        merge(amin, cit[acpy]);
-        return mp(a, amin);
-    }
-    else {
-        merge(amin, mins[0][a]);
-        merge(amin, cit[acpy]);
-        merge(bmin, cit[bcpy]);
-        merge(amin, bmin);
-        return mp(par[0][a], amin);
-    }
+    anc[dsu.find(a)] = a;
 }
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> n >> m >> q;
+    cin >> n >> q;
+    dsu = DSU(n);
     FOR (i, 0, n-1) {
         int a, b;
         cin >> a >> b;
@@ -156,37 +163,20 @@ int main() {
         adj[a].pb(b);
         adj[b].pb(a);
     }
-    FOR (i, 0, m) {
-        int a;
-        cin >> a;
-        a--;
-        cit[a].pb(i+1);
-    }
-    FOR (i, 0, n)
-        sort(cit[i].begin(), cit[i].end());
-    dfs(0);
-    FOR (i, 1, LOGN) {
-        FOR (j, 0, n) {
-            par[i][j] = par[i-1][par[i-1][j]];
-            mins[i][j] = {};
-            merge(mins[i][j], mins[i-1][j]);
-            merge(mins[i][j], mins[i-1][par[i-1][j]]);
-        }
-    }
     FOR (i, 0, q) {
-        int v, u, a;
-        cin >> v >> u >> a;
-        v--, u--;
-        pair<int, vi> ret = lca(v, u);
-        int k = min(a, (int)((ret.s).size()));
-        cout << k;
-        FOR (i, 0, k) {
-            cout << " " << ret.s[i];
-        }
-        cout << '\n';
+        int a, b, c;
+        cin >> a >> b >> c;
+        a--, b--, c--;
+        Query q = {a, b, c, i};
+        qry[i] = q;
+        oth[c].pb(q);
     }
+    dfs(0, -1);
+    FOR (i, 0, q)
+        cout << ans[i] << '\n';
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+
 
