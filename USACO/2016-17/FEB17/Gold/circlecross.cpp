@@ -6,12 +6,12 @@ const int N = 50005;
 
 int n;
 int arr[2*N];
-int pos[2*N], st_pos[N];
-bool st[2*N], vis[N];
+int pos[2*N];
+pair<int, int> inv[N];
 
 void update(int i, int v) {
     i++;
-    while (i <= n) {
+    while (i <= 2*n) {
         arr[i] = arr[i] + v;
         i += i & (-i);
     }
@@ -34,30 +34,29 @@ int query(int i, int j) {
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    freopen("circlecross.in","r",stdin);
+    freopen("circlecross.out","w",stdout);
     cin >> n;
+    for (int i = 0; i < n; i++) {
+        inv[i] = make_pair(-1, -1);
+    }
+    for (int i = 0; i < 2 * N; i++) {
+        arr[i] = 0;
+    }
     for (int i = 0; i < 2 * n; i++) {
         cin >> pos[i];
         pos[i]--;
-        vis[pos[i]] ^= 1;
-        if (vis[pos[i]]) {
-            st[i] = 1;
-            st_pos[pos[i]] = i;
-        }
+        if (inv[pos[i]].first == -1)
+            inv[pos[i]].first = i;
+        else
+            inv[pos[i]].second = i;
     }
-    for (int i = 0; i < n; i++) {
-        cout << st_pos[i] << " " ;
-        if (i == n-1)
-            cout << '\n';
-    }
+    sort(inv, inv + n);
     long long ans = 0;
-    for (int i = 0; i < 2 * n; i++) {
-        if (st[i])
-            update(i, 1);
-        else {
-            update(i, -1);
-            cout << pos[i] << " " << query(st_pos[pos[i]], i) << '\n';
-            ans += query(st_pos[pos[i]], i);
-        }
+    for (int j = 0; j < n; j++) {
+        ans += (long long)query(inv[j].first, inv[j].second);
+        update(inv[j].second, 1);
     }
     cout << ans << '\n';
 }
+

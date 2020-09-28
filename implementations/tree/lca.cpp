@@ -31,7 +31,7 @@ int lca(int a, int b) {
     for (int i = 0; i < LOGN; i++)
         if (dif & (1<<i))
             a = par[i][a];
-    for (int i = LOGN; i >= 0; i--) {
+    for (int i = LOGN-1; i >= 0; i--) {
         if (par[i][a] == par[i][b])
             continue;
         a = par[i][a];

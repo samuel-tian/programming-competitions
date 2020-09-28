@@ -21,6 +21,7 @@ using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
 #define f first
 #define s second
 #define pb push_back
+#define eb emplace_back
 #define mp make_pair
 #define endl '\n'
 
