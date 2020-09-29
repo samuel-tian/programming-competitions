@@ -2,58 +2,56 @@
 
 using namespace std;
 
-const int N = 50005;
+#define ll long long
+#define f first
+#define s second
 
-int n;
-int arr[2*N];
-int pos[2*N];
-pair<int, int> inv[N];
+const ll INF = LLONG_MAX;
+const int N = 100005;
+const int M = 200005;
 
-void update(int i, int v) {
-    i++;
-    while (i <= 2*n) {
-        arr[i] = arr[i] + v;
-        i += i & (-i);
+int n, m, s;
+vector<pair<ll, int> > adj[N];
+ll dis[N];
+bool vis[N];
+
+void dijkstra(int start) {
+    priority_queue<pair<ll, int> > pq;
+    fill(dis, dis + n, INF);
+    dis[start] = 0;
+    pq.push(make_pair(0, start));
+    while (!pq.empty()) {
+        pair<ll, int> cur = pq.top();
+        pq.pop();
+        if (vis[cur.s])
+            continue;
+        vis[cur.s] = true;
+        for (pair<ll, int> next : adj[cur.s]) {
+            if (dis[cur.s] + next.f < dis[next.s]) {
+                dis[next.s] = dis[cur.s] + next.f;
+                pq.push(make_pair(-dis[next.s], next.s));
+            }
+        }
     }
-}
-
-int get(int i) {
-    i++;
-    int ret = 0;
-    while (i > 0) {
-        ret = ret + arr[i];
-        i -= i & (-i);
-    }
-    return ret;
-}
-
-int query(int i, int j) {
-    return get(j) - get(i-1);
 }
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    cin >> n;
+    cin >> n >> m >> s;
+    s--;
+    for (int i = 0; i < m; i++) {
+        int a, b, c;
+        cin >> a >> b >> c;
+        a--, b--;
+        adj[a].push_back(make_pair(c, b));
+        adj[b].push_back(make_pair(c, a));
+    }
+    dijkstra(s);
     for (int i = 0; i < n; i++) {
-        inv[i] = make_pair(-1, -1);
-    }
-    for (int i = 0; i < 2 * N; i++) {
-        arr[i] = 0;
-    }
-    for (int i = 0; i < 2 * n; i++) {
-        cin >> pos[i];
-        pos[i]--;
-        if (inv[pos[i]].first == -1)
-            inv[pos[i]].first = i;
+        if (dis[i] == INF)
+            cout << -1 << '\n';
         else
-            inv[pos[i]].second = i;
+            cout << dis[i] << '\n';
     }
-    sort(inv, inv + n);
-    long long ans = 0;
-    for (int j = 0; j < n; j++) {
-        ans += (long long)query(inv[j].first, inv[j].second);
-        update(inv[j].second, 1);
-    }
-    cout << ans << '\n';
 }
