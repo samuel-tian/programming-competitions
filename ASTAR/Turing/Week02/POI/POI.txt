@@ -1,0 +1,94 @@
+POI
+===
+[Memory: 64 MB, CPU: 1 sec]
+
+The local Plovdiv Olympiad in Informatics (POI) was held according 
+to the following unusual rules. There were N contestants and T tasks. 
+Each task was graded with only one test case, therefore for every 
+task and every contestant there were only two possibilities: either 
+the contestant solved the task, or the contestant did not solve the 
+task. There was no partial scoring on any task.
+
+The number of points assigned to each task was determined after the 
+contest and was equal to the number of contestants that did not 
+solve the task. The score of each contestant was equal to the sum 
+of points assigned to the tasks solved by that contestant.
+
+Philip participated in the contest, but he is confused by the 
+complicated scoring rules, and now he is staring at the results, 
+unable to determine his place in the final standings. Help Philip by
+writing a program that calculates his score and his ranking.
+
+Before the contest, the contestants were assigned unique IDs from 1 
+to N inclusive. Philip's ID was P. The final standings of the 
+competition list the contestants in descending order of their scores. 
+In case of a tie, among the tied contestants, those who have solved 
+more tasks will be listed ahead of those who have solved fewer tasks. 
+In case of a tie by this criterion as well, the contestants with 
+equal results will be listed in ascending order of their IDs.
+
+TASK
+
+Write a program that, given which problems were solved by which 
+contestant, determines Philip's score and his rank in the final 
+standings.
+
+CONSTRAINTS
+
+1 <= N <= 2,000 	The number of contestants
+1 <= T <= 2,000 	The number of tasks
+1 <= P <= N 		Philip's ID
+
+INPUT
+
+Your program must read from standard input the following data:
+
+* The first line contains the integers N, T and P, separated by 
+  individual spaces.
+
+* The next N lines describe which tasks were solved by which 
+  contestant. The kth of these lines describes which tasks were 
+  solved by the contestant with ID k. Each such line contains T
+  integers, separated by spaces. The first of these numbers denotes 
+  whether or not contestant k solved the first task. The second 
+  number denotes the same for the second task and so on. These T 
+  numbers are all either 0 or 1, where 1 means that contestant k 
+  solved the corresponding task, and 0 means that he or she did 
+  not solve it.
+
+OUTPUT
+
+Your program must write to standard output a single line with two 
+integers separated by a single space. First, the score that Philip 
+got on the POI competition. Second, Philip's rank in the final 
+standings. The rank is an integer between 1 and N inclusive, with 
+1 denoting the contestant listed at the top (i.e., a contestant 
+who has the highest score) and N to the one listed at the bottom 
+(i.e., a contestant with the lowest score).
+
+GRADING
+
+For a number of tests, worth a total of 35 points, no other contestant 
+will have the same score as Philip.
+
+EXAMPLE
+
+Sample Input 	Sample Output
+------------	-------------
+5 3 2		3 2
+0 0 1
+1 1 0
+1 0 0
+1 1 0
+1 1 0
+
+The first problem was unsolved by only one contestant, so it is worth
+1 point. The second problem was unsolved by two contestants, so it is 
+worth 2 points. The third problem was unsolved by four contestants, 
+so it is worth 4 points. Thus the first contestant has a score of 4;
+the second contestant (Philip), the fourth and the fifth contestants 
+all have a score of 3; and the third contestant has a score of 1. 
+Contestants 2, 4 and 5 are all tied according to the first tiebreak 
+rule (number of problems solved), and according to the second tie-break 
+rule (smaller ID) Philip ranks before the others. Thus Philip?s rank 
+in the final standings is 2. He is only behind the contestant with ID 1.

@@ -62,78 +62,53 @@ struct chash {
     }
 };
 
-const int N = 1000005;
+const int N = 2005;
+const int T = 2005;
 
-int n, m;
-string s;
-int dp[40][N];
-unordered_map<ppi, int> comp;
+int n, t, p;
+int points[N], cnt[N], solved_cnt[T];
+vi solved[N];
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> n >> m;
-    cin >> s;
-    int cnt = 0;
-    FOR (i, 0, 5) {
-        FOR (j, 0, 5) {
-            if (i > j)
-                continue;
-            FOR (k, 0, 5) {
-                if (k >= i && k <= j) {
-                    comp[mppi(i, j, k)] = cnt++;
-                }
+    cin >> n >> t >> p;
+    p--;
+    FOR (i, 0, n) {
+        FOR (j, 0, t) {
+            int x;
+            cin >> x;
+            if (x==1) {
+                solved[i].pb(j);
+                cnt[i]++;
+                solved_cnt[j]++;
             }
         }
     }
-    FORd (l, n, 0) {
-        FOR (i, 0, 5) {
-            FOR (j, 0, 5) {
-                if (j < i)
-                    continue;
-                FOR (k, 0, 5) {
-                    if (k > j || k < i) {
-                        continue;
-                    }
-                    int ind = comp[mppi(i, j, k)];
-                    if (l == n) {
-                        dp[ind][l] = 1;
-                    }
-                    else {
-                        if (k+1 <= j)
-                            dp[ind][l] = (dp[ind][l] + dp[comp[mppi(i, j, k+1)]][l+1]) % m;
-                        if (k-1 >= i)
-                            dp[ind][l] = (dp[ind][l] + dp[comp[mppi(i, j, k-1)]][l+1]) % m;
-                    }
-                }
-            }
+    FOR (i, 0, n) {
+        TRAV (j, solved[i]) {
+            points[i] += (n - solved_cnt[j]);
         }
     }
-    int ans = 1;
-    int mi = 2, ma = 2, cur = 2;
-    FOR (i, 0, s.size()) {
-        if (s[i] == 'P') {
-            if (ma - mi == 2)
-                ans += dp[mi][ma][cur+1][i+1];
-            else if (ma - mi == 1) {
-                ans += dp[mi-1][ma][cur+1][i+1] + dp[mi][ma+1][cur+1][i+1];
-                ans -= dp[mi][ma][cur+1][i+1];
+    int rank = 1;
+    FOR (i, 0, n) {
+        if (i == p)
+            continue;
+        if (points[i] == points[p]) {
+            if (cnt[i] == cnt[p]) {
+                rank += (i < p);
             }
-            else if (ma - mi == 0) {
-                ans += dp[mi-2][ma][cur+1][i+1] + dp[mi-1][ma+1][cur+1][i+1] + dp[mi][ma+2][cur+1][i+1];
-                ans -= dp[mi-1][ma][cur+1][i+1] + dp[mi][ma+1][cur+1][i+1];
-                ans += dp[mi][ma][cur+1][i+1];
-            }
-            ans = ans % m;
+            else
+                rank += (cnt[i] > cnt[p]);
         }
-        cur += (s[i] == 'L') ? 1 : -1;
-        mi = min(mi, cur);
-        ma = max(ma, cur);
+        else
+            rank += (points[i] > points[p]);
     }
-    cout << ans % m << '\n';
+    cout << points[p] << " " << rank << '\n';
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+
 
