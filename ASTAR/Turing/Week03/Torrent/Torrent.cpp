@@ -62,51 +62,100 @@ struct chash {
     }
 };
 
-const int N = 500005;
+const int N = 300005;
 
-int n, m, o;
-set<pll> rooms;
-vector<pll> offers;
-vector<ll> profits;
+int n, x, y;
+vi adj[N];
+int par[N], par2[N];
+vi cutoff;
+
+void dfs(int a, int p) {
+    par[a] = p;
+    TRAV (b, adj[a]) {
+        if (b == p)
+            continue;
+        dfs(b, a);
+    }
+}
+
+int dfs2(int a, int p, int ind) {
+    vi children;
+    TRAV (b, adj[a]) {
+        if (b == p)
+            continue;
+        if (b == cutoff[ind])
+            continue;
+        children.pb(dfs2(b, a, ind));
+    }
+    if (children.size()==0)
+        return 0;
+    sort(children.begin(), children.end(), greater<int>());
+    FOR (i, 0, children.size()) {
+        children[i] += (i+1);
+    }
+    int ret = -1;
+    TRAV (i, children)
+        ret = max(ret, i);
+    return ret;
+}
+
+int solve(int ind) {
+    int a = dfs2(x, x, ind);
+    int b = dfs2(y, y, ind+1);
+    return max(a, b);
+}
 
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> n >> m >> o;
-    FOR (i, 0, n) {
-        ll a, b;
+    cin >> n >> x >> y;
+    x--, y--;
+    FOR (i, 0, n-1) {
+        int a, b;
         cin >> a >> b;
-        rooms.insert(mp(b, a));
+        a--, b--;
+        adj[a].pb(b);
+        adj[b].pb(a);
     }
-    FOR (i, 0, m) {
-        ll a, b;
-        cin >> a >> b;
-        offers.pb(mp(a, b));
+    dfs(x, x);
+    int tmp = y;
+    while (tmp != x) {
+        cutoff.pb(tmp);
+        tmp = par[tmp];
     }
-    sort(offers.begin(), offers.end(), greater<pll>());
-    FOR (i, 0, m) {
-        pll cur = offers[i]; // price, size
-        auto iter = rooms.lower_bound(mp(cur.s, -1));
-        if (iter == rooms.end()) {
-            continue;
+    cutoff.pb(tmp);
+    int ans;
+    if (n <= 1000) {
+        ans = INF;
+        FOR (i, 0, cutoff.size()-1) {
+            ans = min(ans, solve(i));
         }
-        profits.pb(cur.f - iter->s);
-        // cout << cur.s << " " << iter->f << " " << cur.f << " " << iter->s << '\n';
-        rooms.erase(iter);
+
     }
-    sort(profits.begin(), profits.end(), greater<ll>());
-    // cout << profits.size() << '\n';
-    ll ans = 0;
-    FOR (i, 0, o) {
-        if (i >= profits.size() || profits[i] < 0)
-            break;
-        ans += profits[i];
-        // cout << profits[i] << '\n';
+    else {
+        ans = 0;
+        int lo = 0, hi = cutoff.size()-2;
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            int l = (mid==0) ? INF : solve(mid-1);
+            int r = (mid==cutoff.size()-2) ? INF : solve(mid+1);
+            int m = solve(mid);
+            // cout << l << " " << m << " " << r << '\n';
+            if (l >= m && m <= r) {
+                ans = m;
+                break;
+            }
+            else if (l <= m && m <= r)
+                hi = mid-1;
+            else if (l >= m && m >= r)
+                lo = mid+1;
+        }
     }
     cout << ans << '\n';
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;
 }
+
 
