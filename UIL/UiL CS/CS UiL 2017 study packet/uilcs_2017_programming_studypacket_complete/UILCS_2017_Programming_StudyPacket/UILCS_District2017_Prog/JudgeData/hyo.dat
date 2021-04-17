@@ -1,0 +1,87 @@
+10
+3
+Annie: Bahi
+Bahi: Carthik Annie
+Carthik: Bahi
+Annie Carthik
+6
+Salem: Charlie Maona Blaze Cram
+Charlie: Maona Joana Salem
+Maona: Joana Charlie Salem
+Blaze: Salem Cram
+Cram: Salem Blaze
+Joana: Charlie
+Salem Maona
+11
+Arya: Cher Ying
+Erik: Qa
+Cher: Arya Bo
+Qi: Shome Thor
+Ying: Arya
+Qa: Thor Erik
+Bo: Ying Cher Yoshie
+Yoshie: Bo Pradip
+Pradip: Yoshie Shome
+Shome: Pradip Qi
+Thor: Qi Qa
+Erik Arya
+11
+Arya: Cher Ying
+Erik: Qa
+Cher: Arya Bo
+Qi: Shome Thor
+Ying: Arya
+Qa: Thor Erik
+Bo: Ying Cher Yoshie
+Yoshie: Bo Pradip
+Pradip: Yoshie Shome
+Shome: Pradip Qi
+Thor: Qi Qa
+Arya Erik
+2
+A: B
+B: A
+B A
+4
+A: B C D
+B: A C D
+C: A B D
+D: A B C
+D C
+6
+A: B
+B: C A
+C: D B
+D: E C
+E: F D
+F: E
+F A
+3
+A: B C
+B: A
+C: A
+C A
+10
+A: B J
+B: C A
+C: D B
+D: E C
+E: F D
+F: G E
+G: H F
+H: I G
+I: J H
+J: I A
+D J
+10
+A: B J
+B: C A
+C: D B
+D: E C
+E: F D
+F: G E
+G: H F
+H: I G
+I: J H
+J: I A
+H D

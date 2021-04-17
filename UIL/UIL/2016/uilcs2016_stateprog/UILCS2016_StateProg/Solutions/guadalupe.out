@@ -1,0 +1,65 @@
+AMELIA has heard gossip from: AMELIA JESUS JOSE JUAN 
+JOSE has heard gossip from: JOSE JUAN 
+JUAN has heard gossip from: AMELIA JESUS JOSE JUAN 
+JESUS has heard gossip from: AMELIA JESUS JOSE JUAN 
+
+NOLAN has heard gossip from: DESERAY DULCE NOLAN PEDRO 
+DULCE has heard gossip from: DESERAY DULCE NOLAN PEDRO 
+DESERAY has heard gossip from: DESERAY DULCE NOLAN PEDRO 
+PEDRO has heard gossip from: DESERAY DULCE NOLAN PEDRO 
+
+SHARON has heard gossip from: IRFAN SHARON 
+IRFAN has heard gossip from: IRFAN SHARON STEPHANIE 
+STEPHANIE has heard gossip from: IRFAN KARIBU SHARON STEPHANIE 
+KARIBU has heard gossip from: IRFAN KARIBU MURICA SHARON STEPHANIE 
+MURICA has heard gossip from: IRFAN KARIBU MURICA SHARON STEPHANIE 
+
+A has heard gossip from: A 
+
+A has heard gossip from: A 
+B has heard gossip from: B 
+C has heard gossip from: C 
+
+A has heard gossip from: A B C D E F 
+B has heard gossip from: A B C D E F 
+C has heard gossip from: A B C D E F 
+D has heard gossip from: A B C D E F 
+E has heard gossip from: A B C D E F 
+F has heard gossip from: A B C D E F 
+
+A has heard gossip from: A E F 
+B has heard gossip from: B D 
+C has heard gossip from: C 
+D has heard gossip from: B D 
+E has heard gossip from: A E 
+F has heard gossip from: A E F 
+
+A has heard gossip from: A B C D 
+B has heard gossip from: A B 
+C has heard gossip from: A B C 
+D has heard gossip from: A B C D 
+
+A has heard gossip from: A AA B BB C CC D E EE FF G GG H HH I J JJ 
+B has heard gossip from: AA B FF 
+C has heard gossip from: AA B BB C CC E EE FF G GG I 
+D has heard gossip from: A AA B BB C CC D E EE FF G GG I JJ 
+E has heard gossip from: A AA B BB C CC D E EE FF G GG H HH I JJ 
+F has heard gossip from: AA B C F FF II 
+G has heard gossip from: A AA B BB C CC E EE FF G GG I JJ 
+H has heard gossip from: A AA B BB C CC D E EE FF G GG H I JJ 
+I has heard gossip from: BB CC E GG I 
+J has heard gossip from: A AA B BB C CC D E EE FF G GG H HH I J JJ 
+AA has heard gossip from: AA B C F FF 
+BB has heard gossip from: A AA B BB C CC D E EE FF G GG H HH I J JJ 
+CC has heard gossip from: A AA B BB C CC D E EE FF G GG H HH I J JJ 
+DD has heard gossip from: A AA B BB C CC DD E EE F FF G GG I II JJ 
+EE has heard gossip from: BB CC E EE GG I 
+FF has heard gossip from: AA B C FF 
+GG has heard gossip from: A AA B BB C CC D E EE FF G GG H HH I JJ 
+HH has heard gossip from: A AA B BB C CC D E EE FF G GG H HH I JJ 
+II has heard gossip from: A AA B BB C CC E EE F FF G GG I II JJ 
+JJ has heard gossip from: A AA B BB C CC DD E EE F FF G GG I II JJ 
+
+A has heard gossip from: A 
+B has heard gossip from: B 
+C has heard gossip from: C 

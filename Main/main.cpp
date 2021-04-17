@@ -62,49 +62,14 @@ struct chash {
     }
 };
 
-const int N = 500005;
-
-int n, m, o;
-set<pll> rooms;
-vector<pll> offers;
-vector<ll> profits;
-
 int main() {
 	chrono::high_resolution_clock::time_point t0 = chrono::high_resolution_clock::now();
 
 	setIO();
-    cin >> n >> m >> o;
-    FOR (i, 0, n) {
-        ll a, b;
-        cin >> a >> b;
-        rooms.insert(mp(b, a));
-    }
-    FOR (i, 0, m) {
-        ll a, b;
-        cin >> a >> b;
-        offers.pb(mp(a, b));
-    }
-    sort(offers.begin(), offers.end(), greater<pll>());
-    FOR (i, 0, m) {
-        pll cur = offers[i]; // price, size
-        auto iter = rooms.lower_bound(mp(cur.s, -1));
-        if (iter == rooms.end()) {
-            continue;
-        }
-        profits.pb(cur.f - iter->s);
-        // cout << cur.s << " " << iter->f << " " << cur.f << " " << iter->s << '\n';
-        rooms.erase(iter);
-    }
-    sort(profits.begin(), profits.end(), greater<ll>());
-    // cout << profits.size() << '\n';
-    ll ans = 0;
-    FOR (i, 0, o) {
-        if (i >= profits.size() || profits[i] < 0)
-            break;
-        ans += profits[i];
-        // cout << profits[i] << '\n';
-    }
-    cout << ans << '\n';
+    int n = 100;
+    bool prime[n];
+    int n_cols = 10;
+
 
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 //	cout << "TIME: " << chrono::duration_cast<chrono::milliseconds>(t1 - t0).count() << " ms" << endl;

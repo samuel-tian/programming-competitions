@@ -1,0 +1,61 @@
+a: 0.75,beautiful 0.25,dawn
+beautiful: 0.67,sunset 0.33,man
+for: 1.00,a
+mistaken: 1.00,for
+sunset: 1.00,that
+that: 1.00,was
+was: 0.50,a 0.50,mistaken
+
+ever: 1.00,i
+i: 0.50,would 0.25,leave 0.25,will
+if: 0.67,i 0.33,ever
+leave: 0.50,you 0.33,too 0.17,will
+never: 1.00,leave
+will: 0.50,leave 0.50,you
+would: 0.50,leave 0.50,never
+you: 0.67,leave 0.33,today
+
+him: 1.00,more
+loves: 0.71,me 0.14,him 0.14,you
+me: 0.40,not 0.40,she 0.20,or
+more: 1.00,than
+not: 1.00,she
+or: 1.00,she
+she: 1.00,loves
+than: 1.00,she
+
+been: 1.00,day
+call: 0.50,day 0.50,made
+come: 0.40,part 0.20,call 0.20,come 0.20,way
+could: 0.33,down 0.33,part 0.33,than
+day: 0.33,call 0.33,now 0.33,water
+did: 0.25,its 0.25,made 0.25,may 0.25,than
+down: 0.50,could 0.50,did
+find: 1.00,way
+first: 0.33,first 0.17,its 0.17,people 0.17,than 0.17,way
+get: 1.00,water
+its: 0.20,first 0.20,long 0.20,part 0.20,people 0.20,who
+long: 0.50,could 0.50,day
+made: 0.67,oil 0.33,been
+may: 1.00,could
+my: 1.00,way
+now: 0.25,been 0.25,did 0.25,its 0.25,my
+oil: 0.33,come 0.33,down 0.33,now
+part: 0.50,find 0.50,oil
+people: 0.20,first 0.20,get 0.20,long 0.20,now 0.20,than
+than: 0.17,did 0.17,first 0.17,my 0.17,people 0.17,water 0.17,who
+water: 0.50,come 0.50,people
+way: 0.50,than 0.25,my 0.25,now
+who: 0.50,come 0.50,than
+
+cows: 0.60,jump 0.20,do 0.20,eat
+do: 1.00,not
+eat: 1.00,on
+jump: 0.75,over 0.25,ever
+many: 0.50,cows 0.50,times
+moon: 1.00,sometimes
+not: 1.00,jump
+on: 1.00,the
+over: 1.00,the
+the: 1.00,moon
+times: 1.00,cows

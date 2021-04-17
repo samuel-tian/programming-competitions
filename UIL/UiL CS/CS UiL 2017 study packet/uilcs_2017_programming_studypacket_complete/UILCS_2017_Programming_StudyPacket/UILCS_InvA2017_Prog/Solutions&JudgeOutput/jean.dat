@@ -1,0 +1,44 @@
+10
+3
+A -> A B C
+B -> B
+C -> NONE
+4
+E -> E
+F -> F
+G -> G
+D -> NONE
+5
+Q -> B C V
+B -> B C V
+C -> B C
+D -> B C V
+V -> NONE
+1
+A -> NONE
+6
+A -> A C E F
+B -> A D E
+C -> A B
+D -> NONE
+E -> A F
+F -> NONE
+1
+A -> A
+2
+A -> NONE
+B -> NONE
+5
+A -> A B C D
+B -> NONE
+C -> NONE
+D -> NONE
+E -> NONE
+6
+A -> B
+B -> NONE
+C -> B
+D -> B
+E -> B
+F -> B
+0

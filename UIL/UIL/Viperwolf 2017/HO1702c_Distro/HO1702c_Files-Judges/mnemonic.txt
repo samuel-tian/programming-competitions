@@ -1,0 +1,11 @@
+Aaa Bb Cccc Ddddd Eee Ffffff Gg 
+Gg Ffffff Eee Ddddd Cccc Bb Aaa 
+Eee Gg Bb Ddddd Ffffff 
+Ffffff Aaa Cccc Eee 
+Aaa 
+Bb 
+Cccc 
+Ddddd 
+Eee 
+Ffffff 
+Gg 

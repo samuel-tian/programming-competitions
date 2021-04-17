@@ -1,0 +1,20 @@
+Sources: NONE
+Sinks: C
+Sources: NONE
+Sinks: NONE
+Sources: D Q
+Sinks: V
+Sources: NONE
+Sinks: NONE
+Sources: NONE
+Sinks: D F
+Sources: NONE
+Sinks: NONE
+Sources: NONE
+Sinks: NONE
+Sources: NONE
+Sinks: B C D
+Sources: A C D E F
+Sinks: B
+Sources: NONE
+Sinks: NONE

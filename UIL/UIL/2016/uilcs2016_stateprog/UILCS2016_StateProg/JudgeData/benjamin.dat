@@ -1,0 +1,13 @@
+5 3 7 6 1 9 8 7
+S P
+Q P(4)
+Q L M(2)
+S L(0) H(2)
+S L M
+Q P P P P(7)
+S L(3) P H P L
+S H(9) M(1)
+Q P M(1) M(5)
+S P M(6) M(5)
+Q P(4) P H(3)
+Q L(8) H L P P

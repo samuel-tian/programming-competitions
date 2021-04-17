@@ -1,0 +1,9 @@
+|Dif -1.00|Div  0.75|Mod  3.00|Sum  7.00|Prd 12.00|B^A 64.00|A^B 81.00|
+|Dif -0.10|Prd  0.12|Mod  0.30|A^B  0.62|Sum  0.70|Div  0.75|B^A  0.76|
+|B^A  0.06|Mod  0.20|Prd  1.20|A^B  1.55|Dif  2.60|Sum  3.40|Div  7.50|
+|Dif -3.70|A^B  0.01|Div  0.08|Mod  0.30|Prd  1.20|B^A  1.52|Sum  4.30|
+|Prd-12.00|Dif -7.00|Mod -3.00|Div -0.75|B^A  0.02|Sum  1.00|A^B 81.00|
+|A^B-64.00|Prd-12.00|Dif -7.00|Div -1.33|Sum -1.00|Mod -1.00|B^A  0.01|
+|B^A  0.00|Mod  0.20|Prd  1.00|A^B  1.38|Dif  4.80|Sum  5.20|Div 25.00|
+|Mod  0.00|B^A  0.25|Prd  1.00|A^B  1.41|Dif  1.50|Sum  2.50|Div  4.00|
+|Dif -0.01|Prd  0.01|Mod  0.10|Sum  0.21|A^B  0.78|B^A  0.80|Div  0.91|

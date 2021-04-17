@@ -1,0 +1,47 @@
+Game 1:
+Player 2 picked an invalid weapon. Player 1 wins.
+Player 1 picked an invalid weapon. Player 2 wins.
+Both players picked invalid weapons. Tie.
+Player 1: 1, Player 2: 1, Ties: 1. Result: Tie.
+Game 2:
+Lizard POISONS Spock. Player 2 wins.
+Spock VAPORIZES Rock. Player 1 wins.
+Both players picked Paper. Tie.
+Player 1 picked an invalid weapon. Player 2 wins.
+Scissors CUTS Paper. Player 1 wins.
+Paper DISPROVES Spock. Player 1 wins.
+Lizard EATS Paper. Player 1 wins.
+Player 1: 4, Player 2: 2, Ties: 1. Result: Player 1 wins.
+Game 3:
+Player 1 picked an invalid weapon. Player 2 wins.
+Player 1: 0, Player 2: 1, Ties: 0. Result: Player 2 wins.
+Game 4:
+Player 1 picked an invalid weapon. Player 2 wins.
+Player 1: 0, Player 2: 1, Ties: 0. Result: Player 2 wins.
+Game 5:
+Both players picked invalid weapons. Tie.
+Player 1: 0, Player 2: 0, Ties: 1. Result: Tie.
+Game 6:
+Player 1 picked an invalid weapon. Player 2 wins.
+Player 1: 0, Player 2: 1, Ties: 0. Result: Player 2 wins.
+Game 7:
+Player 2 picked an invalid weapon. Player 1 wins.
+Player 2 picked an invalid weapon. Player 1 wins.
+Player 2 picked an invalid weapon. Player 1 wins.
+Player 1: 3, Player 2: 0, Ties: 0. Result: Player 1 wins.
+Game 8:
+Rock CRUSHES Lizard. Player 1 wins.
+Spock VAPORIZES Rock. Player 2 wins.
+Lizard POISONS Spock. Player 1 wins.
+Paper DISPROVES Spock. Player 2 wins.
+Both players picked Lizard. Tie.
+Scissors CUTS Paper. Player 1 wins.
+Player 1: 3, Player 2: 2, Ties: 1. Result: Player 1 wins.
+Game 9:
+Rock CRUSHES Scissors. Player 1 wins.
+Lizard EATS Paper. Player 1 wins.
+Lizard POISONS Spock. Player 2 wins.
+Rock CRUSHES Scissors. Player 1 wins.
+Spock SMASHES Scissors. Player 2 wins.
+Rock CRUSHES Lizard. Player 1 wins.
+Player 1: 4, Player 2: 2, Ties: 0. Result: Player 1 wins.

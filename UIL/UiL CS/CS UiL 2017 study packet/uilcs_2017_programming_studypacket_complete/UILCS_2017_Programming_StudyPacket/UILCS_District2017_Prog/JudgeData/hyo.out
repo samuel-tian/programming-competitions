@@ -1,0 +1,20 @@
+The degree of separation between Annie and Carthik is 2.
+Annie is a friend of Bahi is a friend of Carthik.
+The degree of separation between Salem and Maona is 1.
+Salem is a friend of Maona.
+The degree of separation between Erik and Arya is 9.
+Erik is a friend of Qa is a friend of Thor is a friend of Qi is a friend of Shome is a friend of Pradip is a friend of Yoshie is a friend of Bo is a friend of Ying is a friend of Arya.
+The degree of separation between Arya and Erik is 9.
+Arya is a friend of Cher is a friend of Bo is a friend of Yoshie is a friend of Pradip is a friend of Shome is a friend of Qi is a friend of Thor is a friend of Qa is a friend of Erik.
+The degree of separation between B and A is 1.
+B is a friend of A.
+The degree of separation between D and C is 1.
+D is a friend of C.
+The degree of separation between F and A is 5.
+F is a friend of E is a friend of D is a friend of C is a friend of B is a friend of A.
+The degree of separation between C and A is 1.
+C is a friend of A.
+The degree of separation between D and J is 4.
+D is a friend of C is a friend of B is a friend of A is a friend of J.
+The degree of separation between H and D is 4.
+H is a friend of G is a friend of F is a friend of E is a friend of D.

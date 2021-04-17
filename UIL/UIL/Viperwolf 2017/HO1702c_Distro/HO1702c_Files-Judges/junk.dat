@@ -1,0 +1,36 @@
+27
+Akebono	Japan	294	02/21/1989	
+Amsat-Oscar 7	USA	29	11/15/1974	
+Aqua	Japan	2934	05/04/2002	
+Cubesat XI-V	Japan	1	10/27/2005	
+Echostar 11	USA	5500	07/16/2008
+Firefly	USA	3	11/19/2013	
+GOES-3	USA	627	06/16/1978
+Hodoyoshi-1	Japan	65	11/06/2014	
+INMARSAT 5 F3	UK	6100	08/28/2015
+Intelsat 701	USA	3642	10/22/1993
+Iridium 7	USA	689	05/05/1997
+Landsat 5	USA	1941	03/01/1984
+Leasat 5	Australia	3400	01/09/1990	
+NATO-4B	UK	1430	12/08/1993
+NOAA-15	USA	2223	05/13/1998	
+Optus 10	Australia	3270	09/11/2014	
+Optus B3	Australia	2858	08/28/1994	
+Optus D2	Australia	2400	10/05/2007	
+Sirius-1	USA	3727	06/30/2000	
+Skynet 4C	UK	1474	08/30/1990
+Superbird-C	Japan	3130	07/28/1997	
+Topsat	UK	120	10/27/2005
+Test1	Test	1	01/06/1970
+Test2	Test	2	02/07/2000
+Test3	Test	3	03/08/1980
+Test4	Test	4	04/09/2010
+Test5	Test	5	05/10/1990
+7
+Japan:DATE
+Australia:MASS
+Australia:DATE
+USA:DATE
+UK:MASS
+Test:MASS
+Test:DATE

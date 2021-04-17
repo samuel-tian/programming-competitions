@@ -1,0 +1,10 @@
+-12000.00 space-meters
+30.00 space-seconds
+42.00 space-newtons
+24.00 space-hertz
+-99999999.00 space-grams
+0.00 space-grams
+99999999.00 space-grams
+-1234.00 space-hertz
+0.00 space-hertz
+1234.00 space-hertz
