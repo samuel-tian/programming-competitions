@@ -29,7 +29,6 @@ public class main {
 
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(new File("in.dat"));
-
     }
 
 }
